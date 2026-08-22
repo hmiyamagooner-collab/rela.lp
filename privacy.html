@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Zen+Kaku+Gothic+New:wght@400;700&family=Audiowide&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="legal.css">
 <link rel="stylesheet" href="sweep.css">
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <div class="bg-sweep" aria-hidden="true"><i></i><i></i></div>
@@ -76,5 +77,13 @@
   <div class="word">RELA</div>
   © 2026 GOONER CO., LTD.
 </footer>
+<div class="theme-player">
+  <audio id="theme-audio" src="assets/theme.mp3" loop preload="metadata"></audio>
+  <button type="button" id="theme-toggle" aria-pressed="false" aria-label="テーマソングを再生">
+    <span class="ico">♪</span>
+    <span class="txt"><span class="ttl">テーマソング</span><span class="sub">大切な人を、もっと深く理解するために</span></span>
+  </button>
+</div>
+<script src="theme.js"></script>
 </body>
 </html>

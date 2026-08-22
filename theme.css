@@ -1,0 +1,33 @@
+.theme-player{
+  position:fixed;right:18px;bottom:18px;z-index:50;
+}
+.theme-player button{
+  display:flex;align-items:center;gap:10px;
+  border:1px solid rgba(120,170,255,.28);
+  background:rgba(3,4,10,.72);
+  color:var(--ink,#eef2ff);
+  backdrop-filter:blur(12px);
+  border-radius:999px;
+  padding:10px 16px 10px 12px;
+  cursor:pointer;
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  box-shadow:0 0 24px rgba(79,216,255,.18);
+}
+.theme-player button:hover{border-color:#4fd8ff}
+.theme-player .ico{
+  width:28px;height:28px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#37c8f0,#7a6cf5 55%,#ff4d8d);
+  color:#fff;font-size:13px;flex:none;
+}
+.theme-player .txt{text-align:left;line-height:1.25}
+.theme-player .ttl{display:block;font-size:11px;letter-spacing:.08em;color:#4fd8ff}
+.theme-player .sub{display:block;font-size:10px;color:#a9b4d6;max-width:11.5em}
+.theme-player button[aria-pressed="true"]{
+  box-shadow:0 0 28px rgba(79,216,255,.38);
+}
+.theme-player button[aria-pressed="true"] .ico{animation:theme-pulse 1.6s ease-in-out infinite}
+@keyframes theme-pulse{50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){
+  .theme-player button[aria-pressed="true"] .ico{animation:none}
+}

@@ -19,6 +19,7 @@
 <meta name="description" content="RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。">
 <link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
 <link rel="stylesheet" href="sweep.css">
+<link rel="stylesheet" href="theme.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Audiowide&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -139,11 +140,19 @@ footer a:hover{color:var(--cyan)}
     <a class="store-badge" href="https://play.google.com/store/apps/details?id=jp.co.goonerinfo.rela" target="_blank" rel="noopener"><span class="mark">▶</span><span>Google Playで<b>手に入れよう</b></span></a>
   </div>
 </main>
+<div class="theme-player">
+  <audio id="theme-audio" src="assets/theme.mp3" loop preload="metadata"></audio>
+  <button type="button" id="theme-toggle" aria-pressed="false" aria-label="テーマソングを再生">
+    <span class="ico">♪</span>
+    <span class="txt"><span class="ttl">テーマソング</span><span class="sub">大切な人を、もっと深く理解するために</span></span>
+  </button>
+</div>
 <footer>
   <a href="./terms.html">利用規約</a>
   <a href="./privacy.html">プライバシーポリシー</a>
   <a href="./tokushoho.html">特定商取引法に基づく表記</a>
   <a href="./company.html">運営会社</a>
 </footer>
+<script src="theme.js"></script>
 </body>
 </html>

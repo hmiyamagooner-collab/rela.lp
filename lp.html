@@ -19,6 +19,7 @@
 <meta name="description" content="RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。">
 <link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
 <link rel="stylesheet" href="sweep.css">
+<link rel="stylesheet" href="theme.css">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -718,5 +719,13 @@ if(tog&&links){
 }
 
 </script>
+<div class="theme-player">
+  <audio id="theme-audio" src="assets/theme.mp3" loop preload="metadata"></audio>
+  <button type="button" id="theme-toggle" aria-pressed="false" aria-label="テーマソングを再生">
+    <span class="ico">♪</span>
+    <span class="txt"><span class="ttl">テーマソング</span><span class="sub">大切な人を、もっと深く理解するために</span></span>
+  </button>
+</div>
+<script src="theme.js"></script>
 </body>
 </html>
