@@ -8,7 +8,7 @@
   color:var(--ink,#eef2ff);
   backdrop-filter:blur(12px);
   border-radius:999px;
-  padding:10px 16px 10px 12px;
+  padding:10px 14px 10px 12px;
   cursor:pointer;
   font-family:'Zen Kaku Gothic New',sans-serif;
   box-shadow:0 0 24px rgba(79,216,255,.18);
@@ -18,15 +18,27 @@
   width:28px;height:28px;border-radius:50%;
   display:grid;place-items:center;
   background:linear-gradient(135deg,#37c8f0,#7a6cf5 55%,#ff4d8d);
-  color:#fff;font-size:13px;flex:none;
+  color:#fff;font-size:9px;font-weight:700;letter-spacing:.04em;flex:none;
 }
-.theme-player .txt{text-align:left;line-height:1.25}
-.theme-player .ttl{display:block;font-size:11px;letter-spacing:.08em;color:#4fd8ff}
-.theme-player .sub{display:block;font-size:10px;color:#a9b4d6;max-width:11.5em}
+.theme-player .txt{text-align:left;line-height:1.2}
+.theme-player .ttl{display:block;font-size:10px;letter-spacing:.08em;color:#a9b4d6}
+.theme-player .state{
+  display:inline-block;margin-top:3px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;
+  padding:2px 8px;border-radius:999px;
+  border:1px solid rgba(79,216,255,.35);
+  color:#4fd8ff;
+}
 .theme-player button[aria-pressed="true"]{
   box-shadow:0 0 28px rgba(79,216,255,.38);
 }
 .theme-player button[aria-pressed="true"] .ico{animation:theme-pulse 1.6s ease-in-out infinite}
+.theme-player button[aria-pressed="false"] .ico{
+  background:#2a3148;color:#a9b4d6;
+}
+.theme-player button[aria-pressed="false"] .state{
+  color:#a9b4d6;border-color:rgba(169,180,214,.35);
+}
 @keyframes theme-pulse{50%{transform:scale(1.08)}}
 @media (prefers-reduced-motion:reduce){
   .theme-player button[aria-pressed="true"] .ico{animation:none}
