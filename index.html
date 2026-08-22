@@ -18,6 +18,7 @@
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <meta name="description" content="RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。">
 <link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
+<link rel="stylesheet" href="sweep.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Audiowide&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -29,6 +30,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 /* ---- 背景写真(全画面) ---- */
 .stage{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;padding:60px 24px 70px;position:relative;overflow:hidden;isolation:isolate}
+.stage > *:not(.bg-sweep){position:relative;z-index:1}
 .stage::before{content:"";position:absolute;inset:0;z-index:-2;
   background:url(assets/hero.webp) center bottom / cover no-repeat}
 .stage::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
@@ -99,13 +101,15 @@ h1 .big{font-size:1.32em;font-weight:700}
   .logo-emerge,.seq{animation:none;opacity:1;transform:none;filter:none}
   .logo-wrap{animation:none}
 }
-footer{padding:18px 24px 28px;text-align:center;font-size:11px;color:var(--ink-dim)}
+footer{position:relative;z-index:1;padding:18px 24px 28px;text-align:center;font-size:11px;color:var(--ink-dim)}
 footer a{color:var(--ink-dim);text-decoration:none;margin:0 8px}
 footer a:hover{color:var(--cyan)}
 </style>
 </head>
 <body>
+<div class="bg-sweep" aria-hidden="true"><i></i><i></i></div>
 <main class="stage">
+<div class="bg-sweep" aria-hidden="true"><i></i><i></i></div>
   <div class="logo-wrap">
     <img class="logo-emerge" src="assets/logo.png" alt="RELA（リラ）">
   </div>

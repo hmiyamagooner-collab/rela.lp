@@ -1,0 +1,40 @@
+/* 背景を斜めに走る光（全ページ共通） */
+.bg-sweep{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.stage > .bg-sweep{position:absolute}
+.bg-sweep i{
+  position:absolute;top:-35%;left:0;
+  width:22vmin;height:170%;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(79,216,255,0) 28%,
+    rgba(79,216,255,.20) 48%,
+    rgba(122,108,245,.16) 56%,
+    rgba(255,77,141,.10) 68%,
+    transparent 100%);
+  filter:blur(14px);
+  mix-blend-mode:screen;
+  animation:bg-sweep 8.8s ease-in-out infinite;
+  transform:translateX(-50vw) rotate(14deg);
+}
+.bg-sweep i:nth-child(2){
+  width:9vmin;
+  opacity:.7;
+  filter:blur(8px);
+  animation-duration:12.5s;
+  animation-delay:3.6s;
+  background:linear-gradient(90deg,
+    transparent,
+    rgba(79,216,255,.32),
+    transparent);
+}
+@keyframes bg-sweep{
+  0%{transform:translateX(-55vw) rotate(14deg);opacity:0}
+  12%{opacity:1}
+  78%{opacity:.75}
+  100%{transform:translateX(135vw) rotate(14deg);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .bg-sweep{display:none}
+}

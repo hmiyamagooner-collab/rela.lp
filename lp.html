@@ -18,6 +18,7 @@
 
 <meta name="description" content="RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。">
 <link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
+<link rel="stylesheet" href="sweep.css">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +67,7 @@ a{color:inherit}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .num{font-family:'Inter',sans-serif}
 .serif{font-family:'Shippori Mincho',serif}
-section{padding:110px 0;position:relative}
+section{padding:110px 0;position:relative;z-index:1}
 
 /* ---- ワードマーク(ネオンRELA) ---- */
 .rela-word{
@@ -341,7 +342,7 @@ details .a{padding:0 22px 20px;font-size:14px;color:var(--ink-soft)}
 .final .rela-word{font-size:clamp(40px,7vw,72px);display:block;margin-bottom:36px}
 
 /* ---- フッター ---- */
-footer{border-top:1px solid var(--line);padding:44px 0 58px;font-size:13px;color:var(--ink-dim)}
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px 0 58px;font-size:13px;color:var(--ink-dim)}
 .foot{max-width:var(--maxw);margin:0 auto;padding:0 24px;
   display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
 .foot-links{display:flex;gap:20px;flex-wrap:wrap}
@@ -369,6 +370,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 58px;font-size:13px;color
 </style>
 </head>
 <body>
+<div class="bg-sweep" aria-hidden="true"><i></i><i></i></div>
 
 <!-- サーキットハートSVG(共通定義) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
