@@ -116,8 +116,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .nav{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:62px;
   display:flex;align-items:center;justify-content:space-between;position:relative}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo img{width:26px;height:26px;border-radius:7px;display:block;mix-blend-mode:screen}
-.logo svg{width:26px;height:26px}
+.logo img,.logo svg{width:26px;height:26px;display:block;flex-shrink:0}
 .logo .word{font-family:'Audiowide',sans-serif;letter-spacing:.2em;font-size:16px;color:#fff}
 .nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
 .nav-links a{text-decoration:none;color:var(--ink-soft)}
@@ -155,7 +154,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
   filter:drop-shadow(0 0 26px rgba(122,108,245,.55))}
 .brand-lockup{
   width:clamp(210px,28vw,300px);display:block;margin:0 auto 46px;
-  mix-blend-mode:screen;
+  filter:drop-shadow(0 0 30px rgba(122,108,245,.5)) drop-shadow(0 0 60px rgba(61,123,255,.3));
 }
 .hero .rela-word{font-size:clamp(58px,11vw,120px);display:block;margin-bottom:44px}
 .pills{display:flex;gap:14px;align-items:center;justify-content:center;margin-bottom:56px;flex-wrap:wrap}
@@ -395,7 +394,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 <header>
   <nav class="nav" aria-label="メイン">
     <a class="logo" href="./index.html">
-      <img src="assets/logo.png" alt="RELA" width="26" height="26" style="border-radius:7px;display:block">
+      <img src="assets/icon-heart.svg" alt="" width="26" height="26">
       <span class="word">RELA</span>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
