@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RELA（リラ）| AIで自分と相手を可視化する</title>
+<meta name="theme-color" content="#03040a">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RELA（リラ）| AIで自分と相手を可視化する">
+<meta property="og:description" content="性格・相性・心理傾向をAIが多角的に分析。分析×哲学×AI。">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RELA（リラ）| AIで自分と相手を可視化する">
+<meta name="twitter:description" content="性格・相性・心理傾向をAIが多角的に分析。分析×哲学×AI。">
+<meta name="twitter:image" content="assets/og.png">
+
+<meta name="description" content="RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Audiowide&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   RELA LP v3 — 販促ビジュアル準拠
+   ・回路基板パターン背景 / サーキットハート / ネオンRELA
+   ・明朝見出し / 分析×哲学×AI ピル / 光のグリッド床
+   ※Web販売が本線。App Storeでの公開は廃止。販売導線はWeb版へ。
+   ========================================================= */
+:root{
+  --bg:#03040a;
+  --bg-2:#05070f;
+  --panel:#0b0e1b;
+  --panel-2:#0f1322;
+  --line:rgba(120,170,255,.16);
+  --ink:#eef2ff;
+  --ink-soft:#a9b4d6;
+  --ink-dim:#66719a;
+  --cyan:#4fd8ff;
+  --blue:#3d7bff;
+  --rose:#ff4d8d;
+  --violet:#9b5cf6;
+  --heart:linear-gradient(135deg,#37c8f0 0%,#7a6cf5 48%,#ff4d8d 100%);
+  --maxw:1120px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  background:var(--bg);color:var(--ink);
+  line-height:1.9;font-size:16px;overflow-x:hidden;
+}
+/* ---- 回路基板パターン(全体背景) ---- */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+    radial-gradient(700px 460px at 85% 6%,rgba(61,123,255,.10),transparent 60%),
+    radial-gradient(600px 460px at 10% 40%,rgba(155,92,246,.08),transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23103055' stroke-width='1' opacity='.55'%3E%3Cpath d='M20 0v40h60v30M180 220v-50h-40v-30M0 120h50v40M220 60h-60v50'/%3E%3C/g%3E%3Cg fill='none' stroke='%23134a7a' stroke-width='1.4' opacity='.6'%3E%3Crect x='76' y='66' width='9' height='9'/%3E%3Crect x='150' y='136' width='9' height='9'/%3E%3Crect x='46' y='156' width='7' height='7'/%3E%3C/g%3E%3Cg fill='%23134a7a' opacity='.5'%3E%3Ccircle cx='20' cy='40' r='2'/%3E%3Ccircle cx='140' cy='140' r='2'/%3E%3Ccircle cx='50' cy='120' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-color:var(--bg);
+}
+::selection{background:rgba(61,123,255,.45)}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.num{font-family:'Inter',sans-serif}
+.serif{font-family:'Shippori Mincho',serif}
+section{padding:110px 0;position:relative}
+
+/* ---- ワードマーク(ネオンRELA) ---- */
+.rela-word{
+  font-family:'Audiowide',sans-serif;letter-spacing:.22em;color:#fff;
+  text-shadow:
+    0 0 8px rgba(255,255,255,.95),
+    0 0 22px rgba(79,216,255,.65),
+    0 0 55px rgba(61,123,255,.5),
+    0 0 110px rgba(155,92,246,.35);
+}
+
+/* ---- 見出し(明朝・大小混植) ---- */
+h2.sec{
+  font-family:'Shippori Mincho',serif;font-weight:600;
+  font-size:clamp(24px,3.6vw,36px);letter-spacing:.12em;line-height:1.7;
+  text-align:center;margin-bottom:18px;
+}
+.sec-line{
+  display:flex;align-items:center;gap:18px;justify-content:center;margin-bottom:54px;
+}
+.sec-line::before,.sec-line::after{
+  content:"";height:2px;flex:1;max-width:220px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(79,216,255,.8));
+  box-shadow:0 0 12px rgba(79,216,255,.6);
+}
+.sec-line::after{background:linear-gradient(90deg,rgba(79,216,255,.8),transparent)}
+.sec-line .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+
+/* ---- ボタン ---- */
+.btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:999px;
+  transition:transform .18s,box-shadow .18s;text-align:center}
+.btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.btn-white{background:#f2f5ff;color:#0a0d18;padding:15px 40px;font-size:15px;
+  box-shadow:0 0 26px rgba(79,216,255,.28)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(79,216,255,.45)}
+.btn-grad{background:var(--heart);color:#fff;padding:14px 36px;font-size:15px;
+  box-shadow:0 0 26px rgba(255,77,141,.3)}
+.btn-grad:hover{transform:translateY(-2px)}
+.btn-line{border:1px solid var(--line);color:var(--ink-soft);padding:13px 30px;font-size:14px}
+.btn-line:hover{border-color:var(--cyan);color:var(--ink)}
+
+/* ---- ヘッダー ---- */
+header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
+  background:rgba(3,4,10,.78);border-bottom:1px solid var(--line)}
+.nav{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:62px;
+  display:flex;align-items:center;justify-content:space-between;position:relative}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo svg{width:26px;height:26px}
+.logo .word{font-family:'Audiowide',sans-serif;letter-spacing:.2em;font-size:16px;color:#fff}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
+.nav-links a{text-decoration:none;color:var(--ink-soft)}
+.nav-links a:hover{color:var(--ink)}
+.nav .btn-white{padding:9px 22px;font-size:13px}
+.nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:10px;cursor:pointer}
+.nav-toggle span{display:block;width:18px;height:1.5px;background:#fff;margin:4px auto;border-radius:2px}
+@media(max-width:960px){
+  .nav-toggle{display:block}
+  .nav-links{
+    display:none;position:absolute;top:62px;left:0;right:0;flex-direction:column;
+    gap:0;padding:10px 18px 18px;background:rgba(3,4,10,.96);border-bottom:1px solid var(--line);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 4px;border-bottom:1px solid rgba(120,170,255,.1)}
+  .nav-links .btn-white{margin-top:8px;text-align:center}
+}
+
+
+/* ---- ヒーロー(ポスター再現) ---- */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:150px 24px 120px;position:relative;overflow:hidden;
+}
+.hero h1{
+  font-family:'Shippori Mincho',serif;font-weight:600;line-height:1.75;
+  font-size:clamp(26px,4.6vw,46px);letter-spacing:.08em;margin-bottom:10px;
+}
+.hero h1 .big{font-size:1.32em;font-weight:700}
+.hero .subline{
+  font-family:'Shippori Mincho',serif;color:var(--ink-soft);
+  font-size:clamp(14px,1.8vw,19px);letter-spacing:.22em;margin-bottom:52px;
+}
+.heart-logo{width:clamp(150px,22vw,220px);margin-bottom:8px;
+  filter:drop-shadow(0 0 26px rgba(122,108,245,.55))}
+.brand-lockup{
+  width:clamp(210px,28vw,300px);display:block;margin:0 auto 46px;
+  mix-blend-mode:screen; /* 黒背景を透過し発光部のみ表示 */
+  filter:drop-shadow(0 0 30px rgba(122,108,245,.5)) drop-shadow(0 0 60px rgba(61,123,255,.3));
+}
+.hero .rela-word{font-size:clamp(58px,11vw,120px);display:block;margin-bottom:44px}
+.pills{display:flex;gap:14px;align-items:center;justify-content:center;margin-bottom:56px;flex-wrap:wrap}
+.pill{
+  font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:.2em;
+  padding:9px 30px;border-radius:999px;position:relative;background:rgba(3,4,10,.6);
+}
+.pill::before{
+  content:"";position:absolute;inset:0;border-radius:999px;padding:1.5px;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+.pill.c::before{background:linear-gradient(120deg,#37c8f0,#3d7bff)}
+.pill.v::before{background:linear-gradient(120deg,#7a6cf5,#9b5cf6)}
+.pill.p::before{background:linear-gradient(120deg,#ff4d8d,#ff7ab0)}
+.pills .x{color:var(--ink-dim);font-family:'Shippori Mincho',serif}
+.hero .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
+.hero .note{font-size:12px;color:var(--ink-dim);margin-top:16px}
+
+/* キャンペーン帯(巻物風) */
+.ribbon{
+  margin:44px auto 0;display:inline-block;position:relative;
+  font-family:'Shippori Mincho',serif;letter-spacing:.1em;
+  padding:14px 42px;color:#0a0d18;background:#eef2ff;
+  clip-path:polygon(0 12%,3% 0,97% 0,100% 12%,98% 50%,100% 88%,97% 100%,3% 100%,0 88%,2% 50%);
+  box-shadow:0 0 30px rgba(79,216,255,.3);
+  font-size:clamp(13px,1.8vw,16px);
+}
+.ribbon b{color:#c22a68;font-size:1.25em}
+.ribbon .gold{color:#8a6a12;font-weight:700}
+
+/* ストアバッジ */
+.stores{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:34px;flex-wrap:wrap}
+.store-badge{
+  display:flex;align-items:center;gap:10px;border:1px solid var(--line);
+  border-radius:12px;padding:9px 18px;text-decoration:none;background:rgba(255,255,255,.03);
+  font-size:12px;color:var(--ink-soft);line-height:1.4;text-align:left;
+}
+.store-badge b{display:block;font-size:14px;color:var(--ink)}
+.store-badge .mark{font-size:22px}
+.store-badge:hover{border-color:var(--cyan)}
+
+/* グリッド床 */
+.floor{
+  position:absolute;left:50%;bottom:-40px;transform:translateX(-50%) perspective(420px) rotateX(58deg);
+  width:200%;height:420px;pointer-events:none;opacity:.6;
+  background:
+    repeating-linear-gradient(90deg,rgba(61,123,255,.35) 0 1.5px,transparent 1.5px 70px),
+    repeating-linear-gradient(0deg,rgba(61,123,255,.35) 0 1.5px,transparent 1.5px 70px);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 35%,#000 70%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 35%,#000 70%,transparent);
+}
+
+/* ---- 機能グリッド(6機能・ミニ画面) ---- */
+.features{background:linear-gradient(180deg,transparent,rgba(5,7,15,.7))}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 26px;margin-top:10px}
+.f-item{text-align:center}
+.f-item h3{
+  font-family:'Shippori Mincho',serif;font-size:17px;font-weight:600;
+  letter-spacing:.14em;margin-bottom:16px;
+}
+.mini{
+  width:min(220px,100%);margin:0 auto 16px;border-radius:22px;
+  background:#05060d;border:1px solid rgba(120,170,255,.28);
+  padding:8px;box-shadow:0 0 34px rgba(61,123,255,.16),0 24px 50px rgba(0,0,0,.5);
+}
+.mini .scr{
+  border-radius:16px;background:var(--panel);border:1px solid var(--line);
+  padding:16px 12px;min-height:230px;display:flex;flex-direction:column;gap:10px;
+  font-size:10.5px;color:var(--ink-soft);text-align:left;
+}
+.mini .m-title{font-family:'Audiowide',sans-serif;font-size:13px;letter-spacing:.2em;color:#fff;
+  text-align:center;text-shadow:0 0 10px rgba(79,216,255,.6)}
+.mini .row{display:flex;gap:8px}
+.mini .box{
+  flex:1;border:1px solid var(--line);border-radius:9px;background:var(--panel-2);
+  padding:9px 6px;text-align:center;font-size:9.5px;
+}
+.mini .score b{font-family:'Inter',sans-serif;font-size:22px;color:var(--cyan);
+  text-shadow:0 0 10px rgba(79,216,255,.6)}
+.mini .gbar{height:4px;border-radius:99px;background:rgba(120,170,255,.14);overflow:hidden}
+.mini .gbar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue));border-radius:99px}
+.mini .chakra{display:flex;flex-direction:column;align-items:center;gap:7px;flex:1;justify-content:center}
+.mini .chakra i{width:9px;height:9px;border-radius:50%;display:block}
+.mini .palm{flex:1;display:flex;align-items:center;justify-content:center;font-size:44px;
+  filter:drop-shadow(0 0 14px rgba(79,216,255,.5))}
+.mini .face{flex:1;display:flex;align-items:center;justify-content:center}
+.mini .face .fc{
+  width:66px;height:66px;border-radius:50%;border:1.5px dashed rgba(79,216,255,.7);
+  display:flex;align-items:center;justify-content:center;font-size:30px;
+  box-shadow:0 0 20px rgba(79,216,255,.25) inset;
+}
+.mini .team{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;flex:1}
+.mini .team i{border-radius:8px;background:var(--panel-2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px}
+.mini .chat{
+  border:1px solid rgba(155,92,246,.35);background:rgba(155,92,246,.10);
+  border-radius:10px;padding:8px 9px;line-height:1.7;
+}
+.f-item p{font-size:13px;color:var(--ink-soft);max-width:280px;margin:0 auto;line-height:1.9}
+
+/* ---- カルテ ---- */
+.karte{border-top:1px solid var(--line)}
+.k-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.k-fan{position:relative;height:320px}
+.k-card{
+  position:absolute;width:190px;height:265px;border-radius:12px;
+  background:linear-gradient(160deg,#0d1020,#070912);
+  border:1px solid rgba(190,160,90,.45);
+  box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 26px rgba(190,160,90,.12);
+  padding:18px 16px;font-size:9px;color:var(--ink-dim);
+}
+.k-card .kc-t{
+  font-family:'Shippori Mincho',serif;color:#d8bd7f;letter-spacing:.3em;
+  font-size:10px;text-align:center;margin-bottom:10px;
+}
+.k-card .kc-line{height:1px;background:linear-gradient(90deg,transparent,rgba(190,160,90,.5),transparent);margin:8px 0}
+.k-card .kc-heart{text-align:center;font-size:24px;margin:16px 0;
+  background:var(--heart);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.k1{left:4%;top:26px;transform:rotate(-8deg)}
+.k2{left:30%;top:0;z-index:2}
+.k3{left:56%;top:30px;transform:rotate(9deg)}
+.karte h2{font-family:'Shippori Mincho',serif;font-size:clamp(23px,3.2vw,32px);
+  font-weight:600;letter-spacing:.1em;line-height:1.8;margin-bottom:18px}
+.karte h2 .gold{color:#d8bd7f}
+.karte p{color:var(--ink-soft);font-size:14.5px}
+
+/* ---- ステップ ---- */
+.how{border-top:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+.step{border:1px solid var(--line);border-radius:18px;background:rgba(11,14,27,.7);
+  padding:30px 26px;position:relative;backdrop-filter:blur(4px)}
+.step::before{
+  counter-increment:s;content:"0" counter(s);
+  font-family:'Audiowide',sans-serif;font-size:13px;letter-spacing:.24em;
+  color:var(--cyan);text-shadow:0 0 10px rgba(79,216,255,.6);
+  display:block;margin-bottom:12px;
+}
+.step h3{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;letter-spacing:.06em;margin-bottom:8px}
+.step p{font-size:13.5px;color:var(--ink-soft)}
+
+/* ---- 料金 ---- */
+.plans{border-top:1px solid var(--line)}
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.plan{background:rgba(11,14,27,.7);border:1px solid var(--line);border-radius:18px;
+  padding:30px 24px;display:flex;flex-direction:column;position:relative;backdrop-filter:blur(4px)}
+.plan.featured{border-color:transparent}
+.plan.featured::before{
+  content:"";position:absolute;inset:0;border-radius:18px;padding:1.5px;background:var(--heart);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+.plan .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--heart);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.12em;
+  padding:4px 15px;border-radius:99px;white-space:nowrap}
+.p-name{font-family:'Audiowide',sans-serif;font-size:12px;letter-spacing:.24em;color:var(--ink-soft);margin-bottom:12px}
+.p-price{font-family:'Inter',sans-serif;font-weight:700;font-size:32px;color:var(--cyan);
+  text-shadow:0 0 14px rgba(79,216,255,.4)}
+.p-price small{font-size:12px;font-weight:400;color:var(--ink-dim)}
+.p-per{font-size:11.5px;color:var(--ink-dim);margin:2px 0 20px}
+.plan ul{list-style:none;font-size:13px;color:var(--ink-soft);flex:1}
+.plan li{padding:7px 0 7px 22px;position:relative;border-top:1px solid rgba(120,170,255,.1)}
+.plan li::before{content:"✓";position:absolute;left:0;color:var(--cyan);font-weight:700}
+.plan .btn{margin-top:22px;width:100%}
+.p-note{margin-top:24px;font-size:12px;color:var(--ink-dim);text-align:center}
+
+/* ---- FAQ ---- */
+.faq{border-top:1px solid var(--line)}
+.faq-list{max-width:760px;margin:0 auto}
+details{border:1px solid var(--line);border-radius:14px;background:rgba(11,14,27,.7);
+  margin-bottom:12px;overflow:hidden}
+summary{cursor:pointer;list-style:none;padding:19px 22px;font-weight:700;font-size:15px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";color:var(--ink-dim);font-weight:400;transition:transform .2s;flex-shrink:0}
+details[open] summary::after{transform:rotate(45deg)}
+details .a{padding:0 22px 20px;font-size:14px;color:var(--ink-soft)}
+
+/* ---- 最終CTA ---- */
+.final{text-align:center;padding:150px 0 170px;overflow:hidden}
+.final .tagline{
+  font-family:'Shippori Mincho',serif;font-weight:600;
+  font-size:clamp(21px,3.4vw,32px);letter-spacing:.14em;line-height:2;margin-bottom:34px;
+}
+.final .rela-word{font-size:clamp(40px,7vw,72px);display:block;margin-bottom:36px}
+
+/* ---- フッター ---- */
+footer{border-top:1px solid var(--line);padding:44px 0 58px;font-size:13px;color:var(--ink-dim)}
+.foot{max-width:var(--maxw);margin:0 auto;padding:0 24px;
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.foot-links a{text-decoration:none;color:var(--ink-dim)}
+.foot-links a:hover{color:var(--ink-soft)}
+
+/* ---- リビール ---- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---- レスポンシブ ---- */
+@media(max-width:960px){
+  .f-grid{grid-template-columns:repeat(2,1fr)}
+  .k-grid{grid-template-columns:1fr;gap:40px}
+  .steps{grid-template-columns:1fr}
+  .plan-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  section{padding:80px 0}
+}
+@media(max-width:620px){
+  .f-grid,.plan-grid{grid-template-columns:1fr}
+  .k-fan{height:300px;transform:scale(.9);transform-origin:left top}
+}
+</style>
+</head>
+<body>
+
+<!-- サーキットハートSVG(共通定義) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#37c8f0"/>
+      <stop offset="50%" stop-color="#7a6cf5"/>
+      <stop offset="100%" stop-color="#ff4d8d"/>
+    </linearGradient>
+    <g id="circuitHeart">
+      <path d="M50 88 C22 66 8 48 8 32 C8 18 19 8 32 8 C40 8 47 12 50 19 C53 12 60 8 68 8 C81 8 92 18 92 32 C92 48 78 66 50 88 Z"
+        fill="none" stroke="url(#heartGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M50 19 L50 40 L64 52" fill="none" stroke="url(#heartGrad)" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="64" cy="52" r="6" fill="none" stroke="url(#heartGrad)" stroke-width="4.5"/>
+      <circle cx="32" cy="30" r="5.5" fill="none" stroke="url(#heartGrad)" stroke-width="4.5"/>
+      <path d="M32 30 L44 42" fill="none" stroke="url(#heartGrad)" stroke-width="5" stroke-linecap="round"/>
+    </g>
+  </defs>
+</svg>
+
+<header>
+  <nav class="nav" aria-label="メイン">
+    <a class="logo" href="./index.html">
+      <img src="assets/logo.png" alt="RELA" width="26" height="26" style="border-radius:7px;display:block">
+      <span class="word">RELA</span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="#features">できること</a>
+      <a href="#how">使い方</a>
+      <a href="#plans">料金</a>
+      <a href="#faq">よくある質問</a>
+      <a class="btn btn-white" href="https://rela-ai.vercel.app">無料ではじめる</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ================= ヒーロー(ポスター構成) ================= -->
+<section class="hero" id="top">
+  <h1 class="rv"><span class="big">AI</span>で<span class="big">自分</span>と<span class="big">相手</span>を<span class="big">可視化</span>する</h1>
+  <p class="subline rv">性格・相性・心理傾向を多角的に分析</p>
+
+  <img class="brand-lockup rv" src="assets/logo.png" alt="RELA">
+
+  <div class="pills rv">
+    <span class="pill c">分析</span><span class="x">×</span>
+    <span class="pill v">哲学</span><span class="x">×</span>
+    <span class="pill p">AI</span>
+  </div>
+
+  <div class="cta-row rv">
+    <a class="btn btn-white" href="https://rela-ai.vercel.app">無料ではじめる</a>
+    <a class="btn btn-line" href="#features">RELAでできること</a>
+  </div>
+  <p class="note rv">登録は無料。クレジットカードは必要ありません。</p>
+
+  <div class="rv">
+    <!-- キャンペーン帯: アプリ側の現行設計(3日トライアル+ウェルカム180コイン)を踏襲。Web Stripe課金でも同条件にするかは承認後に最終化 -->
+    <div class="ribbon">今だけ！<b>3日間無料</b> ＋ <span class="gold">180コイン</span>プレゼント！</div>
+  </div>
+
+  <div class="stores rv">
+    <a class="store-badge" href="https://rela-ai.vercel.app"><span class="mark">◎</span><span>Webで<b>はじめる</b></span></a>
+    <a class="store-badge" href="https://play.google.com/store/apps/details?id=jp.co.goonerinfo.rela" target="_blank" rel="noopener"><span class="mark">▶</span><span>Androidは<b>Google Play</b></span></a>
+  </div>
+
+  <div class="floor" aria-hidden="true"></div>
+</section>
+
+<!-- ================= RELAでできること(6機能) ================= -->
+<section class="features" id="features">
+  <div class="wrap">
+    <h2 class="sec rv">RELA でできること</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+
+    <div class="f-grid">
+      <!-- 1 RELA総合分析 -->
+      <div class="f-item rv">
+        <h3>RELA 総合分析</h3>
+        <div class="mini"><div class="scr">
+          <div class="m-title">RELA</div>
+          <div class="box score" style="text-align:left">今日のスコア <b class="num">62</b><div class="gbar"><i style="width:62%"></i></div></div>
+          <div class="row"><div class="box">自分の登録・分析</div><div class="box">相手の登録・分析</div></div>
+          <div class="row"><div class="box">RELA総合相談所</div><div class="box">最適チーム編成</div></div>
+        </div></div>
+        <p>あらゆる分析を統合し、関係性・性格・未来の可能性までAIが総合的に解説。</p>
+      </div>
+
+      <!-- 2 チーム編成 -->
+      <div class="f-item rv">
+        <h3>チーム編成</h3>
+        <div class="mini"><div class="scr">
+          <div class="m-title">TEAM</div>
+          <div style="font-size:9.5px;text-align:center;color:var(--ink-dim)">チームの種類をえらぶ</div>
+          <div class="team">
+            <i>🏢</i><i>⚽</i><i>🎤</i><i>🏀</i><i>🎬</i><i>🚀</i>
+          </div>
+          <div class="gbar"><i style="width:70%"></i></div>
+        </div></div>
+        <p>AIが最適なチーム編成を分析。役割・相性まで総合的に提案。</p>
+      </div>
+
+      <!-- 3 相手の分析 -->
+      <div class="f-item rv">
+        <h3>相手の分析</h3>
+        <div class="mini"><div class="scr">
+          <div class="m-title">ANALYZE</div>
+          <div class="box score" style="text-align:left">ナナ 34歳・友人 <b class="num" style="float:right">75</b></div>
+          <div>親密度<div class="gbar"><i style="width:70%"></i></div></div>
+          <div>信頼度<div class="gbar"><i style="width:76%"></i></div></div>
+          <div class="chat">連絡が停滞中。共通の話題「旅行」から自然に再開できます。</div>
+        </div></div>
+        <p>相手との相性や関係性をAIが分析。信頼度・関係度を数値で表示。</p>
+      </div>
+
+      <!-- 4 チャクラ -->
+      <div class="f-item rv">
+        <h3>チャクラ</h3>
+        <div class="mini"><div class="scr">
+          <div class="m-title">CHAKRA</div>
+          <div class="chakra">
+            <i style="background:#b06cf5;box-shadow:0 0 10px #b06cf5"></i>
+            <i style="background:#5a7bff;box-shadow:0 0 10px #5a7bff"></i>
+            <i style="background:#4fd8ff;box-shadow:0 0 10px #4fd8ff"></i>
+            <i style="background:#57e6a8;box-shadow:0 0 10px #57e6a8"></i>
+            <i style="background:#ffe066;box-shadow:0 0 10px #ffe066"></i>
+            <i style="background:#ffab5e;box-shadow:0 0 10px #ffab5e"></i>
+            <i style="background:#ff6b6b;box-shadow:0 0 10px #ff6b6b"></i>
+          </div>
+        </div></div>
+        <p>7つのチャクラの状態を分析し、心と体のバランスを整えるヒントに。</p>
+      </div>
+
+      <!-- 5 手相分析 -->
+      <div class="f-item rv">
+        <h3>手相分析</h3>
+        <div class="mini"><div class="scr">
+          <div class="m-title">PALM</div>
+          <div class="palm">🖐️</div>
+          <div class="chat">特別な手相が見つかりました：神秘十字線</div>
+        </div></div>
+        <p>左右の手相から才能・運勢・人生傾向を詳しく読み解きます。</p>
+      </div>
+
+      <!-- 6 人相分析 -->
+      <div class="f-item rv">
+        <h3>人相分析</h3>
+        <div class="mini"><div class="scr">
+          <div class="m-title">FACE</div>
+          <div class="face"><div class="fc">🙂</div></div>
+          <div class="chat">明るく社交的な印象。第一印象の強みは「親しみやすさ」。</div>
+        </div></div>
+        <p>顔写真から性格や思考傾向を分析。第一印象や強みを可視化します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= カルテ ================= -->
+<section class="karte">
+  <div class="wrap k-grid">
+    <div class="k-fan rv" aria-hidden="true">
+      <div class="k-card k1">
+        <div class="kc-t">PERSONAL DOSSIER</div>
+        <div class="kc-line"></div>
+        <div class="kc-heart">♥</div>
+        <div class="kc-line"></div>
+        性格・相性・傾向のまとめ
+      </div>
+      <div class="k-card k2">
+        <div class="kc-t">鑑定書</div>
+        <div class="kc-line"></div>
+        <div class="kc-heart">♥</div>
+        <div class="kc-line"></div>
+        あなたと大切な人の分析レポート
+      </div>
+      <div class="k-card k3">
+        <div class="kc-t">RELA REPORT</div>
+        <div class="kc-line"></div>
+        <div class="kc-heart">♥</div>
+        <div class="kc-line"></div>
+        分析履歴から自動生成
+      </div>
+    </div>
+    <div>
+      <h2 class="rv">あなただけの<br><span class="gold">カルテ</span>を自動で作成</h2>
+      <p class="rv">分析するたびに、あなたと大切な人の「カルテ」が育っていきます。性格、相性、会話の傾向——積み重なったデータは、AIがあなた専用の鑑定書としてまとめ、いつでも見返せます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 使い方 ================= -->
+<section class="how" id="how">
+  <div class="wrap">
+    <h2 class="sec rv">使い方は 3 ステップ</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <div class="steps">
+      <div class="step rv">
+        <h3>相手を登録する</h3>
+        <p>名前と関係性、わかる範囲のプロフィールを入力。1分で完了します。</p>
+      </div>
+      <div class="step rv">
+        <h3>会話を分析する</h3>
+        <p>トーク画面のスクショを貼り付けると、AIが関係性をスコアとレポートで可視化します。</p>
+      </div>
+      <div class="step rv">
+        <h3>AIと次の一手を決める</h3>
+        <p>分析を踏まえてAIに相談。送る文面から会うタイミングまで、一緒に考えられます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 料金 ================= -->
+<section class="plans" id="plans">
+  <div class="wrap">
+    <h2 class="sec rv">料金プラン</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <div class="plan-grid">
+      <div class="plan rv">
+        <div class="p-name">FREE</div>
+        <div class="p-price num">¥0</div>
+        <div class="p-per">ずっと無料</div>
+        <ul>
+          <li>相手を1名まで登録</li>
+          <li>基本の自己分析</li>
+          <li>AI相談（回数制限あり）</li>
+        </ul>
+        <a class="btn btn-line" href="https://rela-ai.vercel.app">無料ではじめる</a>
+      </div>
+      <div class="plan rv">
+        <div class="p-name">BASIC</div>
+        <div class="p-price num">¥500<small>/月</small></div>
+        <div class="p-per">まず1人を深く知りたい方に</div>
+        <ul>
+          <li>相手を3名まで登録</li>
+          <li>自己分析</li>
+          <li>拡張プロフィール機能</li>
+        </ul>
+        <a class="btn btn-grad" href="https://rela-ai.vercel.app">このプランにする</a>
+      </div>
+      <div class="plan featured rv">
+        <span class="badge">いちばん選ばれています</span>
+        <div class="p-name">STANDARD</div>
+        <div class="p-price num">¥1,500<small>/月</small></div>
+        <div class="p-per">関係づくりを本気で進めたい方に</div>
+        <ul>
+          <li>相手を5名まで登録</li>
+          <li>性格分析レポート</li>
+          <li>画像生成機能</li>
+          <li>AI相談の上限拡大</li>
+        </ul>
+        <a class="btn btn-grad" href="https://rela-ai.vercel.app">このプランにする</a>
+      </div>
+      <div class="plan rv">
+        <div class="p-name">PREMIUM</div>
+        <div class="p-price num">¥3,800<small>/月</small></div>
+        <div class="p-per">すべての関係を、制限なく</div>
+        <ul>
+          <li>相手を無制限に登録</li>
+          <li>すべての機能が使えます</li>
+          <li>優先サポート</li>
+        </ul>
+        <a class="btn btn-grad" href="https://rela-ai.vercel.app">このプランにする</a>
+      </div>
+    </div>
+    <p class="p-note">価格はすべて税込。販売はWebで行います（App Storeでは取り扱いません）。お支払いはクレジットカードに対応予定です。プラン内容は予告なく変更される場合があります。</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2 class="sec rv">よくある質問</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <div class="faq-list">
+      <details class="rv">
+        <summary>RELAは占いアプリですか？</summary>
+        <div class="a">RELAは「分析×哲学×AI」をコンセプトに、性格・相性・心理傾向をAIが多角的に分析するツールです。手相・人相・チャクラなどの分析はエンタメ・自己理解のための参考情報であり、コミュニケーションの意思決定はあなた自身が行います。</div>
+      </details>
+      <details class="rv">
+        <summary>分析の結果は当たりますか？</summary>
+        <div class="a">RELAの分析は「当てる」ためのものではなく、関係づくりの成功率を上げるための材料です。会話の傾向や相性の観点を可視化することで、次の行動を考えやすくすることを目的としています。参考情報としてご利用ください。</div>
+      </details>
+      <details class="rv">
+        <summary>登録した相手や会話の内容は安全ですか？</summary>
+        <div class="a">お預かりした情報は分析の目的にのみ使用し、登録した相手に通知が届くことは一切ありません。データは暗号化された環境で管理しています。詳しくはプライバシーポリシーをご覧ください。</div>
+      </details>
+      <details class="rv">
+        <summary>iPhoneでも使えますか？</summary>
+        <div class="a">はい。RELAはWebで販売・提供しています。iPhone・パソコンのブラウザからそのままご利用ください（ホーム画面に追加するとアプリのように使えます）。App Storeでの配信はありません。AndroidはGoogle Playでもご利用いただけます。</div>
+      </details>
+      <details class="rv">
+        <summary>解約はいつでもできますか？</summary>
+        <div class="a">はい。有料プランはいつでも解約できます。解約後も、その請求期間の終わりまでは有料機能をご利用いただけます。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 最終CTA ================= -->
+<section class="final" id="start">
+  <div class="wrap">
+    <p class="tagline rv">すべての分析が、<br class="sp">あなたの人生をよりいい方向へ導く。</p>
+    <span class="rela-word rv">RELA</span>
+    <div class="rv">
+      <!-- CTA: Web販売が本線。Stripe Checkoutは承認後に差し替え。App Store公開は廃止 -->
+      <a class="btn btn-white" href="https://rela-ai.vercel.app" style="font-size:17px;padding:17px 48px">無料ではじめる</a>
+    </div>
+  </div>
+  <div class="floor" aria-hidden="true"></div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div>
+      <div style="font-family:'Audiowide',sans-serif;letter-spacing:.24em;color:var(--ink-soft);margin-bottom:6px">RELA</div>
+      © 2026 GOONER CO., LTD.
+    </div>
+    <div class="foot-links">
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+      <a href="company.html">運営会社</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const tog=document.getElementById('nav-toggle');
+const links=document.getElementById('nav-links');
+if(tog&&links){
+  tog.addEventListener('click',()=>{
+    const open=links.classList.toggle('open');
+    tog.setAttribute('aria-expanded', open?'true':'false');
+  });
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    links.classList.remove('open');
+    tog.setAttribute('aria-expanded','false');
+  }));
+}
+
+</script>
+</body>
+</html>
