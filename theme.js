@@ -15,7 +15,7 @@
 
   function paint(on) {
     btn.setAttribute("aria-pressed", on ? "true" : "false");
-    btn.setAttribute("aria-label", on ? "テーマソング OFF" : "テーマソング ON");
+    btn.setAttribute("aria-label", on ? "大切な人を、もっと深く理解するために OFF" : "大切な人を、もっと深く理解するために ON");
     if (icoEl) icoEl.textContent = on ? "ON" : "OFF";
     if (stateEl) stateEl.textContent = on ? "ON" : "OFF";
   }
