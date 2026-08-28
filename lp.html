@@ -178,17 +178,30 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .hero .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
 .hero .note{font-size:12px;color:var(--ink-dim);margin-top:16px}
 
-/* キャンペーン帯(巻物風) */
+/* キャンペーン帯(ネオン枠) */
 .ribbon{
-  margin:44px auto 0;display:inline-block;position:relative;
-  font-family:'Shippori Mincho',serif;letter-spacing:.1em;
-  padding:14px 42px;color:#0a0d18;background:#eef2ff;
-  clip-path:polygon(0 12%,3% 0,97% 0,100% 12%,98% 50%,100% 88%,97% 100%,3% 100%,0 88%,2% 50%);
-  box-shadow:0 0 30px rgba(79,216,255,.3);
-  font-size:clamp(13px,1.8vw,16px);
+  margin:40px auto 0;display:inline-flex;align-items:center;gap:12px;position:relative;
+  font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;letter-spacing:.03em;
+  padding:12px 24px;border-radius:999px;color:var(--ink);
+  background:linear-gradient(180deg,rgba(22,28,52,.94),rgba(11,15,30,.94));
+  box-shadow:0 10px 34px rgba(79,216,255,.16),inset 0 0 24px rgba(122,108,245,.12);
+  font-size:clamp(13px,1.9vw,16px);white-space:nowrap;
 }
-.ribbon b{color:#c22a68;font-size:1.25em}
-.ribbon .gold{color:#8a6a12;font-weight:700}
+.ribbon::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;
+  background:linear-gradient(90deg,#37c8f0,#7a6cf5,#ff4d8d,#37c8f0);background-size:300% 100%;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;animation:ribbonEdge 5.5s linear infinite;
+}
+@keyframes ribbonEdge{to{background-position:300% 0}}
+.ribbon .tag{
+  font-size:.74em;font-weight:800;letter-spacing:.12em;color:#0a0d18;
+  background:linear-gradient(90deg,#ffe3a3,#f3c14e);padding:4px 10px;border-radius:7px;
+  box-shadow:0 2px 8px rgba(243,193,78,.35);
+}
+.ribbon b{color:#ff7ab0;font-size:1.16em;font-weight:800}
+.ribbon .gold{color:#ffd98a;font-weight:800}
+@media (prefers-reduced-motion:reduce){.ribbon::before{animation:none}}
 
 /* ストアバッジ */
 .stores{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:34px;flex-wrap:wrap}
@@ -213,7 +226,56 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 }
 
 /* ---- 機能グリッド(6機能・ミニ画面) ---- */
-.features{background:linear-gradient(180deg,transparent,rgba(5,7,15,.7))}
+.features{position:relative;overflow:hidden;background:linear-gradient(180deg,transparent,rgba(5,7,15,.7))}
+.features .wrap{position:relative;z-index:1}
+
+/* できること背景: アプリと同じ回路(ジグザグ)を光が走る演出 */
+.circuit-fx{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.85}
+.circuit-fx svg{width:100%;height:100%;display:block}
+.circuit-fx .circuit-base path{fill:none;stroke:rgba(122,108,245,.10);stroke-width:1}
+.circuit-fx .circuit-run .comet path{
+  fill:none;stroke:#7a6cf5;stroke-width:1.9;stroke-linecap:round;
+  stroke-dasharray:16 3000;stroke-dashoffset:40;will-change:stroke-dashoffset;
+  animation:circuitRun var(--dur,3.9s) linear infinite;
+}
+.circuit-fx .circuit-run .comet path:nth-child(1){opacity:.98;animation-delay:calc(var(--base) + 0s);filter:drop-shadow(0 0 5px rgba(122,108,245,.95))}
+.circuit-fx .circuit-run .comet path:nth-child(2){opacity:.62;animation-delay:calc(var(--base) + .032s)}
+.circuit-fx .circuit-run .comet path:nth-child(3){opacity:.40;animation-delay:calc(var(--base) + .064s)}
+.circuit-fx .circuit-run .comet path:nth-child(4){opacity:.24;animation-delay:calc(var(--base) + .096s)}
+.circuit-fx .circuit-run .comet path:nth-child(5){opacity:.11;animation-delay:calc(var(--base) + .128s)}
+@keyframes circuitRun{0%{stroke-dashoffset:40}35%{stroke-dashoffset:-1080}100%{stroke-dashoffset:-1080}}
+@media (prefers-reduced-motion:reduce){.circuit-fx .circuit-run{display:none}}
+
+/* Webアプリ導線(ホーム画面に追加 / QR / アイコン) */
+.webapp .webapp-lead{max-width:720px;margin:0 auto 30px;text-align:center;color:var(--ink-soft);line-height:1.85;font-size:14px}
+.webapp .webapp-lead b{color:var(--ink)}
+.webapp-grid{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;max-width:900px;margin:0 auto}
+.webapp-qr{text-align:center}
+.qr-frame{width:150px;height:150px;padding:12px;border-radius:16px;background:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.08);margin:0 auto}
+.qr-frame svg{width:100%;height:100%;display:block}
+.webapp-qr p{margin-top:12px;font-size:12px;color:var(--ink-soft);line-height:1.5}
+.webapp-qr b{color:var(--cyan)}
+.webapp-steps{display:flex;flex-direction:column;gap:16px}
+.wstep{display:flex;gap:13px;align-items:flex-start;text-align:left}
+.wnum{flex:0 0 26px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-weight:800;font-size:13px;color:#0a0d18;background:linear-gradient(135deg,#37c8f0,#7a6cf5)}
+.wstep b{display:block;font-size:14px;color:var(--ink);margin-bottom:3px}
+.wstep span{font-size:12.5px;color:var(--ink-soft);line-height:1.65}
+.wstep a{color:var(--cyan)}
+.webapp-icon{text-align:center}
+.phone-mini{width:112px;margin:0 auto;padding:16px 12px 12px;border-radius:22px;
+  background:linear-gradient(180deg,rgba(24,30,54,.9),rgba(12,16,30,.9));
+  border:1px solid var(--line);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.app-icon{width:60px;height:60px;margin:0 auto;border-radius:15px;display:grid;place-items:center;
+  background:radial-gradient(circle at 32% 26%,#20264a,#0c1020);
+  box-shadow:0 6px 16px rgba(0,0,0,.5),inset 0 0 0 1px rgba(122,108,245,.4),0 0 18px rgba(79,216,255,.25)}
+.app-name{display:block;margin-top:9px;font-family:'Audiowide',sans-serif;font-size:12px;letter-spacing:.14em;color:var(--ink)}
+.icon-note{margin-top:12px;font-size:11.5px;color:var(--ink-dim)}
+@media (max-width:720px){
+  .webapp-grid{grid-template-columns:1fr;gap:26px;max-width:340px}
+  .webapp-qr,.webapp-icon{order:0}
+}
 .f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 26px;margin-top:10px}
 .f-item{text-align:center}
 .f-item h3{
@@ -433,7 +495,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 
   <div class="rv">
     <!-- キャンペーン帯: アプリ側の現行設計(3日トライアル+ウェルカム180コイン)を踏襲。Web Stripe課金でも同条件にするかは承認後に最終化 -->
-    <div class="ribbon">今だけ！<b>3日間無料</b> ＋ <span class="gold">180コイン</span>プレゼント！</div>
+    <div class="ribbon"><span class="tag">今だけ</span><span><b>3日間無料</b> ＋ <span class="gold">180コイン</span> プレゼント</span></div>
   </div>
 
   <div class="stores rv">
@@ -444,8 +506,36 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
   <div class="floor" aria-hidden="true"></div>
 </section>
 
+<!-- ================= Webでアプリのように使う ================= -->
+<section class="webapp" id="webapp">
+  <div class="wrap">
+    <h2 class="sec rv">スマホにインストール不要</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <p class="webapp-lead rv">RELAは<b>Webアプリ</b>。ストア登録もダウンロードも不要で、ホーム画面に追加すれば<b>普通のアプリと同じアイコン</b>から全画面で起動できます。</p>
+    <div class="webapp-grid">
+      <div class="webapp-qr rv">
+        <div class="qr-frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h27v27H0z"/><path stroke="#000000" d="M1 1.5h7m3 0h1m1 0h1m3 0h1m1 0h7M1 2.5h1m5 0h1m2 0h4m1 0h2m2 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h2m3 0h4m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h3m1 0h2m1 0h1m2 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h2m1 0h1m4 0h1M1 9.5h1m1 0h5m5 0h3m3 0h5M1 10.5h1m2 0h2m2 0h1m1 0h1m1 0h2m6 0h1m3 0h1M1 11.5h2m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h4m1 0h2m1 0h2M1 12.5h1m2 0h1m1 0h1m1 0h6m1 0h2m1 0h2m5 0h1M1 13.5h2m1 0h2m1 0h9m2 0h4m1 0h3M1 14.5h1m4 0h1m2 0h2m2 0h1m3 0h1m2 0h1m1 0h1m1 0h1M1 15.5h1m2 0h1m1 0h3m1 0h2m1 0h1m1 0h4m1 0h3m1 0h2M1 16.5h1m2 0h1m1 0h1m2 0h3m1 0h1m1 0h2m2 0h3m3 0h1M1 17.5h1m1 0h1m1 0h1m1 0h1m6 0h8m1 0h1M9 18.5h1m1 0h2m1 0h1m1 0h2m3 0h2M1 19.5h7m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3M1 20.5h1m5 0h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h2M1 21.5h1m1 0h3m1 0h1m1 0h2m3 0h1m1 0h6m1 0h1M1 22.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m3 0h2m1 0h5M1 23.5h1m1 0h3m1 0h1m1 0h1m4 0h2m1 0h1m4 0h2m1 0h1M1 24.5h1m5 0h1m3 0h1m1 0h1m2 0h2m1 0h4m2 0h1M1 25.5h7m1 0h3m1 0h4m1 0h8"/></svg></div>
+        <p>スマホで読み取って<br><b>今すぐ開く</b></p>
+      </div>
+      <div class="webapp-steps rv">
+        <div class="wstep"><span class="wnum">1</span><div><b>RELAを開く</b><span>上のQRを読み取る、または <a href="https://rela-ai.vercel.app">rela-ai.vercel.app</a> にアクセス</span></div></div>
+        <div class="wstep"><span class="wnum">2</span><div><b>ホーム画面に追加</b><span>iPhone（Safari）：共有ボタン →「ホーム画面に追加」<br>Android（Chrome）：メニュー（⋮）→「ホーム画面に追加／アプリをインストール」</span></div></div>
+        <div class="wstep"><span class="wnum">3</span><div><b>アイコンから起動</b><span>ホーム画面にRELAのアイコンが追加され、タップするとアプリのように全画面で開きます。</span></div></div>
+      </div>
+      <div class="webapp-icon rv">
+        <div class="phone-mini">
+          <div class="app-icon"><img src="assets/icon-heart.svg" alt="" width="34" height="34"></div>
+          <span class="app-name">RELA</span>
+        </div>
+        <p class="icon-note">追加後のアイコン表示イメージ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= RELAでできること(6機能) ================= -->
 <section class="features" id="features">
+  <div class="circuit-fx" aria-hidden="true"><svg viewBox="0 0 400 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><g class="circuit-base"><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/></g><g class="circuit-run"><g class="comet" style="--base:0.2s; --dur:3.6s"><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/></g><g class="comet" style="--base:2.3s; --dur:4.3s"><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/></g><g class="comet" style="--base:1.1s; --dur:3.9s"><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/></g><g class="comet" style="--base:3.3s; --dur:4.15s"><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/></g></g></svg></div>
   <div class="wrap">
     <h2 class="sec rv">RELA でできること</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
