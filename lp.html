@@ -408,6 +408,19 @@ details .a{padding:0 22px 20px;font-size:14px;color:var(--ink-soft)}
 }
 .final .rela-word{font-size:clamp(40px,7vw,72px);display:block;margin-bottom:36px}
 .final .rela-word-logo{width:auto;height:clamp(120px,22vw,210px);display:block;margin:0 auto 36px}
+/* 画面ギャラリー(実スクショ) */
+.showcase{padding:88px 0 44px;position:relative;z-index:1}
+.showcase h2{text-align:center}
+.showcase .showcase-lead{max-width:640px;margin:12px auto 0;text-align:center;color:var(--ink-soft);font-size:14px;line-height:1.85}
+.ss-strip{display:flex;gap:18px;align-items:flex-start;overflow-x:auto;scroll-snap-type:x proximity;
+  padding:34px 20px 30px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ss-strip::-webkit-scrollbar{display:none}
+.ss-item{flex:0 0 auto;width:232px;scroll-snap-align:center;margin:0;text-align:center}
+.ss-item img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);display:block;
+  box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 22px rgba(79,216,255,.08)}
+.ss-item.ss-karte img{border-color:rgba(198,164,80,.4);box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 24px rgba(198,164,80,.16)}
+.ss-item figcaption{margin-top:12px;font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+@media (max-width:520px){.ss-item{width:min(72vw,262px)}.ss-strip{padding:30px 16px 26px}}
 
 /* ---- フッター ---- */
 footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px 0 58px;font-size:13px;color:var(--ink-dim)}
@@ -654,6 +667,24 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
       <h2 class="rv">あなただけの<br><span class="gold">カルテ</span>を自動で作成</h2>
       <p class="rv">分析するたびに、あなたと大切な人の「カルテ」が育っていきます。性格、相性、会話の傾向——積み重なったデータは、AIがあなた専用の鑑定書としてまとめ、いつでも見返せます。</p>
     </div>
+  </div>
+</section>
+
+<!-- ================= 画面ギャラリー(実スクショ) ================= -->
+<section class="showcase" id="showcase">
+  <div class="wrap">
+    <h2 class="rv">実際の画面で見る <span class="gold">RELA</span></h2>
+    <p class="showcase-lead rv">アプリの分析画面から、あなただけの鑑定書（カルテ）まで。横にスワイプしてご覧ください。</p>
+  </div>
+  <div class="ss-strip rv" role="list" aria-label="RELAの画面と鑑定書">
+    <figure class="ss-item" role="listitem"><img src="assets/ss-home.jpg" alt="ホーム画面。今日の運勢スコアを毎日表示" loading="lazy"><figcaption>今日の運勢スコア</figcaption></figure>
+    <figure class="ss-item" role="listitem"><img src="assets/ss-list.jpg" alt="登録者リスト。相性スコアと守護石" loading="lazy"><figcaption>相性スコア一覧</figcaption></figure>
+    <figure class="ss-item" role="listitem"><img src="assets/ss-team.jpg" alt="チーム編成。適材適所の役職配置を提案" loading="lazy"><figcaption>チーム編成</figcaption></figure>
+    <figure class="ss-item" role="listitem"><img src="assets/ss-palm.jpg" alt="手相占い（AI鑑定）の結果画面" loading="lazy"><figcaption>手相占い（AI鑑定）</figcaption></figure>
+    <figure class="ss-item ss-karte" role="listitem"><img src="assets/karte-cover.jpg" alt="鑑定書（PERSONAL DOSSIER）の表紙" loading="lazy"><figcaption>鑑定書（表紙）</figcaption></figure>
+    <figure class="ss-item ss-karte" role="listitem"><img src="assets/karte-self.jpg" alt="鑑定書の自己分析レポート" loading="lazy"><figcaption>自己分析レポート</figcaption></figure>
+    <figure class="ss-item ss-karte" role="listitem"><img src="assets/karte-saju.jpg" alt="鑑定書の運気バイオリズム・四柱推命命式" loading="lazy"><figcaption>運気・四柱推命</figcaption></figure>
+    <figure class="ss-item ss-karte" role="listitem"><img src="assets/karte-shrine.jpg" alt="鑑定書の属性神社・守護神" loading="lazy"><figcaption>属性神社・守護神</figcaption></figure>
   </div>
 </section>
 
