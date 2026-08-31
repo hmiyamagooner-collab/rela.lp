@@ -83,21 +83,25 @@ h1 .big{font-size:1.32em;font-weight:700}
 .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
 .note{font-size:12px;color:var(--ink-dim);margin-top:14px}
 
-.ribbon{margin:38px auto 0;display:inline-block;position:relative;
-  font-family:'Shippori Mincho',serif;letter-spacing:.1em;
-  padding:14px 42px;color:#0a0d18;background:#eef2ff;
-  clip-path:polygon(0 12%,3% 0,97% 0,100% 12%,98% 50%,100% 88%,97% 100%,3% 100%,0 88%,2% 50%);
-  box-shadow:0 0 30px rgba(79,216,255,.3);font-size:clamp(13px,1.8vw,16px)}
-.ribbon b{color:#c22a68;font-size:1.25em}
-.ribbon .gold{color:#8a6a12;font-weight:700}
-
-.stores{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:30px;flex-wrap:wrap}
-.store-badge{display:flex;align-items:center;gap:10px;border:1px solid var(--line);
-  border-radius:12px;padding:9px 18px;text-decoration:none;background:rgba(3,4,10,.5);
-  font-size:12px;color:var(--ink-soft);line-height:1.4;text-align:left}
-.store-badge b{display:block;font-size:14px;color:var(--ink)}
-.store-badge .mark{font-size:22px}
-.store-badge:hover{border-color:var(--cyan)}
+.offer{margin:34px auto 0;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;
+  background:linear-gradient(180deg,rgba(79,216,255,.09),rgba(61,123,255,.05));border:1px solid rgba(120,150,220,.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);font-size:clamp(12.5px,1.7vw,15px);letter-spacing:.05em;color:var(--ink-soft);font-weight:600}
+.offer .spark{color:var(--cyan)}
+.offer b{color:var(--ink);font-weight:800}
+.offer .plus{margin:0 .55em;color:var(--ink-dim);font-weight:400}
+.offer .gift{color:#ffd27a;font-weight:700}
+.get{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.get-card{display:flex;align-items:center;gap:14px;text-decoration:none;padding:14px;border-radius:16px;
+  border:1px solid var(--line);background:rgba(8,12,24,.55);transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;width:300px}
+.get-card:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 22px rgba(79,216,255,.13)}
+.get-qr{flex:none;width:90px;height:90px;padding:6px;border-radius:11px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);overflow:hidden}
+.get-qr svg{width:100%;height:100%;display:block}
+.get-meta{display:flex;flex-direction:column;gap:3px;text-align:left;min-width:0}
+.get-k{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:.02em}
+.get-sub{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
+.get-cta{margin-top:5px;font-size:12px;font-weight:800;color:var(--cyan);letter-spacing:.02em}
+.get-note{font-size:11.5px;color:var(--ink-dim);margin-top:14px}
+@media (max-width:560px){.get-card{width:100%;max-width:330px}}
 
 @media (prefers-reduced-motion:reduce){
   .logo-emerge,.seq{animation:none;opacity:1;transform:none}
@@ -132,13 +136,20 @@ footer a:hover{color:var(--cyan)}
   <p class="note seq s4">登録は無料。クレジットカードは必要ありません。</p>
 
   <div class="seq s5">
-    <!-- TODO: キャンペーン内容はWeb課金設計確定後に最終化 -->
-    <div class="ribbon">今だけ！<b>3日間無料</b> ＋ <span class="gold">180コイン</span>プレゼント！</div>
+    <div class="offer"><span class="spark">✦</span><span>今なら<b>3日間無料</b><span class="plus">＋</span><span class="gift">180コインプレゼント</span></span></div>
   </div>
 
-  <div class="stores seq s6">
-    <a class="store-badge" href="https://play.google.com/store/apps/details?id=jp.co.goonerinfo.rela" target="_blank" rel="noopener"><span class="mark">▶</span><span>Google Playで<b>手に入れよう</b></span></a>
+  <div class="get seq s6">
+    <a class="get-card" href="https://rela-ai.vercel.app/" target="_blank" rel="noopener" aria-label="Webではじめる。QRを読み取るかタップ。">
+      <span class="get-qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h33v33H0z"/><path stroke="#0a0d18" d="M2 2.5h7m5 0h1m2 0h5m2 0h7M2 3.5h1m5 0h1m4 0h1m5 0h1m4 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h2m1 0h1m2 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m1 0h1m4 0h3m2 0h3m1 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h4m1 0h4m1 0h1m1 0h1m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h1m2 0h3m1 0h1m4 0h1M2 10.5h1m1 0h5m2 0h2m3 0h2m1 0h1m4 0h5M2 11.5h3m4 0h1m1 0h1m1 0h2m2 0h2m2 0h4m1 0h1m3 0h1M2 12.5h1m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m5 0h1m1 0h1m1 0h3M3 13.5h3m4 0h1m2 0h2m1 0h1m1 0h1m1 0h2m4 0h2m1 0h1M8 14.5h6m4 0h2m7 0h2M3 15.5h1m2 0h1m3 0h2m2 0h4m3 0h6m3 0h1M4 16.5h3m1 0h1m1 0h4m1 0h4m1 0h1m2 0h1m2 0h3M5 17.5h3m1 0h1m3 0h1m1 0h1m1 0h1m2 0h2m3 0h1m3 0h1M2 18.5h3m3 0h1m4 0h2m1 0h2m1 0h2m1 0h1m4 0h2M2 19.5h1m1 0h1m1 0h1m10 0h10m1 0h1m1 0h1M2 20.5h1m5 0h1m3 0h1m6 0h1m2 0h5m1 0h1M2 21.5h1m1 0h2m1 0h1m1 0h1m2 0h3m1 0h1m1 0h1m3 0h1m2 0h2m2 0h1M2 22.5h1m1 0h2m1 0h5m1 0h2m3 0h1m1 0h1m1 0h5m1 0h3M10 23.5h2m1 0h5m1 0h2m1 0h1m3 0h5M2 24.5h7m2 0h9m1 0h2m1 0h1m1 0h3M2 25.5h1m5 0h1m1 0h1m1 0h4m1 0h1m1 0h4m3 0h1m3 0h1M2 26.5h1m1 0h3m1 0h1m1 0h1m5 0h2m4 0h5m1 0h3M2 27.5h1m1 0h3m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h2m3 0h2M2 28.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m3 0h2m1 0h7M2 29.5h1m5 0h1m2 0h3m1 0h2m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1M2 30.5h7m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m1 0h2m1 0h3"/></svg></span>
+      <span class="get-meta"><span class="get-k">Webではじめる</span><span class="get-sub">iPhone・PC・Android<br>ブラウザですぐ・登録無料</span><span class="get-cta">今すぐ開く →</span></span>
+    </a>
+    <a class="get-card" href="https://play.google.com/store/apps/details?id=jp.co.goonerinfo.rela" target="_blank" rel="noopener" aria-label="Google Playで入手。QRを読み取るかタップ。">
+      <span class="get-qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0a0d18" d="M2 2.5h7m3 0h2m2 0h1m3 0h1m1 0h2m2 0h2m2 0h1m1 0h7M2 3.5h1m5 0h1m2 0h1m1 0h3m2 0h4m5 0h3m2 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h4m3 0h1m3 0h4m1 0h1m1 0h1m3 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m1 0h5m1 0h1m2 0h3m2 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h5m1 0h3m1 0h2m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h1m1 0h4m4 0h1m3 0h1m4 0h2m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h4m3 0h1m7 0h1m2 0h1m1 0h1M2 10.5h1m1 0h5m2 0h3m6 0h1m1 0h7m1 0h1m1 0h5M4 11.5h3m3 0h1m1 0h1m1 0h1m1 0h4m3 0h1m1 0h1m4 0h1m6 0h1M4 12.5h6m4 0h1m1 0h1m2 0h1m2 0h3m1 0h5m1 0h4m1 0h2M6 13.5h1m3 0h1m1 0h1m1 0h1m3 0h1m4 0h1m4 0h3m1 0h4m2 0h1M2 14.5h1m1 0h1m1 0h1m1 0h1m1 0h4m1 0h2m1 0h2m2 0h1m1 0h6m1 0h4m1 0h3M3 15.5h1m2 0h2m6 0h1m3 0h6m1 0h3m2 0h1m2 0h1M2 16.5h2m1 0h2m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m3 0h1m3 0h5m1 0h3m1 0h2M5 17.5h1m4 0h3m1 0h2m1 0h4m2 0h2m5 0h1m2 0h2m2 0h2M8 18.5h2m2 0h5m1 0h1m4 0h1m1 0h5m1 0h2m1 0h1m1 0h1M2 19.5h6m1 0h2m3 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m2 0h1m2 0h2M7 20.5h2m3 0h7m2 0h1m2 0h1m3 0h2m1 0h1m1 0h2m2 0h2M2 21.5h1m1 0h1m1 0h1m3 0h3m3 0h2m2 0h5m5 0h1m1 0h1m5 0h1M8 22.5h3m1 0h3m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m2 0h2m1 0h3M3 23.5h2m5 0h1m1 0h1m1 0h1m3 0h1m1 0h3m1 0h2m4 0h1m4 0h1M3 24.5h6m2 0h1m1 0h2m2 0h2m1 0h1m1 0h1m1 0h1m2 0h3m1 0h5m1 0h2M2 25.5h1m2 0h2m2 0h5m3 0h1m7 0h1m4 0h2m1 0h2m2 0h1M7 26.5h2m1 0h2m1 0h4m3 0h1m1 0h7m2 0h2m1 0h1m1 0h2M2 27.5h1m2 0h1m3 0h4m3 0h3m4 0h1m1 0h1m4 0h1m2 0h1m1 0h2M2 28.5h1m2 0h1m1 0h4m3 0h3m5 0h1m3 0h1m1 0h3m1 0h1m1 0h5M2 29.5h1m3 0h2m1 0h1m4 0h2m2 0h1m4 0h1m1 0h2m1 0h1m1 0h5m2 0h1M2 30.5h1m1 0h6m1 0h2m3 0h1m2 0h1m4 0h1m1 0h2m2 0h5m1 0h1m1 0h1M10 31.5h3m2 0h1m2 0h2m1 0h3m1 0h1m1 0h1m1 0h2m3 0h2m1 0h1M2 32.5h7m2 0h1m1 0h1m1 0h1m1 0h3m2 0h2m3 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1M2 33.5h1m5 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h8m1 0h3m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h2m1 0h1m3 0h2m2 0h1m1 0h1m3 0h1m1 0h6m1 0h1m1 0h1M2 35.5h1m1 0h3m1 0h1m1 0h2m3 0h3m2 0h1m1 0h4m1 0h1m3 0h2m1 0h2m2 0h1M2 36.5h1m1 0h3m1 0h1m1 0h3m1 0h5m2 0h1m1 0h2m1 0h6m3 0h1m1 0h2M2 37.5h1m5 0h1m2 0h2m1 0h1m2 0h1m2 0h6m3 0h3m2 0h2m2 0h1M2 38.5h7m1 0h4m3 0h1m1 0h1m1 0h1m3 0h4m2 0h1m2 0h5"/></svg></span>
+      <span class="get-meta"><span class="get-k">Google Play</span><span class="get-sub">Android アプリ版</span><span class="get-cta">ストアで入手 →</span></span>
+    </a>
   </div>
+  <p class="get-note seq s6">スマホでQRを読み取るか、カードをタップ。</p>
 </main>
 <div class="theme-player">
   <audio id="theme-audio" src="assets/theme.mp3" loop autoplay playsinline preload="auto"></audio>
