@@ -46,3 +46,4 @@ td:first-child{color:var(--cyan);font-weight:700;white-space:nowrap;width:34%}
 .links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:28px 0 8px;font-size:13px}
 footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:28px 24px 48px;text-align:center;color:var(--ink-dim);font-size:13px}
 footer .word{font-family:'Audiowide',sans-serif;letter-spacing:.24em;color:var(--ink-soft);margin-bottom:8px}
+footer .foot-logo{height:46px;width:auto;display:inline-block;margin-bottom:8px;vertical-align:middle}
