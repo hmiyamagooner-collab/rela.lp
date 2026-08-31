@@ -227,7 +227,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 }
 
 /* ---- 機能グリッド(6機能・ミニ画面) ---- */
-.features{position:relative;overflow:hidden;background:linear-gradient(180deg,transparent,rgba(5,7,15,.7))}
+.features{position:relative;overflow:hidden;padding-top:calc(84px + env(safe-area-inset-top));background:linear-gradient(180deg,transparent,rgba(5,7,15,.7))}
 .features .wrap{position:relative;z-index:1}
 
 /* できること背景: アプリと同じ回路(ジグザグ)を光が走る演出 */
@@ -511,31 +511,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
   </nav>
 </header>
 
-<!-- ================= ヒーロー(ポスター構成) ================= -->
-<section class="hero" id="top">
-  <h1 class="rv"><span class="big">AI</span>で<span class="big">自分</span>と<span class="big">相手</span>を<span class="big">可視化</span>する</h1>
-  <p class="subline rv">性格・相性・心理傾向を多角的に分析</p>
-
-  <img class="brand-lockup rv" src="assets/logo.png" alt="RELA">
-
-  <div class="pills rv">
-    <span class="pill c">分析</span><span class="x">×</span>
-    <span class="pill v">哲学</span><span class="x">×</span>
-    <span class="pill p">AI</span>
-  </div>
-
-  <div class="cta-row rv">
-    <a class="btn btn-white" href="https://rela-ai.vercel.app">無料ではじめる</a>
-    <a class="btn btn-line" href="#features">RELAでできること</a>
-  </div>
-  <p class="note rv">登録は無料。クレジットカードは必要ありません。</p>
-
-
-  <div class="floor" aria-hidden="true"></div>
-</section>
-
-<!-- ================= RELAでできること(6機能) ================= -->
-<section class="features" id="features">
+<!-- ================= RELAでできること(6機能)＝このページの入口 ================= -->
+<section class="features" id="features" style="scroll-margin-top:70px">
   <div class="circuit-fx" aria-hidden="true"><svg viewBox="0 0 400 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><g class="circuit-base"><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/></g><g class="circuit-run"><g class="comet" style="--base:0.2s; --dur:3.6s"><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/></g><g class="comet" style="--base:2.3s; --dur:4.3s"><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/></g><g class="comet" style="--base:1.1s; --dur:3.9s"><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/></g><g class="comet" style="--base:3.3s; --dur:4.15s"><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/></g></g></svg></div>
   <div class="wrap">
     <h2 class="sec rv">RELA でできること</h2>
