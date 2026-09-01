@@ -282,7 +282,8 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 /* ホーム画面に追加する方法(スクショ手順) */
 .addhome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:900px;margin:6px auto 0}
 .addhome-card{display:flex;flex-direction:column;align-items:center;text-align:center}
-.addhome-shot{width:100%;max-width:260px;border-radius:20px;display:block;border:1px solid var(--line);
+.addhome-shot{width:100%;max-width:260px;aspect-ratio:48/98;object-fit:cover;object-position:top;
+  border-radius:20px;display:block;border:1px solid var(--line);
   box-shadow:0 14px 34px rgba(0,0,0,.45);background:#05070f}
 .addhome-step{display:flex;align-items:center;gap:9px;margin:16px 0 4px}
 .addhome-card h3{font-size:15px;color:var(--ink);margin:0;font-weight:800}
@@ -344,6 +345,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
   font-size:10.5px;color:var(--ink-soft);text-align:left;
 }
 .mini .mini-shot{width:100%;height:380px;object-fit:cover;object-position:top center;border-radius:26px;display:block;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.mini .mini-shot.fit{object-fit:contain;background:#05070f}
 .mini .m-title{font-family:'Audiowide',sans-serif;font-size:13px;letter-spacing:.2em;color:#fff;
   text-align:center;text-shadow:0 0 10px rgba(79,216,255,.6)}
 .mini .row{display:flex;gap:8px}
@@ -574,25 +576,32 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         </div>
       </div>
 
-      <!-- 1 RELA総合分析 -->
+      <!-- 1 総合分析 -->
       <div class="f-item rv">
         <h3>RELA 総合分析</h3>
         <div class="mini"><img class="mini-shot" src="assets/ss-home.jpg" alt="ホーム画面。今日の運勢スコアと各分析メニュー" loading="lazy"></div>
         <p>あらゆる分析を統合し、関係性・性格・未来の可能性までAIが総合的に解説。</p>
       </div>
 
-      <!-- 2 チーム編成 -->
+      <!-- 2 自己分析 -->
       <div class="f-item rv">
-        <h3>チーム編成</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-team.jpg" alt="チーム編成。用途に合わせてチームの種類を選ぶ画面" loading="lazy"></div>
-        <p>AIが最適なチーム編成を分析。役割・相性まで総合的に提案。</p>
+        <h3>自己分析</h3>
+        <div class="mini"><img class="mini-shot" src="assets/ss-self.jpg" alt="自己分析レポート。共感力・信頼構築力などをRELAスコアで可視化" loading="lazy"></div>
+        <p>あなたの性格・強み・傾向をRELAスコアで数値化。自分を客観的に理解できます。</p>
       </div>
 
-      <!-- 4 チャクラ -->
+      <!-- 3 運気バイオリズム -->
       <div class="f-item rv">
-        <h3>チャクラ</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-chakra.jpg" alt="チャクラ分析。第1〜第12チャクラの開放度をアートで表示" loading="lazy"></div>
-        <p>7つのチャクラの状態を分析し、心と体のバランスを整えるヒントに。</p>
+        <h3>運気バイオリズム</h3>
+        <div class="mini"><img class="mini-shot" src="assets/ss-biorhythm.jpg" alt="運気バイオリズム。四柱推命から一年の総合・仕事・恋愛・金運を月別グラフで表示" loading="lazy"></div>
+        <p>四柱推命をもとに一年の運気の波を月別グラフで可視化。動く時期がひと目でわかります。</p>
+      </div>
+
+      <!-- 4 守護石 -->
+      <div class="f-item rv">
+        <h3>守護石</h3>
+        <div class="mini"><img class="mini-shot fit" src="assets/ss-stone.jpg" alt="守護石の効果。あなたを支えるパワーストーンとその活かし方" loading="lazy"></div>
+        <p>あなたを支える守護石（パワーストーン）と、その意味・活かし方をお届けします。</p>
       </div>
 
       <!-- 5 手相分析 -->
@@ -609,39 +618,39 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         <p>顔写真から性格や思考傾向を分析。第一印象や強みを可視化します。</p>
       </div>
 
-      <!-- 7 自己分析 -->
+      <!-- 7 チーム編成 -->
       <div class="f-item rv">
-        <h3>自己分析</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-self.jpg" alt="自己分析レポート。共感力・信頼構築力などをRELAスコアで可視化" loading="lazy"></div>
-        <p>あなたの性格・強み・傾向をRELAスコアで数値化。自分を客観的に理解できます。</p>
+        <h3>チーム編成</h3>
+        <div class="mini"><img class="mini-shot" src="assets/ss-team.jpg" alt="チーム編成。用途に合わせてチームの種類を選ぶ画面" loading="lazy"></div>
+        <p>AIが最適なチーム編成を分析。役割・相性まで総合的に提案。</p>
       </div>
 
-      <!-- 8 運気バイオリズム -->
-      <div class="f-item rv">
-        <h3>運気バイオリズム</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-biorhythm.jpg" alt="運気バイオリズム。四柱推命から一年の総合・仕事・恋愛・金運を月別グラフで表示" loading="lazy"></div>
-        <p>四柱推命をもとに一年の運気の波を月別グラフで可視化。動く時期がひと目でわかります。</p>
-      </div>
-
-      <!-- 9 属性神社・守護神 -->
-      <div class="f-item rv">
-        <h3>属性神社・守護神</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-shrine.jpg" alt="属性神社・守護神。あなたの属性に合う守護神と相性の良い神社・パワースポット" loading="lazy"></div>
-        <p>あなたの属性に合う守護神と、相性の良い神社・パワースポットを提案します。</p>
-      </div>
-
-      <!-- 10 守護石 -->
-      <div class="f-item rv">
-        <h3>守護石</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-stone.jpg" alt="守護石の効果。あなたを支えるパワーストーンとその活かし方" loading="lazy"></div>
-        <p>あなたを支える守護石（パワーストーン）と、その意味・活かし方をお届けします。</p>
-      </div>
-
-      <!-- 11 イメージ画像を生成 -->
+      <!-- 8 イメージ画像を生成 -->
       <div class="f-item rv">
         <h3>イメージ画像を生成</h3>
         <div class="mini"><img class="mini-shot" src="assets/ss-imagegen.jpg" alt="イメージ画像を生成。守護神・エネルギーカラー・未来ビジョンをAIが画像化" loading="lazy"></div>
         <p>守護神・エネルギーカラー・未来ビジョンなどを、AIがあなただけのアート画像に。待受にも。</p>
+      </div>
+
+      <!-- 9 チャクラ -->
+      <div class="f-item rv">
+        <h3>チャクラ</h3>
+        <div class="mini"><img class="mini-shot" src="assets/ss-chakra.jpg" alt="チャクラ分析。第1〜第12チャクラの開放度をアートで表示" loading="lazy"></div>
+        <p>7つのチャクラの状態を分析し、心と体のバランスを整えるヒントに。</p>
+      </div>
+
+      <!-- 10 未来ビジョン -->
+      <div class="f-item rv">
+        <h3>未来ビジョン</h3>
+        <div class="mini"><img class="mini-shot" src="assets/ss-future.jpg" alt="未来ビジョン。運気が満ちる場所と行動をAIが一枚の情景に描く" loading="lazy"></div>
+        <p>運気が満ちる場所と行動を、AIが一枚の情景に。実際に訪れる姿を思い描けます。</p>
+      </div>
+
+      <!-- 11 守護神 -->
+      <div class="f-item rv">
+        <h3>守護神</h3>
+        <div class="mini"><img class="mini-shot" src="assets/ss-guardian.jpg" alt="守護神。あなたの属性を宿す守護神をAIが荘厳なアートに描く" loading="lazy"></div>
+        <p>あなたの属性を宿す守護神を、AIが荘厳なアート画像に描き出します。</p>
       </div>
     </div>
   </div>
