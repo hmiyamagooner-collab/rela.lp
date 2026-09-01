@@ -50,7 +50,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 .scroll-text{position:absolute;top:100vh;width:min(88vw,560px);text-align:center;
   font-family:'Shippori Mincho',serif;font-size:clamp(16px,2.7vw,22px);
   letter-spacing:.14em;line-height:2.7;text-shadow:0 0 18px rgba(61,123,255,.35);
-  animation:credits 16s linear .8s forwards}
+  animation:credits 20s linear .8s forwards}
 .scroll-text p{margin:0 0 2.2em}
 .scroll-text .cr-logo{display:block;width:min(72%,340px);margin:0 auto;
   filter:drop-shadow(0 0 20px rgba(79,216,255,.55)) drop-shadow(0 0 46px rgba(61,123,255,.35))}
@@ -67,9 +67,9 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
   animation:emerge 3.4s cubic-bezier(.22,.61,.2,1) .4s forwards;
   animation-play-state:paused}
 @keyframes emerge{
-  0%{opacity:0;transform:scale(.5);filter:blur(18px) brightness(.4)}
-  45%{opacity:.55;transform:scale(.8);filter:blur(9px) brightness(.65)}
-  100%{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}
+  0%{opacity:0;transform:scale(.5)}
+  45%{opacity:.55;transform:scale(.82)}
+  100%{opacity:1;transform:scale(1)}
 }
 @keyframes breathe{
   0%,100%{filter:drop-shadow(0 0 18px rgba(61,123,255,.28)) drop-shadow(0 0 40px rgba(122,108,245,.35)) brightness(1)}
@@ -149,11 +149,11 @@ footer a:hover{color:var(--cyan)}
 <div class="intro" id="intro">
   <div class="scroll-text">
     <p><img class="cr-logo" src="assets/logo-word.png" alt="RELA"></p>
-    <p>その名は、<br><span class="dim">Relationship × AI</span><br>「関係」と「知性」の出会いから生まれました。</p>
-    <p>人は太古から、目に見えない“つながり”を<br>読み解こうとしてきました。</p>
+    <p>その名は、<br><span class="dim">Relationship × AI</span><br>「関係」と「知性」の出会いから<br>生まれました。</p>
+    <p>人は太古から、<br>目に見えない“つながり”を<br>読み解こうとしてきました。</p>
     <p>その古の知恵を、いま、<br>AIという新しい知性が動かします。</p>
     <p>あなたと、あなたの大切な人。<br>ふたりの“あいだ”に宿る物語を、<br>RELAは静かに照らしていく。</p>
-    <p>出会いは、偶然か。それとも、必然か。<br><span class="dim">その答えを探す羅針盤として——<br>RELA（リラ）は、ここにあります。</span></p>
+    <p>出会いは、偶然か。<br>それとも、必然か。<br><span class="dim">その答えを探す羅針盤として——<br>RELA（リラ）は、ここにあります。</span></p>
   </div>
   <button type="button" class="skip-btn" id="skipBtn">スキップ ▸</button>
 </div>
@@ -222,7 +222,7 @@ footer a:hover{color:var(--cyan)}
     setTimeout(function(){ if (intro && intro.parentNode) intro.parentNode.removeChild(intro); }, 950);
   }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { end(); return; }
-  var t = setTimeout(end, 17600);                    // 完走(16s+0.8s delay)+約0.8s
+  var t = setTimeout(end, 21600);                    // 完走(20s+0.8s delay)+約0.8s
   var sb = document.getElementById('skipBtn');
   if (sb) sb.addEventListener('click', function(e){ e.stopPropagation(); clearTimeout(t); end(); });
   intro.addEventListener('click', function(){ clearTimeout(t); end(); });
