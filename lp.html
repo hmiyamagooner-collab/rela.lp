@@ -279,6 +279,19 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
   .webapp-grid{grid-template-columns:1fr;gap:26px;max-width:340px}
   .webapp-qr,.webapp-icon{order:0}
 }
+/* ホーム画面に追加する方法(スクショ手順) */
+.addhome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:900px;margin:6px auto 0}
+.addhome-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.addhome-shot{width:100%;max-width:260px;border-radius:20px;display:block;border:1px solid var(--line);
+  box-shadow:0 14px 34px rgba(0,0,0,.45);background:#05070f}
+.addhome-step{display:flex;align-items:center;gap:9px;margin:16px 0 4px}
+.addhome-card h3{font-size:15px;color:var(--ink);margin:0;font-weight:800}
+.addhome-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.75;max-width:280px;margin:4px auto 0}
+.addhome-card p b{color:var(--ink)}
+.addhome-note{max-width:720px;margin:30px auto 0;padding:15px 20px;border:1px solid var(--line);border-radius:14px;
+  background:rgba(120,170,255,.05);font-size:12.5px;color:var(--ink-soft);line-height:1.85;text-align:left}
+.addhome-note b{color:var(--ink)}
+@media(max-width:720px){.addhome-grid{grid-template-columns:1fr;max-width:320px;gap:36px}}
 .f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 26px;margin-top:10px}
 .f-item{text-align:center}
 .f-item h3{
@@ -600,6 +613,33 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         <p>分析を踏まえてAIに相談。送る文面から会うタイミングまで、一緒に考えられます。</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= ホーム画面に追加(アプリのように使う) ================= -->
+<section class="webapp addhome" id="addhome" style="scroll-margin-top:70px">
+  <div class="wrap">
+    <h2 class="sec rv">アプリのように使う</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <p class="webapp-lead rv">RELAは<b>インストール不要</b>。スマホの<b>ホーム画面に追加</b>すると、アプリのようにアイコンから起動できます（iPhone / Android 対応・無料）。</p>
+    <div class="addhome-grid">
+      <div class="addhome-card rv">
+        <img class="addhome-shot" src="assets/ss-add-1.jpg" alt="LINEなどのアプリ内で開いた場合は、メニューから「ブラウザで開く」をタップ" loading="lazy">
+        <div class="addhome-step"><span class="wnum">1</span><h3>Safariで開く</h3></div>
+        <p>LINEやInstagramの中で開いた場合は、メニューから<b>「ブラウザで開く」</b>を選び、Safariで表示します。</p>
+      </div>
+      <div class="addhome-card rv">
+        <img class="addhome-shot" src="assets/ss-add-2.jpg" alt="Safariで共有メニューを開く" loading="lazy">
+        <div class="addhome-step"><span class="wnum">2</span><h3>共有を開く</h3></div>
+        <p>Safariの<b>「共有」</b>ボタン（画面下の共有アイコン、またはメニュー）をタップします。</p>
+      </div>
+      <div class="addhome-card rv">
+        <img class="addhome-shot" src="assets/ss-add-3.jpg" alt="共有メニューから「ホーム画面に追加」をタップ" loading="lazy">
+        <div class="addhome-step"><span class="wnum">3</span><h3>ホーム画面に追加</h3></div>
+        <p>一覧から<b>「ホーム画面に追加」</b>をタップ。ホームにRELAのアイコンが作成されます。</p>
+      </div>
+    </div>
+    <p class="addhome-note rv"><b>Androidの場合：</b>Chromeでページを開き、右上のメニュー（⋮）→<b>「ホーム画面に追加」</b>（または「アプリをインストール」）をタップします。</p>
   </div>
 </section>
 
