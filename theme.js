@@ -52,6 +52,7 @@
       return;
     }
     if (e && btn.contains(e.target)) return;
+    audio.muted = false; // 初回のユーザー操作でミュート解除(=ここで音が出る)
     attempt();
   }
 
@@ -61,8 +62,11 @@
     if (p && p.then) {
       p.then(function () {
         paint(true);
-        stopUnlock();
+        if (!audio.muted) stopUnlock(); // 音が出ていれば解錠待ちは終了
       }).catch(function () {
+        // 音付きの自動再生がブロックされた → まずミュートで再生を開始しておき、
+        // 最初のタップ/スクロール/キー操作で unlock() が muted=false にして音を出す。
+        try { audio.muted = true; audio.play().catch(function () {}); } catch (e2) {}
         paint(true);
         waitUnlock();
       });
@@ -72,6 +76,7 @@
   function play() {
     wanted = true;
     sessionStorage.setItem(KEY, "on");
+    audio.muted = false;
     paint(true);
     attempt();
   }

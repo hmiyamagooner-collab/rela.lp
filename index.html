@@ -64,7 +64,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 
 /* ============ 第二幕: ロゴ浮上(第一幕終了まで一時停止) ============ */
 .logo-emerge{width:clamp(230px,36vw,330px);opacity:0;transform:scale(.5);
-  animation:emerge 3.4s cubic-bezier(.22,.61,.2,1) .4s forwards;
+  animation:emerge 3.4s cubic-bezier(.22,.61,.2,1) 0s forwards;
   animation-play-state:paused}
 @keyframes emerge{
   0%{opacity:0;transform:scale(.5)}
@@ -217,9 +217,14 @@ footer a:hover{color:var(--cyan)}
   var intro = document.getElementById('intro'), done = false;
   function end(){
     if (done) return; done = true;
-    intro.classList.add('done');
-    document.body.classList.add('play');            // 第二幕のアニメを一斉に解放
-    setTimeout(function(){ if (intro && intro.parentNode) intro.parentNode.removeChild(intro); }, 950);
+    intro.classList.add('done');                    // 第一幕を0.9sでフェードアウト
+    setTimeout(function(){
+      if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+      // 背景の再描画スパイクが過ぎてから第二幕を開始する(浮上ロゴのカクツキ回避)
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ document.body.classList.add('play'); });
+      });
+    }, 950);
   }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { end(); return; }
   var t = setTimeout(end, 21600);                    // 完走(20s+0.8s delay)+約0.8s
