@@ -71,12 +71,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
   45%{opacity:.55;transform:scale(.82)}
   100%{opacity:1;transform:scale(1)}
 }
-@keyframes breathe{
-  0%,100%{filter:drop-shadow(0 0 18px rgba(61,123,255,.28)) drop-shadow(0 0 40px rgba(122,108,245,.35)) brightness(1)}
-  50%{filter:drop-shadow(0 0 22px rgba(61,123,255,.34)) drop-shadow(0 0 48px rgba(122,108,245,.44)) brightness(1.12)}
-}
-.logo-wrap{position:relative;filter:drop-shadow(0 0 18px rgba(61,123,255,.28)) drop-shadow(0 0 40px rgba(122,108,245,.35));
-  animation:breathe 5s ease-in-out 4s infinite;animation-play-state:paused}
+.logo-wrap{position:relative;filter:drop-shadow(0 0 18px rgba(61,123,255,.28)) drop-shadow(0 0 40px rgba(122,108,245,.35))}
 
 /* ---- 後続要素の段階フェード(同じくゲート制御) ---- */
 .seq{opacity:0;transform:translateY(16px);animation:rise .9s ease forwards;animation-play-state:paused}
