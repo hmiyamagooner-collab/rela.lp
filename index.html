@@ -48,7 +48,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 .intro::before{top:0;background:linear-gradient(180deg,#03040a,transparent)}
 .intro::after{bottom:0;background:linear-gradient(0deg,#03040a,transparent)}
 .scroll-text{position:absolute;top:100vh;width:min(88vw,560px);text-align:center;
-  font-family:'Shippori Mincho',serif;font-size:clamp(15px,2.2vw,19px);
+  font-family:'Shippori Mincho',serif;font-size:clamp(16px,2.7vw,22px);
   letter-spacing:.14em;line-height:2.7;text-shadow:0 0 18px rgba(61,123,255,.35);
   animation:credits 16s linear .8s forwards}
 .scroll-text p{margin:0 0 2.2em}
@@ -64,22 +64,26 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 
 /* ============ 第二幕: ロゴ浮上(第一幕終了まで一時停止) ============ */
 .logo-emerge{width:clamp(230px,36vw,330px);opacity:0;transform:scale(.5);
-  animation:emerge 3.4s cubic-bezier(.22,.61,.2,1) forwards, breathe 5s ease-in-out 3.6s infinite;
+  animation:emerge 3.4s cubic-bezier(.22,.61,.2,1) .4s forwards;
   animation-play-state:paused}
 @keyframes emerge{
   0%{opacity:0;transform:scale(.5);filter:blur(18px) brightness(.4)}
   45%{opacity:.55;transform:scale(.8);filter:blur(9px) brightness(.65)}
   100%{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}
 }
-@keyframes breathe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.12)}}
-.logo-wrap{position:relative;filter:drop-shadow(0 0 18px rgba(61,123,255,.28)) drop-shadow(0 0 40px rgba(122,108,245,.35))}
+@keyframes breathe{
+  0%,100%{filter:drop-shadow(0 0 18px rgba(61,123,255,.28)) drop-shadow(0 0 40px rgba(122,108,245,.35)) brightness(1)}
+  50%{filter:drop-shadow(0 0 22px rgba(61,123,255,.34)) drop-shadow(0 0 48px rgba(122,108,245,.44)) brightness(1.12)}
+}
+.logo-wrap{position:relative;filter:drop-shadow(0 0 18px rgba(61,123,255,.28)) drop-shadow(0 0 40px rgba(122,108,245,.35));
+  animation:breathe 5s ease-in-out 4s infinite;animation-play-state:paused}
 
 /* ---- 後続要素の段階フェード(同じくゲート制御) ---- */
 .seq{opacity:0;transform:translateY(16px);animation:rise .9s ease forwards;animation-play-state:paused}
 .s1{animation-delay:2.9s}.s2{animation-delay:3.3s}.s3{animation-delay:3.7s}
 .s4{animation-delay:4.1s}.s5{animation-delay:4.5s}.s6{animation-delay:4.9s}
 @keyframes rise{to{opacity:1;transform:none}}
-body.play .logo-emerge,body.play .seq{animation-play-state:running}
+body.play .logo-emerge,body.play .seq,body.play .logo-wrap{animation-play-state:running}
 
 h1{font-family:'Shippori Mincho',serif;font-weight:600;line-height:1.75;
   font-size:clamp(18px,4.6vw,46px);letter-spacing:.06em;margin:34px 0 8px}
@@ -133,6 +137,7 @@ h1 .big{font-size:1.32em;font-weight:700}
 @media (prefers-reduced-motion:reduce){
   .intro{display:none}
   .logo-emerge,.seq{animation:none;opacity:1;transform:none;filter:none}
+  .logo-wrap{animation:none}
 }
 footer{position:relative;z-index:1;padding:18px 24px 28px;text-align:center;font-size:11px;color:var(--ink-dim)}
 footer a{color:var(--ink-dim);text-decoration:none;margin:0 8px}
