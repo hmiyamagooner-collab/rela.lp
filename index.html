@@ -50,10 +50,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 .scroll-text{position:absolute;top:100vh;width:min(88vw,560px);text-align:center;
   font-family:'Shippori Mincho',serif;font-size:clamp(15px,2.2vw,19px);
   letter-spacing:.14em;line-height:2.7;text-shadow:0 0 18px rgba(61,123,255,.35);
-  animation:credits 32s linear .8s forwards}
+  animation:credits 16s linear .8s forwards}
 .scroll-text p{margin:0 0 2.2em}
-.scroll-text .cr-rela{font-family:'Audiowide',sans-serif;letter-spacing:.28em;font-size:2.2em;color:#fff;
-  text-shadow:0 0 10px #fff,0 0 26px rgba(79,216,255,.85),0 0 60px rgba(61,123,255,.6)}
+.scroll-text .cr-logo{display:block;width:min(56%,240px);margin:0 auto;
+  filter:drop-shadow(0 0 22px rgba(79,216,255,.5)) drop-shadow(0 0 50px rgba(61,123,255,.35))}
 .scroll-text .dim{color:var(--ink-soft)}
 @keyframes credits{to{transform:translateY(calc(-100vh - 100%))}}
 .skip-btn{position:absolute;right:18px;bottom:18px;z-index:3;cursor:pointer;
@@ -143,7 +143,7 @@ footer a:hover{color:var(--cyan)}
 <!-- ============ 第一幕: RELA由来スクロール(エンドロール) ============ -->
 <div class="intro" id="intro">
   <div class="scroll-text">
-    <p><span class="cr-rela">RELA</span></p>
+    <p><img class="cr-logo" src="assets/logo.png" alt="RELA"></p>
     <p>その名は、<br><span class="dim">Relationship × AI</span><br>「関係」と「知性」の出会いから<br>生まれました。</p>
     <p>手のひらに刻まれた線。<br>顔立ちに宿る気配。<br>生まれた日が示す、めぐりあわせ。</p>
     <p>人は太古から、<br>目に見えない“つながり”を<br>読み解こうとしてきました。</p>
@@ -221,7 +221,7 @@ footer a:hover{color:var(--cyan)}
     setTimeout(function(){ if (intro && intro.parentNode) intro.parentNode.removeChild(intro); }, 950);
   }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { end(); return; }
-  var t = setTimeout(end, 33600);                    // 完走(32s+0.8s delay)+約0.8s
+  var t = setTimeout(end, 17600);                    // 完走(16s+0.8s delay)+約0.8s
   var sb = document.getElementById('skipBtn');
   if (sb) sb.addEventListener('click', function(e){ e.stopPropagation(); clearTimeout(t); end(); });
   intro.addEventListener('click', function(){ clearTimeout(t); end(); });
