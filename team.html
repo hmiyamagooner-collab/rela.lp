@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>分析・鑑定｜RELA（リラ）</title>
+<title>チーム編成｜RELA（リラ）</title>
 <meta name="theme-color" content="#03040a">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
@@ -569,24 +569,41 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .back-link:hover{border-color:var(--cyan);background:rgba(61,123,255,.18);box-shadow:0 0 16px rgba(79,216,255,.3)}
 .back-link .bl-ar{font-size:19px;line-height:1;margin-top:-2px}
 .back-row{text-align:left;margin-bottom:14px}
-.rd-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1000px;margin:0 auto}
-.rd-gallery figure{margin:0}
-.rd-gallery img{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.5)}
-.rd-gallery figcaption{font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.6;text-align:left}
-.rd-gallery figcaption b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
-.karte-gallery{grid-template-columns:repeat(2,1fr);max-width:840px}
-.karte-gallery img{box-shadow:0 18px 50px rgba(0,0,0,.6)}
-@media(max-width:860px){.rd-gallery{grid-template-columns:repeat(2,1fr);gap:16px}.karte-gallery{grid-template-columns:1fr;max-width:420px}}
-.rd-materials{max-width:1000px;margin:70px auto 0}
-.rm-title{font-family:'Shippori Mincho',serif;font-size:clamp(19px,2.6vw,25px);letter-spacing:.08em;text-align:center;margin-bottom:12px}
-.rm-note{color:var(--ink-soft);font-size:14px;line-height:1.85;max-width:660px;margin:0 auto 34px;text-align:center}
-.rm-note b{color:var(--cyan)}
-.rm-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
-.rm-group{background:rgba(11,14,27,.55);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
-.rm-cat{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--cyan);margin-bottom:13px;padding:3px 12px;border:1px solid rgba(79,216,255,.4);border-radius:999px}
-.rm-group ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.rm-group li{font-size:13px;color:var(--ink);background:rgba(61,123,255,.1);border:1px solid rgba(120,170,255,.22);border-radius:8px;padding:6px 11px;line-height:1.5}
-@media(max-width:860px){.rm-groups{grid-template-columns:1fr}}
+/* 自分の分析: 大きな注釈付きスクショ(縦積み・引き出し線) */
+.sa-block{position:relative;max-width:1080px;margin:0 auto 84px}
+.sa-figure{position:relative;width:100%}
+.sa-img{display:block;width:46%;margin:0 auto;border-radius:16px;border:1px solid var(--line);box-shadow:0 18px 54px rgba(0,0,0,.6)}
+.sa-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:1}
+.sa-ln{stroke:#5fd8ff;stroke-width:1.3;fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;filter:drop-shadow(0 0 3px rgba(95,216,255,.9));opacity:.85;stroke-dasharray:5 4;animation:alnFlow 2.4s linear infinite}
+.sa-dot{position:absolute;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;z-index:2;background:radial-gradient(circle,#c8f4ff,#5fd8ff 55%,#7a6cf5);box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 10px rgba(79,216,255,.95);animation:amkPulse 2.2s ease-in-out infinite}
+.sa-lb{position:absolute;width:23%;transform:translateY(-50%);font-size:12.5px;line-height:1.6;color:var(--ink-soft);z-index:2}
+.sa-lb b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:2px}
+.sa-lb.l{left:1%;text-align:right}
+.sa-lb.r{right:1%;text-align:left}
+.sa-cap{max-width:560px;margin:22px auto 0;text-align:center;color:var(--ink-soft);font-size:14px;line-height:1.85}
+.sa-cap b{color:var(--ink)}
+@media(max-width:860px){
+  .sa-figure{display:flex;flex-direction:column;align-items:center}
+  .sa-img{width:min(360px,90vw)}
+  .sa-svg,.sa-dot{display:none}
+  .sa-lb{position:static!important;transform:none;width:100%;max-width:360px;text-align:left!important;display:flex;gap:9px;margin-top:11px}
+  .sa-lb.l,.sa-lb.r{left:auto;right:auto}
+  .sa-lb::before{content:"▹";flex:0 0 auto;color:var(--cyan);font-weight:800}
+  .sa-block{margin-bottom:52px}
+}
+.tm-shots{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;max-width:820px;margin:0 auto 10px}
+.tm-shots figure{margin:0;max-width:320px;flex:1 1 300px}
+.tm-shots img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 14px 40px rgba(0,0,0,.55)}
+.tm-shots figcaption{font-size:13px;color:var(--ink-soft);margin-top:12px;line-height:1.7;text-align:left}
+.tm-shots figcaption b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:3px}
+.tm-h{font-family:'Shippori Mincho',serif;font-size:clamp(18px,2.5vw,23px);letter-spacing:.06em;margin:56px 0 26px}
+.tm-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto;text-align:left}
+.tm-step{background:rgba(11,14,27,.55);border:1px solid var(--line);border-radius:14px;padding:20px;font-size:13px;color:var(--ink-soft);line-height:1.7}
+.tm-step b{display:block;color:var(--ink);font-size:15px;margin:10px 0 4px}
+.tm-n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-family:'Inter',sans-serif;font-weight:700;color:#03040a;background:linear-gradient(135deg,#5fd8ff,#7a6cf5);box-shadow:0 0 14px rgba(79,216,255,.5)}
+.tm-uses{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:720px;margin:48px auto 0}
+.tm-uses span{font-size:13px;color:var(--ink);background:rgba(61,123,255,.1);border:1px solid rgba(120,170,255,.25);border-radius:999px;padding:8px 16px}
+@media(max-width:760px){.tm-steps{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -620,9 +637,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     <div class="nav-links" id="nav-links">
       <a href="./partner.html">相手を可視化</a>
       <a href="./self.html">自分の分析</a>
-      <a href="./reading.html" class="active">分析・鑑定</a>
+      <a href="./reading.html">分析・鑑定</a>
       <a href="./karte.html">カルテ</a>
-      <a href="./team.html">チーム編成</a>
+      <a href="./team.html" class="active">チーム編成</a>
       <a href="./lp.html#plans">料金</a>
       <a class="btn btn-white" href="https://rela.website/?signup=1">無料ではじめる</a>
     </div>
@@ -630,91 +647,28 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 </header>
 
 <!-- ================= ① 相手を読み解く ================= -->
-<section class="rd-sec" id="reading">
+<section class="rd-sec" id="team">
   <div class="wrap" style="text-align:center">
     <div class="back-row"><a class="back-link" href="./index.html#app"><span class="bl-ar">‹</span>トップへ戻る</a></div>
-    <h2 class="sec rv">分析・鑑定</h2>
+    <h2 class="sec rv">チーム編成</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
-    <p class="rd-sub rv">運気バイオリズムなどの多角的な分析に、手相・人相・守護神・パワースポットといった“鑑定”の視点を融合。さらにAIが、あなたのプロフィールをもとに守護神・エネルギーカラー・未来ビジョン・チャクラのイメージ画像まで生成します。</p>
+    <p class="rd-sub rv">メンバーの生年月日やプロフィールから、AIが一人ひとりの特性を多角的に読み解き、会社・スポーツ・イベントなど目的に合わせて“適材適所”の役割配置を提案。最高のチームづくりを、占術×AIで。</p>
 
-    <div class="f-grid rv">
-      <div class="f-item rv">
-        <h3>運気バイオリズム</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-biorhythm.jpg" alt="運気バイオリズム" loading="lazy"></div>
-        <p>四柱推命の十二運から、一年の運気の波（総合・仕事・恋愛・金）を月別グラフで可視化。動く時期がひと目でわかります。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>手相分析</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-palm.jpg" alt="手相分析" loading="lazy"></div>
-        <p>左右の手相から才能・運勢・人生傾向を詳しく読み解きます。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>人相分析</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-face.jpg" alt="人相・顔分析" loading="lazy"></div>
-        <p>顔写真から性格や思考傾向を分析。第一印象や強みを可視化します。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>守護石</h3>
-        <div class="mini"><img class="mini-shot fit" src="assets/ss-stone.jpg" alt="守護石・パワーストーン" loading="lazy"></div>
-        <p>あなたを支える守護石（パワーストーン）と、その意味・活かし方をお届けします。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>属性神社・パワースポット</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-shrine.jpg" alt="属性神社・パワースポット" loading="lazy"></div>
-        <p>あなたの属性と相性の良い神社・パワースポットを、守護神とともにAIが提案します。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>イメージ画像を生成</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-imagegen.jpg" alt="AIイメージ画像生成" loading="lazy"></div>
-        <p>守護神・エネルギーカラー・未来ビジョンなどを、AIがあなただけのアート画像に。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>チャクラ</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-chakra.jpg" alt="チャクラ分析" loading="lazy"></div>
-        <p>12のチャクラの状態を分析し、心と体のバランスを整えるヒントに。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>未来ビジョン</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-future.jpg" alt="未来ビジョン" loading="lazy"></div>
-        <p>運気が満ちる場所と行動を、AIが一枚の情景に描き出します。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>守護神</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-guardian.jpg" alt="守護神" loading="lazy"></div>
-        <p>あなたの属性を宿す守護神を、AIが荘厳なアート画像に描き出します。</p>
-      </div>
-      <div class="f-item rv">
-        <h3>エネルギーカラー</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-energy.jpg" alt="エネルギーカラー" loading="lazy"></div>
-        <p>あなたの“気”の粒子を、AIが幻想的なカラーアートで表現します。</p>
-      </div>
+    <div class="tm-shots rv">
+      <figure><img src="assets/ss-team.jpg" alt="チームの種類とメンバーを選ぶ" loading="lazy"><figcaption><b>種類とメンバーを選ぶ</b>会社・スポーツ・芸能・イベントなど、目的に合うチームの種類と、登録メンバーを選択します。</figcaption></figure>
+      <figure><img src="assets/ss-team-2.jpg" alt="役割配置の提案" loading="lazy"><figcaption><b>AIが役割配置を提案</b>各メンバーの日干・五行・MBTIなどから、リーダー・参謀・営業・管理まで適材適所と、その根拠を提示します。</figcaption></figure>
     </div>
 
-    <div class="rd-materials rv">
-      <h3 class="rm-title">RELAが照合する鑑定材料</h3>
-      <p class="rm-note">RELAは東洋命理から統計・心理学まで、<b>全18種</b>の鑑定材料を横断してあなたを読み解きます。画面に表示されるのは一部で、多くは“裏側”でAIの分析に使われています。</p>
-      <div class="rm-groups">
-        <div class="rm-group"><span class="rm-cat">東洋命理</span>
-          <ul><li>四柱推命（命式・日運）</li><li>算命学（中心星・十二大従星）</li><li>天中殺</li><li>九星気学</li><li>五行</li><li>易経（本卦）</li></ul>
-        </div>
-        <div class="rm-group"><span class="rm-cat">西洋・数運</span>
-          <ul><li>西洋占星術（星座）</li><li>数秘術（ライフパス・個人日）</li><li>バイオリズム</li></ul>
-        </div>
-        <div class="rm-group"><span class="rm-cat">統計・心理</span>
-          <ul><li>MBTI（16タイプ）</li><li>血液型</li><li>兄弟構成（出生順）</li></ul>
-        </div>
-        <div class="rm-group"><span class="rm-cat">姓名</span>
-          <ul><li>姓名判断</li></ul>
-        </div>
-        <div class="rm-group"><span class="rm-cat">観相</span>
-          <ul><li>手相</li><li>人相・顔分析</li></ul>
-        </div>
-        <div class="rm-group"><span class="rm-cat">スピリチュアル</span>
-          <ul><li>守護神・属性神社</li><li>チャクラ</li><li>パワーストーン</li></ul>
-        </div>
-      </div>
+    <h3 class="tm-h">使い方はかんたん3ステップ</h3>
+    <div class="tm-steps rv">
+      <div class="tm-step"><span class="tm-n">1</span><b>目的を選ぶ</b>会社・オフィス／スポーツ／芸能事務所／イベント運営など、チームの種類を選びます。</div>
+      <div class="tm-step"><span class="tm-n">2</span><b>メンバーを選ぶ</b>自分と、登録した相手からメンバーを選択（登録者は最初から全員選択）。</div>
+      <div class="tm-step"><span class="tm-n">3</span><b>AIが配置を提案</b>一人ひとりの特性を読み解き、役割ごとの適材適所と、その根拠まで提示します。</div>
     </div>
 
+    <div class="tm-uses rv">
+      <span>会社・オフィス</span><span>スポーツチーム</span><span>芸能事務所</span><span>総合病院</span><span>イベント運営</span><span>自由入力</span>
+    </div>
   </div>
 </section>
 
