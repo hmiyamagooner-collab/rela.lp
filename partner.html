@@ -576,6 +576,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .mf-step b{display:block;color:var(--ink);font-size:15px;margin:10px 0 4px}
 .mf-n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-family:'Inter',sans-serif;font-weight:700;color:#03040a;background:linear-gradient(135deg,#5fd8ff,#7a6cf5);box-shadow:0 0 14px rgba(79,216,255,.5)}
 @media(max-width:860px){.mf-steps{grid-template-columns:1fr}}
+.frame-legend{max-width:740px;margin:6px auto 0;text-align:center}
+.fl-title{font-size:14.5px;color:var(--ink);font-weight:700;margin-bottom:14px}
+.fl-title b{color:var(--cyan)}
+.fl-items{display:flex;flex-wrap:wrap;gap:11px 14px;justify-content:center}
+.fl-item{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);background:rgba(11,14,27,.55);border:1px solid var(--line);border-radius:999px;padding:7px 15px}
+.fl-item i{width:12px;height:12px;border-radius:3px;display:inline-block;flex:0 0 auto;box-shadow:0 0 8px rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
@@ -660,11 +666,21 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     </div>
 
     <!-- メッセージ分析ボタン → 分析結果スクショ への矢印 -->
+    <div class="frame-legend rv">
+      <p class="fl-title">カードの<b>枠色</b>＝相手との“今の関係状態”を表します</p>
+      <div class="fl-items">
+        <span class="fl-item"><i style="background:linear-gradient(180deg,#46d39a,#3ea8ff)"></i>良好（発展期待・関係向上・安定）</span>
+        <span class="fl-item"><i style="background:#ffb86b"></i>停滞・慎重</span>
+        <span class="fl-item"><i style="background:#ff5b7f"></i>冷却・要注意</span>
+        <span class="fl-item"><i style="background:#3a4150"></i>情報不足</span>
+      </div>
+    </div>
+
     <div class="mf-intro rv">
-      <h3 class="mf-h">会話のスクショを貼るだけで、相手の本音を解析</h3>
+      <h3 class="mf-h">会話のスクショを貼るだけで、相手の本音まで読み解く</h3>
       <div class="mf-steps">
         <div class="mf-step"><span class="mf-n">1</span><b>会話を貼る</b>LINE・Instagramのやり取りをスクショで読み込むだけ。</div>
-        <div class="mf-step"><span class="mf-n">2</span><b>AIが解析</b>言葉づかい・返信の速さ・温度感から、相手の心理を読み取ります。</div>
+        <div class="mf-step"><span class="mf-n">2</span><b>AIが分析</b>言葉づかい・返信の速さ・温度感から、相手の心理を読み取ります。</div>
         <div class="mf-step"><span class="mf-n">3</span><b>結果を提示</b>相性スコア・好意レベル・本音・次の一手（推薦返信）まで表示。</div>
       </div>
     </div>
