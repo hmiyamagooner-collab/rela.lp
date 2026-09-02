@@ -88,6 +88,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 .s4{animation-delay:4.1s}.s5{animation-delay:4.5s}.s6{animation-delay:4.9s}
 @keyframes rise{to{opacity:1;transform:none}}
 body.play .logo-emerge,body.play .seq,body.play .logo-wrap{animation-play-state:running}
+/* 戻る等で再訪した時: オープニング演出を全スキップし、最終状態を即表示 */
+body.instant .intro{display:none!important}
+body.instant .logo-emerge,body.instant .seq,body.instant .logo-wrap{
+  animation:none!important;opacity:1!important;transform:none!important}
 
 h1{font-family:'Shippori Mincho',serif;font-weight:600;line-height:1.75;
   font-size:clamp(18px,4.6vw,46px);letter-spacing:.06em;margin:34px 0 8px}
@@ -124,14 +128,17 @@ h1 .big{font-size:1.32em;font-weight:700}
 .hero-nav{display:flex;flex-direction:column;gap:16px;max-width:440px;width:100%;margin:0 auto}
 .hnav-btn{position:relative;display:flex;align-items:center;gap:15px;padding:19px 26px;
   text-decoration:none;font-weight:600;font-size:17px;color:#fff;letter-spacing:.06em;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.26);border-radius:14px;
-  transition:background .2s,border-color .2s,transform .2s}
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.4);border-radius:14px;
+  box-shadow:0 0 22px rgba(255,255,255,.18),inset 0 0 16px rgba(255,255,255,.05);
+  text-shadow:0 0 12px rgba(255,255,255,.35);
+  transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
 .hnav-btn::after{content:"";margin-left:auto;width:9px;height:9px;
-  border-right:2px solid rgba(255,255,255,.65);border-top:2px solid rgba(255,255,255,.65);
-  transform:rotate(45deg);transition:border-color .2s}
-.hnav-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);transform:translateY(-1px)}
+  border-right:2px solid rgba(255,255,255,.8);border-top:2px solid rgba(255,255,255,.8);
+  transform:rotate(45deg);transition:border-color .2s;filter:drop-shadow(0 0 4px rgba(255,255,255,.7))}
+.hnav-btn:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-1px);
+  box-shadow:0 0 34px rgba(255,255,255,.4),inset 0 0 20px rgba(255,255,255,.09)}
 .hnav-btn:hover::after{border-color:#fff}
-.hn-ic{display:flex;align-items:center;color:#fff;opacity:.92}
+.hn-ic{display:flex;align-items:center;color:#fff;filter:drop-shadow(0 0 6px rgba(255,255,255,.7))}
 .hn-ic svg{width:24px;height:24px}
 .hn-tx{position:relative;z-index:1}
 @media(max-width:480px){.hero-nav{max-width:340px}.hnav-btn{padding:19px 24px;font-size:16.5px}}
@@ -249,6 +256,15 @@ footer a:hover{color:var(--cyan)}
 /* 第一幕→第二幕の制御: 33.6秒で自動遷移／スキップボタン・画面タップで即遷移／reduced-motionは第一幕を省略 */
 (function(){
   var intro = document.getElementById('intro'), done = false;
+  // セッション内で一度でも見たら(=戻る/再読込)オープニングを全スキップして即表示
+  var seen = false;
+  try { seen = sessionStorage.getItem('rela_seen') === '1'; sessionStorage.setItem('rela_seen','1'); } catch(e){}
+  if (seen || location.hash === '#app') {
+    if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+    document.body.classList.add('instant');
+    document.body.classList.add('play');
+    return;
+  }
   function end(){
     if (done) return; done = true;
     intro.classList.add('done');                    // 第一幕を0.9sでフェードアウト

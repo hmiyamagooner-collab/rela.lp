@@ -124,6 +124,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
 .nav-links a{text-decoration:none;color:var(--ink-soft)}
 .nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--cyan);font-weight:700}
 .nav .btn-white{padding:9px 22px;font-size:13px}
 .nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:10px;cursor:pointer}
 .nav-toggle span{display:block;width:18px;height:1.5px;background:#fff;margin:4px auto;border-radius:2px}
@@ -568,6 +569,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .back-link:hover{border-color:var(--cyan);background:rgba(61,123,255,.18);box-shadow:0 0 16px rgba(79,216,255,.3)}
 .back-link .bl-ar{font-size:19px;line-height:1;margin-top:-2px}
 .back-row{text-align:left;margin-bottom:14px}
+.rd-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1000px;margin:0 auto}
+.rd-gallery figure{margin:0}
+.rd-gallery img{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.rd-gallery figcaption{font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.6;text-align:left}
+.rd-gallery figcaption b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+.karte-gallery{grid-template-columns:repeat(2,1fr);max-width:840px}
+.karte-gallery img{box-shadow:0 18px 50px rgba(0,0,0,.6)}
+@media(max-width:860px){.rd-gallery{grid-template-columns:repeat(2,1fr);gap:16px}.karte-gallery{grid-template-columns:1fr;max-width:420px}}
 </style>
 </head>
 <body>
@@ -594,28 +603,35 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 
 <header>
   <nav class="nav" aria-label="メイン">
-    <a class="logo" href="./index.html">
+    <a class="logo" href="./index.html#app">
       <img src="assets/logo.png" alt="RELA" class="nav-brand">
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="./lp.html#features">できること</a>
-      <a href="#how">使い方</a>
+      <a href="./partner.html">相手を可視化</a>
+      <a href="./self.html">自分の分析</a>
+      <a href="./reading.html">分析＋鑑定</a>
+      <a href="./karte.html" class="active">カルテ</a>
       <a href="./lp.html#plans">料金</a>
-      <a href="./lp.html#faq">よくある質問</a>
       <a class="btn btn-white" href="https://rela.website/?signup=1">無料ではじめる</a>
     </div>
   </nav>
 </header>
 
 <!-- ================= ① 相手を読み解く ================= -->
-<section class="rd-sec" id="karte" style="min-height:60vh;display:flex;align-items:center">
+<section class="rd-sec" id="karte">
   <div class="wrap" style="text-align:center">
-    <div class="back-row"><a class="back-link" href="./index.html"><span class="bl-ar">‹</span>トップへ戻る</a></div>
+    <div class="back-row"><a class="back-link" href="./index.html#app"><span class="bl-ar">‹</span>トップへ戻る</a></div>
     <h2 class="sec rv">カルテ</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
-    <p class="rd-sub rv">このページは準備中です。近日公開します。</p>
-    <a class="btn btn-white" href="./index.html" style="margin-top:10px">トップへ戻る</a>
+    <p class="rd-sub rv">RELAのすべての分析を一冊にまとめた「PERSONAL DOSSIER（鑑定書）」。四柱推命の命式・運気バイオリズム・自己分析レポート・守護神とパワースポットまで、全9ページの美しいPDFに収録。保存も共有もできる、あなただけの鑑定書です。</p>
+
+    <div class="rd-gallery karte-gallery rv">
+      <figure><img src="assets/karte-cover.jpg" alt="鑑定書 表紙" loading="lazy"><figcaption><b>表紙</b>あなた専用のPERSONAL DOSSIER（鑑定書）</figcaption></figure>
+      <figure><img src="assets/karte-saju.jpg" alt="四柱推命 命式と運気バイオリズム" loading="lazy"><figcaption><b>四柱推命・運気バイオリズム</b>命式と2026年の運気の波を可視化</figcaption></figure>
+      <figure><img src="assets/karte-self.jpg" alt="自己分析レポート" loading="lazy"><figcaption><b>自己分析レポート</b>7つの資質スコアと性格・恋愛・仕事傾向</figcaption></figure>
+      <figure><img src="assets/karte-shrine.jpg" alt="守護神・パワースポット" loading="lazy"><figcaption><b>守護神・パワースポット</b>あなたの守護神と相性の良い神社</figcaption></figure>
+    </div>
   </div>
 </section>
 

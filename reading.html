@@ -124,6 +124,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
 .nav-links a{text-decoration:none;color:var(--ink-soft)}
 .nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--cyan);font-weight:700}
 .nav .btn-white{padding:9px 22px;font-size:13px}
 .nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:10px;cursor:pointer}
 .nav-toggle span{display:block;width:18px;height:1.5px;background:#fff;margin:4px auto;border-radius:2px}
@@ -568,6 +569,24 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .back-link:hover{border-color:var(--cyan);background:rgba(61,123,255,.18);box-shadow:0 0 16px rgba(79,216,255,.3)}
 .back-link .bl-ar{font-size:19px;line-height:1;margin-top:-2px}
 .back-row{text-align:left;margin-bottom:14px}
+.rd-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1000px;margin:0 auto}
+.rd-gallery figure{margin:0}
+.rd-gallery img{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.rd-gallery figcaption{font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.6;text-align:left}
+.rd-gallery figcaption b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+.karte-gallery{grid-template-columns:repeat(2,1fr);max-width:840px}
+.karte-gallery img{box-shadow:0 18px 50px rgba(0,0,0,.6)}
+@media(max-width:860px){.rd-gallery{grid-template-columns:repeat(2,1fr);gap:16px}.karte-gallery{grid-template-columns:1fr;max-width:420px}}
+.rd-materials{max-width:1000px;margin:70px auto 0}
+.rm-title{font-family:'Shippori Mincho',serif;font-size:clamp(19px,2.6vw,25px);letter-spacing:.08em;text-align:center;margin-bottom:12px}
+.rm-note{color:var(--ink-soft);font-size:14px;line-height:1.85;max-width:660px;margin:0 auto 34px;text-align:center}
+.rm-note b{color:var(--cyan)}
+.rm-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
+.rm-group{background:rgba(11,14,27,.55);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.rm-cat{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--cyan);margin-bottom:13px;padding:3px 12px;border:1px solid rgba(79,216,255,.4);border-radius:999px}
+.rm-group ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.rm-group li{font-size:13px;color:var(--ink);background:rgba(61,123,255,.1);border:1px solid rgba(120,170,255,.22);border-radius:8px;padding:6px 11px;line-height:1.5}
+@media(max-width:860px){.rm-groups{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -594,28 +613,65 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 
 <header>
   <nav class="nav" aria-label="メイン">
-    <a class="logo" href="./index.html">
+    <a class="logo" href="./index.html#app">
       <img src="assets/logo.png" alt="RELA" class="nav-brand">
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="./lp.html#features">できること</a>
-      <a href="#how">使い方</a>
+      <a href="./partner.html">相手を可視化</a>
+      <a href="./self.html">自分の分析</a>
+      <a href="./reading.html" class="active">分析＋鑑定</a>
+      <a href="./karte.html">カルテ</a>
       <a href="./lp.html#plans">料金</a>
-      <a href="./lp.html#faq">よくある質問</a>
       <a class="btn btn-white" href="https://rela.website/?signup=1">無料ではじめる</a>
     </div>
   </nav>
 </header>
 
 <!-- ================= ① 相手を読み解く ================= -->
-<section class="rd-sec" id="reading" style="min-height:60vh;display:flex;align-items:center">
+<section class="rd-sec" id="reading">
   <div class="wrap" style="text-align:center">
-    <div class="back-row"><a class="back-link" href="./index.html"><span class="bl-ar">‹</span>トップへ戻る</a></div>
+    <div class="back-row"><a class="back-link" href="./index.html#app"><span class="bl-ar">‹</span>トップへ戻る</a></div>
     <h2 class="sec rv">分析＋鑑定</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
-    <p class="rd-sub rv">このページは準備中です。近日公開します。</p>
-    <a class="btn btn-white" href="./index.html" style="margin-top:10px">トップへ戻る</a>
+    <p class="rd-sub rv">統計的な分析に加え、手相・人相・守護神・パワースポットといった“鑑定”の視点を融合。さらにAIが、あなたのプロフィールと自己分析をもとに守護神・エネルギー・未来ビジョン・チャクラのイメージ画像まで生成します。</p>
+
+    <div class="rd-gallery rv">
+      <figure><img src="assets/ss-palm.jpg" alt="手相分析" loading="lazy"><figcaption><b>手相分析</b>生命線・運命線などから傾向を読み解く</figcaption></figure>
+      <figure><img src="assets/ss-face.jpg" alt="人相・顔分析" loading="lazy"><figcaption><b>人相・顔分析</b>顔立ちの印象から性格傾向を分析</figcaption></figure>
+      <figure><img src="assets/ss-imagegen.jpg" alt="AIイメージ画像生成" loading="lazy"><figcaption><b>AIイメージ画像生成</b>守護神・エネルギー・未来・チャクラを画像化</figcaption></figure>
+      <figure><img src="assets/ss-guardian.jpg" alt="守護神" loading="lazy"><figcaption><b>守護神</b>あなたを守る守護神をビジュアルに</figcaption></figure>
+      <figure><img src="assets/ss-chakra.jpg" alt="チャクラ分析" loading="lazy"><figcaption><b>チャクラ分析</b>12チャクラの開放度をチェック</figcaption></figure>
+      <figure><img src="assets/ss-future.jpg" alt="未来ビジョン" loading="lazy"><figcaption><b>未来ビジョン</b>運気が上がる場所と行動を提案</figcaption></figure>
+      <figure><img src="assets/ss-energy.jpg" alt="エネルギーカラー" loading="lazy"><figcaption><b>エネルギーカラー</b>あなたの“気”の粒子を可視化</figcaption></figure>
+      <figure><img src="assets/ss-stone.jpg" alt="パワーストーン" loading="lazy"><figcaption><b>パワーストーン</b>相性の良い石をレコメンド</figcaption></figure>
+    </div>
+
+    <div class="rd-materials rv">
+      <h3 class="rm-title">RELAが照合する鑑定材料</h3>
+      <p class="rm-note">RELAは東洋命理から統計・心理学まで、<b>全19種</b>の鑑定材料を横断してあなたを読み解きます。画面に表示されるのは一部で、多くは“裏側”でAIの分析に使われています。</p>
+      <div class="rm-groups">
+        <div class="rm-group"><span class="rm-cat">東洋命理</span>
+          <ul><li>四柱推命（命式・日運）</li><li>算命学（中心星・十二大従星）</li><li>天中殺</li><li>九星気学</li><li>五行</li><li>易経（本卦）</li></ul>
+        </div>
+        <div class="rm-group"><span class="rm-cat">西洋・数運</span>
+          <ul><li>西洋占星術（星座）</li><li>数秘術（ライフパス・個人日）</li><li>バイオリズム</li></ul>
+        </div>
+        <div class="rm-group"><span class="rm-cat">統計・心理</span>
+          <ul><li>MBTI（16タイプ）</li><li>血液型</li><li>兄弟構成（出生順）</li><li>動物占い</li></ul>
+        </div>
+        <div class="rm-group"><span class="rm-cat">姓名</span>
+          <ul><li>姓名判断</li></ul>
+        </div>
+        <div class="rm-group"><span class="rm-cat">観相</span>
+          <ul><li>手相</li><li>人相・顔分析</li></ul>
+        </div>
+        <div class="rm-group"><span class="rm-cat">スピリチュアル</span>
+          <ul><li>守護神・属性神社</li><li>チャクラ</li><li>パワーストーン</li></ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 

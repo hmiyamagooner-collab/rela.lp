@@ -124,6 +124,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
 .nav-links a{text-decoration:none;color:var(--ink-soft)}
 .nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--cyan);font-weight:700}
 .nav .btn-white{padding:9px 22px;font-size:13px}
 .nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:10px;cursor:pointer}
 .nav-toggle span{display:block;width:18px;height:1.5px;background:#fff;margin:4px auto;border-radius:2px}
@@ -568,6 +569,28 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .back-link:hover{border-color:var(--cyan);background:rgba(61,123,255,.18);box-shadow:0 0 16px rgba(79,216,255,.3)}
 .back-link .bl-ar{font-size:19px;line-height:1;margin-top:-2px}
 .back-row{text-align:left;margin-bottom:14px}
+/* 自分の分析: 大きな注釈付きスクショ(縦積み・引き出し線) */
+.sa-block{position:relative;max-width:1080px;margin:0 auto 84px}
+.sa-figure{position:relative;width:100%}
+.sa-img{display:block;width:46%;margin:0 auto;border-radius:16px;border:1px solid var(--line);box-shadow:0 18px 54px rgba(0,0,0,.6)}
+.sa-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:1}
+.sa-ln{stroke:#5fd8ff;stroke-width:1.3;fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;filter:drop-shadow(0 0 3px rgba(95,216,255,.9));opacity:.85;stroke-dasharray:5 4;animation:alnFlow 2.4s linear infinite}
+.sa-dot{position:absolute;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;z-index:2;background:radial-gradient(circle,#c8f4ff,#5fd8ff 55%,#7a6cf5);box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 10px rgba(79,216,255,.95);animation:amkPulse 2.2s ease-in-out infinite}
+.sa-lb{position:absolute;width:23%;transform:translateY(-50%);font-size:12.5px;line-height:1.6;color:var(--ink-soft);z-index:2}
+.sa-lb b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:2px}
+.sa-lb.l{left:1%;text-align:right}
+.sa-lb.r{right:1%;text-align:left}
+.sa-cap{max-width:560px;margin:22px auto 0;text-align:center;color:var(--ink-soft);font-size:14px;line-height:1.85}
+.sa-cap b{color:var(--ink)}
+@media(max-width:860px){
+  .sa-figure{display:flex;flex-direction:column;align-items:center}
+  .sa-img{width:min(360px,90vw)}
+  .sa-svg,.sa-dot{display:none}
+  .sa-lb{position:static!important;transform:none;width:100%;max-width:360px;text-align:left!important;display:flex;gap:9px;margin-top:11px}
+  .sa-lb.l,.sa-lb.r{left:auto;right:auto}
+  .sa-lb::before{content:"▹";flex:0 0 auto;color:var(--cyan);font-weight:800}
+  .sa-block{margin-bottom:52px}
+}
 </style>
 </head>
 <body>
@@ -594,15 +617,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 
 <header>
   <nav class="nav" aria-label="メイン">
-    <a class="logo" href="./index.html">
+    <a class="logo" href="./index.html#app">
       <img src="assets/logo.png" alt="RELA" class="nav-brand">
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="./lp.html#features">できること</a>
-      <a href="#how">使い方</a>
+      <a href="./partner.html">相手を可視化</a>
+      <a href="./self.html" class="active">自分の分析</a>
+      <a href="./reading.html">分析＋鑑定</a>
+      <a href="./karte.html">カルテ</a>
       <a href="./lp.html#plans">料金</a>
-      <a href="./lp.html#faq">よくある質問</a>
       <a class="btn btn-white" href="https://rela.website/?signup=1">無料ではじめる</a>
     </div>
   </nav>
@@ -611,24 +635,62 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 <!-- ================= ① 相手を読み解く ================= -->
 <section class="rd-sec" id="self">
   <div class="wrap" style="text-align:center">
-    <div class="back-row"><a class="back-link" href="./index.html"><span class="bl-ar">‹</span>トップへ戻る</a></div>
+    <div class="back-row"><a class="back-link" href="./index.html#app"><span class="bl-ar">‹</span>トップへ戻る</a></div>
     <h2 class="sec rv">自分の分析</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
     <p class="rd-sub rv">生年月日から、四柱推命・九星気学・数秘術・星座・易経・バイオリズムなど複数の理論と統計を横断して、あなたの“本質”を可視化。さらに「今日のスコア」で日々の運気を数値化し、AIがあなた専用に読み解きます。</p>
 
-    <div class="mf-shots rv" style="max-width:900px;margin:0 auto;align-items:flex-start">
-      <figure style="max-width:360px;flex:1 1 320px">
-        <img src="assets/ss-self-profile.jpg" alt="プロフィール分析結果">
-        <figcaption><b style="color:var(--ink);display:block;margin-bottom:3px">プロフィール分析結果</b>属性・星座・干支・日干・五行・九星気学・数秘術・易経・四柱推命——あなたを形づくる“気質”を一画面に集約。</figcaption>
-      </figure>
-      <figure style="max-width:400px;flex:1 1 340px">
-        <img src="assets/ss-self-score.jpg" alt="今日のスコア">
-        <figcaption><b style="color:var(--ink);display:block;margin-bottom:3px">今日のスコア</b>四柱推命・バイオリズム・九星・数秘・月星座の5系統を合成し、天中殺も加味。「RELAに読み解いてもらう」でAIが今日の過ごし方まで解説します。</figcaption>
-      </figure>
+    <!-- ① プロフィール分析結果 -->
+    <div class="sa-block rv">
+      <div class="sa-figure">
+        <img class="sa-img" src="assets/ss-self-profile.jpg" alt="プロフィール分析結果">
+        <svg class="sa-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="sa-ln" d="M24 19 L31 19"/>
+          <path class="sa-ln" d="M24 60 L31 60"/>
+          <path class="sa-ln" d="M24 74 L31 74"/>
+          <path class="sa-ln" d="M76 19 L51 19"/>
+          <path class="sa-ln" d="M76 33 L51 33"/>
+          <path class="sa-ln" d="M76 47 L51 47"/>
+        </svg>
+        <span class="sa-dot" style="left:31%;top:19%"></span>
+        <span class="sa-dot" style="left:31%;top:60%"></span>
+        <span class="sa-dot" style="left:31%;top:74%"></span>
+        <span class="sa-dot" style="left:51%;top:19%"></span>
+        <span class="sa-dot" style="left:51%;top:33%"></span>
+        <span class="sa-dot" style="left:51%;top:47%"></span>
+        <div class="sa-lb l" style="top:19%"><b>属性</b>火＝地に根ざした安定の気質</div>
+        <div class="sa-lb l" style="top:60%"><b>数秘術</b>ライフパス8＝現実を築く力</div>
+        <div class="sa-lb l" style="top:74%"><b>四柱推命</b>生年月日から命式（年・月・日・時）を算出</div>
+        <div class="sa-lb r" style="top:19%"><b>星座</b>射手座＝自由と探究の星</div>
+        <div class="sa-lb r" style="top:33%"><b>日干</b>己(土)＝あなたを表す中心の星</div>
+        <div class="sa-lb r" style="top:47%"><b>九星気学</b>七赤金星＝人を惹きつける社交</div>
+      </div>
+      <p class="sa-cap"><b>プロフィール分析結果</b> — 属性・星座・干支・日干・五行・九星気学・数秘術・易経・四柱推命。あなたを形づくる“変わらない気質”を一画面に集約します。</p>
     </div>
 
-    <div style="margin-top:46px">
-      <a class="btn btn-white" href="https://rela.website/?signup=1">無料ではじめる</a>
+    <!-- ② 今日のスコア -->
+    <div class="sa-block rv">
+      <div class="sa-figure">
+        <img class="sa-img" src="assets/ss-self-score.jpg" alt="今日のスコア">
+        <svg class="sa-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="sa-ln" d="M24 15 L32 15"/>
+          <path class="sa-ln" d="M24 40 L32 40"/>
+          <path class="sa-ln" d="M24 88 L41 88"/>
+          <path class="sa-ln" d="M76 16 L43 16"/>
+          <path class="sa-ln" d="M76 66 L51 66"/>
+        </svg>
+        <span class="sa-dot" style="left:32%;top:15%"></span>
+        <span class="sa-dot" style="left:32%;top:40%"></span>
+        <span class="sa-dot" style="left:41%;top:88%"></span>
+        <span class="sa-dot" style="left:43%;top:16%"></span>
+        <span class="sa-dot" style="left:51%;top:66%"></span>
+        <div class="sa-lb l" style="top:15%"><b>合成スコア</b>64pt「安定」＝5系統の総合点</div>
+        <div class="sa-lb l" style="top:40%"><b>5系統</b>四柱推命・バイオリズム・九星・数秘・月星座</div>
+        <div class="sa-lb l" style="top:88%"><b>AIが読み解く</b>今日の過ごし方まで解説</div>
+        <div class="sa-lb r" style="top:16%"><b>今日の状態</b>天中殺などの“注意サイン”を表示</div>
+        <div class="sa-lb r" style="top:66%"><b>天中殺</b>「年」と「日」2つの視点で表示</div>
+      </div>
+      <p class="sa-cap"><b>今日のスコア</b> — 日々の運気を数値化。5系統を合成し天中殺も加味して、「RELAに読み解いてもらう」でAIがあなた専用に解説します。</p>
     </div>
   </div>
 </section>

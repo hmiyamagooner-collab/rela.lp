@@ -124,6 +124,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
 .nav-links a{text-decoration:none;color:var(--ink-soft)}
 .nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--cyan);font-weight:700}
 .nav .btn-white{padding:9px 22px;font-size:13px}
 .nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:10px;cursor:pointer}
 .nav-toggle span{display:block;width:18px;height:1.5px;background:#fff;margin:4px auto;border-radius:2px}
@@ -568,6 +569,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .back-link:hover{border-color:var(--cyan);background:rgba(61,123,255,.18);box-shadow:0 0 16px rgba(79,216,255,.3)}
 .back-link .bl-ar{font-size:19px;line-height:1;margin-top:-2px}
 .back-row{text-align:left;margin-bottom:14px}
+.mf-intro{max-width:840px;margin:64px auto 8px;text-align:center}
+.mf-h{font-family:'Shippori Mincho',serif;font-size:clamp(18px,2.5vw,23px);letter-spacing:.06em;margin-bottom:26px}
+.mf-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
+.mf-step{background:rgba(11,14,27,.55);border:1px solid var(--line);border-radius:14px;padding:20px;font-size:13px;color:var(--ink-soft);line-height:1.7}
+.mf-step b{display:block;color:var(--ink);font-size:15px;margin:10px 0 4px}
+.mf-n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-family:'Inter',sans-serif;font-weight:700;color:#03040a;background:linear-gradient(135deg,#5fd8ff,#7a6cf5);box-shadow:0 0 14px rgba(79,216,255,.5)}
+@media(max-width:860px){.mf-steps{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -594,15 +602,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 
 <header>
   <nav class="nav" aria-label="メイン">
-    <a class="logo" href="./index.html">
+    <a class="logo" href="./index.html#app">
       <img src="assets/logo.png" alt="RELA" class="nav-brand">
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="./lp.html#features">できること</a>
-      <a href="#how">使い方</a>
+      <a href="./partner.html" class="active">相手を可視化</a>
+      <a href="./self.html">自分の分析</a>
+      <a href="./reading.html">分析＋鑑定</a>
+      <a href="./karte.html">カルテ</a>
       <a href="./lp.html#plans">料金</a>
-      <a href="./lp.html#faq">よくある質問</a>
       <a class="btn btn-white" href="https://rela.website/?signup=1">無料ではじめる</a>
     </div>
   </nav>
@@ -611,7 +620,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 <!-- ================= ① 相手を可視化する ================= -->
 <section class="rd-sec" id="partner" style="scroll-margin-top:70px">
   <div class="wrap">
-    <div class="back-row"><a class="back-link" href="./index.html"><span class="bl-ar">‹</span>トップへ戻る</a></div>
+    <div class="back-row"><a class="back-link" href="./index.html#app"><span class="bl-ar">‹</span>トップへ戻る</a></div>
     <h2 class="sec rv">相手を可視化する</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
     <p class="rd-sub rv">相手の“今”を、ひと目で。連絡すべきタイミングまで AI が提案します。</p>
@@ -651,6 +660,15 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     </div>
 
     <!-- メッセージ分析ボタン → 分析結果スクショ への矢印 -->
+    <div class="mf-intro rv">
+      <h3 class="mf-h">会話のスクショを貼るだけで、相手の本音を解析</h3>
+      <div class="mf-steps">
+        <div class="mf-step"><span class="mf-n">1</span><b>会話を貼る</b>LINE・Instagramのやり取りをスクショで読み込むだけ。</div>
+        <div class="mf-step"><span class="mf-n">2</span><b>AIが解析</b>言葉づかい・返信の速さ・温度感から、相手の心理を読み取ります。</div>
+        <div class="mf-step"><span class="mf-n">3</span><b>結果を提示</b>相性スコア・好意レベル・本音・次の一手（推薦返信）まで表示。</div>
+      </div>
+    </div>
+
     <div class="msg-flow rv">
       <div class="mf-arrow"><span>「メッセージ分析」を押すと…</span><svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 2 V32 M4 24 L12 34 L20 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="mf-shots">
