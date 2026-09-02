@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RELA（リラ）| AIで自分と相手を可視化する</title>
+<title>カルテ｜RELA（リラ）</title>
 <meta name="theme-color" content="#03040a">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
@@ -423,11 +423,20 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .rd-sec{padding:92px 0;position:relative;z-index:1}
 .rd-sub{text-align:center;color:var(--ink-soft);font-size:clamp(14px,1.9vw,17px);margin:0 auto 46px;line-height:1.9;max-width:640px}
 .annot{position:relative;width:min(980px,100%);aspect-ratio:98/62;margin:0 auto}
-.annot-frame{position:absolute;left:33%;top:26%;width:34%}
-.annot-img{display:block;width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.55)}
-.amk{position:absolute;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;z-index:2;
-  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#03040a;font-family:'Inter',sans-serif;
-  background:linear-gradient(135deg,#5fd8ff,#7a6cf5);box-shadow:0 0 0 2px rgba(3,4,10,.7),0 0 12px rgba(79,216,255,.9)}
+.annot-frame{position:absolute;left:30%;top:24%;width:40%}
+.annot-img{display:block;width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 14px 44px rgba(0,0,0,.55)}
+.amk{position:absolute;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;z-index:2;
+  background:radial-gradient(circle,#c8f4ff,#5fd8ff 55%,#7a6cf5);box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 10px rgba(79,216,255,.95);
+  animation:amkPulse 2.2s ease-in-out infinite}
+@keyframes amkPulse{0%,100%{box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 8px rgba(79,216,255,.8)}50%{box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 16px rgba(79,216,255,1)}}
+/* メッセージ分析 → 分析結果スクショ */
+.msg-flow{max-width:760px;margin:40px auto 0;text-align:center}
+.mf-arrow{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--cyan);font-weight:700;font-size:14px;margin-bottom:20px;letter-spacing:.04em}
+.mf-arrow svg{width:24px;height:36px;filter:drop-shadow(0 0 6px rgba(79,216,255,.8))}
+.mf-shots{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+.mf-shots figure{margin:0;max-width:280px;flex:1 1 240px}
+.mf-shots img{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.mf-shots figcaption{font-size:12px;color:var(--ink-soft);margin-top:11px;line-height:1.65}
 .annot-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:1}
 .aln{stroke:#5fd8ff;stroke-width:1.3;fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;
   filter:drop-shadow(0 0 3px rgba(95,216,255,.9));opacity:.82;stroke-dasharray:5 4;animation:alnFlow 2.4s linear infinite}
@@ -437,11 +446,13 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .alb.l{left:1.5%;text-align:right}
 .alb.r{right:1.5%;text-align:left}
 @media(max-width:860px){
-  .annot{aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:520px}
-  .annot-frame{position:static;width:min(320px,84vw)}
+  .annot{aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:540px}
+  .annot-frame{position:static;width:min(360px,90vw)}
+  .amk{display:none}
   .annot-svg{display:none}
-  .alb{position:static;transform:none;width:100%;text-align:left!important;display:flex;gap:11px;align-items:flex-start}
-  .alb::before{content:attr(data-n);flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#03040a;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#5fd8ff,#7a6cf5);margin-top:1px}
+  .alb{position:static;transform:none;width:100%;text-align:left!important;display:flex;gap:10px;align-items:flex-start}
+  .alb::before{content:"▹";flex:0 0 auto;color:var(--cyan);font-weight:800;font-size:16px;line-height:1.4}
+  .mf-shots figure{flex:1 1 44%}
 }
 
 /* ---- 料金 ---- */
@@ -584,322 +595,25 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="#features">できること</a>
+      <a href="./lp.html#features">できること</a>
       <a href="#how">使い方</a>
-      <a href="#plans">料金</a>
-      <a href="#faq">よくある質問</a>
+      <a href="./lp.html#plans">料金</a>
+      <a href="./lp.html#faq">よくある質問</a>
       <a class="btn btn-white" href="https://rela.website/?signup=1">無料ではじめる</a>
     </div>
   </nav>
 </header>
 
-<!-- ================= RELAでできること(11機能)＝このページの入口 ================= -->
-<section class="features" id="features" style="scroll-margin-top:70px">
-  <div class="circuit-fx" aria-hidden="true"><svg viewBox="0 0 400 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><g class="circuit-base"><path d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/></g><g class="circuit-run"><g class="comet" style="--base:0.2s; --dur:3.6s"><path pathLength="1000" d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path pathLength="1000" d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path pathLength="1000" d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path pathLength="1000" d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/><path pathLength="1000" d="M-20 130 H50 V60 H120 V200 H200 V70 H280 V190 H360 V110 H420"/></g><g class="comet" style="--base:2.3s; --dur:4.3s"><path pathLength="1000" d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path pathLength="1000" d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path pathLength="1000" d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path pathLength="1000" d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/><path pathLength="1000" d="M420 330 H350 V260 H270 V410 H190 V270 H110 V400 H40 V320 H-20"/></g><g class="comet" style="--base:1.1s; --dur:3.9s"><path pathLength="1000" d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path pathLength="1000" d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path pathLength="1000" d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path pathLength="1000" d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/><path pathLength="1000" d="M-20 510 H60 V430 H140 V590 H220 V440 H300 V580 H370 V500 H420"/></g><g class="comet" style="--base:3.3s; --dur:4.15s"><path pathLength="1000" d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path pathLength="1000" d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path pathLength="1000" d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path pathLength="1000" d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/><path pathLength="1000" d="M420 690 H340 V620 H260 V760 H180 V630 H100 V750 H30 V680 H-20"/></g></g></svg></div>
-  <div class="wrap">
-    <h2 class="sec rv">RELA でできること</h2>
+<!-- ================= ① 相手を読み解く ================= -->
+<section class="rd-sec" id="karte" style="min-height:60vh;display:flex;align-items:center">
+  <div class="wrap" style="text-align:center">
+    <h2 class="sec rv">カルテ</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
-
-    <div class="f-grid">
-      <!-- ★リード: 多角的分析(全幅) -->
-      <div class="f-feature rv">
-        <div class="ff-text">
-          <span class="ff-badge">10の占術 × AI</span>
-          <h3>様々な角度から、AIが読み解く</h3>
-          <p class="ff-lead">四柱推命・星座・五行・九星気学・数秘術・易経・算命学…。<b>いくつもの占術を一つのプロフィールに統合</b>し、多角的に分析。RELAがあなたという人を立体的に読み解きます。</p>
-          <ul class="ff-points">
-            <li>属性・星座・干支・日干・五行を一枚に集約</li>
-            <li>九星気学・数秘術・易経・四柱推命・算命学まで横断</li>
-            <li>算命学の「天中殺」で"整える時期"も。すべてを踏まえAIが総合解説</li>
-          </ul>
-        </div>
-        <div class="ff-shots single">
-          <img src="assets/ss-profile.jpg" alt="プロフィール分析結果。属性・星座・干支・日干・五行・九星気学・数秘術・易経・四柱推命を一画面に表示" loading="lazy">
-        </div>
-      </div>
-
-      <!-- ★イチオシ: 相手の分析(ヒーロー・全幅) -->
-      <div class="f-feature rv">
-        <div class="ff-text">
-          <span class="ff-badge">イチオシ機能</span>
-          <h3>相手の分析</h3>
-          <p class="ff-lead">RELAの主役機能。<b>トーク画面のスクショを貼るだけ</b>で、AIが相手との相性・好意度・本音、そして<b>次に送る一言</b>まで読み解きます。</p>
-          <ul class="ff-points">
-            <li>総合相性・好意レベル・デート成立確率をスコアで可視化</li>
-            <li>力関係・依存度・温度差など関係性を多角的に分析</li>
-            <li>相手の発言の「本音」と、次の一手（推薦返信案）まで提案</li>
-          </ul>
-        </div>
-        <div class="ff-shots">
-          <img src="assets/ss-partner-1.jpg" alt="相手カルテ。総合相性スコアとお相手分析チャット、推薦返信案" loading="lazy">
-          <img src="assets/ss-partner-2.jpg" alt="関係性スコア。好意レベル・デート成立確率と発言別の本音分析" loading="lazy">
-        </div>
-      </div>
-
-      <!-- 1 総合分析 -->
-      <div class="f-item rv">
-        <h3>RELA 総合分析</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-home.jpg" alt="ホーム画面。今日の運勢スコアと各分析メニュー" loading="lazy"></div>
-        <p>あらゆる分析を統合し、関係性・性格・未来の可能性までAIが総合的に解説。</p>
-      </div>
-
-      <!-- 2 自己分析 -->
-      <div class="f-item rv">
-        <h3>自己分析</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-self.jpg" alt="自己分析レポート。共感力・信頼構築力などをRELAスコアで可視化" loading="lazy"></div>
-        <p>あなたの性格・強み・傾向をRELAスコアで数値化。自分を客観的に理解できます。</p>
-      </div>
-
-      <!-- 3 運気バイオリズム -->
-      <div class="f-item rv">
-        <h3>運気バイオリズム</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-biorhythm.jpg" alt="運気バイオリズム。四柱推命から一年の総合・仕事・恋愛・金運を月別グラフで表示" loading="lazy"></div>
-        <p>四柱推命をもとに一年の運気の波を月別グラフで可視化。動く時期がひと目でわかります。</p>
-      </div>
-
-      <!-- 4 守護石 -->
-      <div class="f-item rv">
-        <h3>守護石</h3>
-        <div class="mini"><img class="mini-shot fit" src="assets/ss-stone.jpg" alt="守護石の効果。あなたを支えるパワーストーンとその活かし方" loading="lazy"></div>
-        <p>あなたを支える守護石（パワーストーン）と、その意味・活かし方をお届けします。</p>
-      </div>
-
-      <!-- 5 手相分析 -->
-      <div class="f-item rv">
-        <h3>手相分析</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-palm.jpg" alt="手相占い（AI鑑定）の結果。神秘十字線と総合分析" loading="lazy"></div>
-        <p>左右の手相から才能・運勢・人生傾向を詳しく読み解きます。</p>
-      </div>
-
-      <!-- 6 人相分析 -->
-      <div class="f-item rv">
-        <h3>人相分析</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-face.jpg" alt="人相分析。お顔の写真から性格・第一印象・強みを分析" loading="lazy"></div>
-        <p>顔写真から性格や思考傾向を分析。第一印象や強みを可視化します。</p>
-      </div>
-
-      <!-- 7 チーム編成 -->
-      <div class="f-item rv">
-        <h3>チーム編成</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-team.jpg" alt="チーム編成。用途に合わせてチームの種類を選ぶ画面" loading="lazy"></div>
-        <p>AIが最適なチーム編成を分析。役割・相性まで総合的に提案。</p>
-      </div>
-
-      <!-- 8 イメージ画像を生成 -->
-      <div class="f-item rv">
-        <h3>イメージ画像を生成</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-imagegen.jpg" alt="イメージ画像を生成。守護神・エネルギーカラー・未来ビジョンをAIが画像化" loading="lazy"></div>
-        <p>守護神・エネルギーカラー・未来ビジョンなどを、AIがあなただけのアート画像に。待受にも。</p>
-      </div>
-
-      <!-- 9 チャクラ -->
-      <div class="f-item rv">
-        <h3>チャクラ</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-chakra.jpg" alt="チャクラ分析。第1〜第12チャクラの開放度をアートで表示" loading="lazy"></div>
-        <p>7つのチャクラの状態を分析し、心と体のバランスを整えるヒントに。</p>
-      </div>
-
-      <!-- 10 未来ビジョン -->
-      <div class="f-item rv">
-        <h3>未来ビジョン</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-future.jpg" alt="未来ビジョン。運気が満ちる場所と行動をAIが一枚の情景に描く" loading="lazy"></div>
-        <p>運気が満ちる場所と行動を、AIが一枚の情景に。実際に訪れる姿を思い描けます。</p>
-      </div>
-
-      <!-- 11 守護神 -->
-      <div class="f-item rv">
-        <h3>守護神</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-guardian.jpg" alt="守護神。あなたの属性を宿す守護神をAIが荘厳なアートに描く" loading="lazy"></div>
-        <p>あなたの属性を宿す守護神を、AIが荘厳なアート画像に描き出します。</p>
-      </div>
-
-      <!-- 12 エネルギーカラー -->
-      <div class="f-item rv">
-        <h3>エネルギーカラー</h3>
-        <div class="mini"><img class="mini-shot" src="assets/ss-energy.jpg" alt="エネルギーカラー。あなたの気質を色彩の粒子で表現したアート" loading="lazy"></div>
-        <p>あなたの気質やエネルギーを、色彩の粒子で表現したアート画像に。属性ごとの個性を映します。</p>
-      </div>
-    </div>
+    <p class="rd-sub rv">このページは準備中です。近日公開します。</p>
+    <a class="btn btn-white" href="./index.html" style="margin-top:10px">トップへ戻る</a>
   </div>
 </section>
 
-<!-- ================= カルテ ================= -->
-<section class="karte">
-  <div class="wrap k-grid">
-    <div class="k-fan rv">
-      <div class="k-card k1"><img class="kc-img" src="assets/karte-saju.jpg" alt="鑑定書：運気バイオリズム・四柱推命命式" loading="lazy"></div>
-      <div class="k-card k2"><img class="kc-img" src="assets/karte-cover.jpg" alt="鑑定書：表紙（PERSONAL DOSSIER）" loading="lazy"></div>
-      <div class="k-card k3"><img class="kc-img" src="assets/karte-shrine.jpg" alt="鑑定書：属性神社・守護神" loading="lazy"></div>
-    </div>
-    <div>
-      <h2 class="rv">あなただけの<br><span class="gold">カルテ</span>を自動で作成</h2>
-      <p class="rv">分析するたびに、あなたと大切な人の「カルテ」が育っていきます。性格、相性、会話の傾向——積み重なったデータは、AIがあなた専用の鑑定書としてまとめ、いつでも見返せます。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 使い方 ================= -->
-<section class="how" id="how">
-  <div class="wrap">
-    <h2 class="sec rv">使い方は 3 ステップ</h2>
-    <div class="sec-line rv"><span class="dot"></span></div>
-    <div class="steps">
-      <div class="step rv">
-        <h3>相手を登録する</h3>
-        <p>名前と関係性、わかる範囲のプロフィールを入力。1分で完了します。</p>
-      </div>
-      <div class="step rv">
-        <h3>会話を分析する</h3>
-        <p>トーク画面のスクショを貼り付けると、AIが関係性をスコアとレポートで可視化します。</p>
-      </div>
-      <div class="step rv">
-        <h3>AIと次の一手を決める</h3>
-        <p>分析を踏まえてAIに相談。送る文面から会うタイミングまで、一緒に考えられます。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ホーム画面に追加(アプリのように使う) ================= -->
-<section class="webapp addhome" id="addhome" style="scroll-margin-top:70px">
-  <div class="wrap">
-    <h2 class="sec rv">アプリのように使う</h2>
-    <div class="sec-line rv"><span class="dot"></span></div>
-    <p class="webapp-lead rv">RELAは<b>インストール不要</b>。スマホの<b>ホーム画面に追加</b>すると、アプリのようにアイコンから起動できます（iPhone / Android 対応・無料）。</p>
-    <div class="addhome-grid">
-      <div class="addhome-card rv">
-        <img class="addhome-shot" src="assets/ss-add-1.jpg" alt="LINEなどのアプリ内で開いた場合は、メニューから「ブラウザで開く」をタップ" loading="lazy">
-        <div class="addhome-step"><span class="wnum">1</span><h3>Safariで開く</h3></div>
-        <p>LINEやInstagramの中で開いた場合は、メニューから<b>「ブラウザで開く」</b>を選び、Safariで表示します。</p>
-      </div>
-      <div class="addhome-card rv">
-        <img class="addhome-shot" src="assets/ss-add-2.jpg" alt="Safariで共有メニューを開く" loading="lazy">
-        <div class="addhome-step"><span class="wnum">2</span><h3>共有を開く</h3></div>
-        <p>Safariの<b>「共有」</b>ボタン（画面下の共有アイコン、またはメニュー）をタップします。</p>
-      </div>
-      <div class="addhome-card rv">
-        <img class="addhome-shot" src="assets/ss-add-3.jpg" alt="共有メニューから「ホーム画面に追加」をタップ" loading="lazy">
-        <div class="addhome-step"><span class="wnum">3</span><h3>ホーム画面に追加</h3></div>
-        <p>一覧から<b>「ホーム画面に追加」</b>をタップ。ホームにRELAのアイコンが作成されます。</p>
-      </div>
-    </div>
-    <p class="addhome-note rv"><b>Androidの場合：</b>Chromeでページを開き、右上のメニュー（⋮）→<b>「ホーム画面に追加」</b>（または「アプリをインストール」）をタップします。</p>
-  </div>
-</section>
-
-<!-- ================= 料金 ================= -->
-<section class="plans" id="plans">
-  <div class="wrap">
-    <h2 class="sec rv">料金プラン</h2>
-    <div class="sec-line rv"><span class="dot"></span></div>
-    <div class="plan-grid">
-      <div class="plan rv">
-        <div class="p-name">FREE</div>
-        <div class="p-price num">¥0</div>
-        <div class="p-per">ずっと無料</div>
-        <ul>
-          <li>相手を1名まで登録</li>
-          <li>基本の自己分析</li>
-          <li>AI相談（回数制限あり）</li>
-        </ul>
-        <a class="btn btn-line" href="https://rela.website/?signup=1">無料ではじめる</a>
-      </div>
-      <div class="plan rv">
-        <div class="p-name">BASIC</div>
-        <div class="p-price num">¥500<small>/月</small></div>
-        <div class="p-per">まず1人を深く知りたい方に</div>
-        <ul>
-          <li>相手を3名まで登録</li>
-          <li>自己分析</li>
-          <li>拡張プロフィール機能</li>
-        </ul>
-        <button type="button" class="btn btn-grad" data-plan-buy="basic">このプランにする</button>
-      </div>
-      <div class="plan featured rv">
-        <span class="badge">いちばん選ばれています</span>
-        <div class="p-name">STANDARD</div>
-        <div class="p-price num">¥1,500<small>/月</small></div>
-        <div class="p-per">関係づくりを本気で進めたい方に</div>
-        <div class="p-trial" style="margin:2px 0 10px;padding:7px 10px;border-radius:9px;background:rgba(240,200,96,.14);border:1px solid rgba(240,200,96,.4);color:#f0c860;font-size:12px;font-weight:700;line-height:1.5">🎁 いま申し込むと <b>3日間無料</b> でお試しいただけます</div>
-        <ul>
-          <li>相手を5名まで登録</li>
-          <li>性格分析レポート</li>
-          <li>画像生成機能</li>
-          <li>AI相談の上限拡大</li>
-        </ul>
-        <button type="button" class="btn btn-grad" data-plan-buy="standard">3日間無料で試す</button>
-      </div>
-      <div class="plan rv">
-        <div class="p-name">PREMIUM</div>
-        <div class="p-price num">¥3,800<small>/月</small></div>
-        <div class="p-per">すべての関係を、制限なく</div>
-        <ul>
-          <li>相手を無制限に登録</li>
-          <li>すべての機能が使えます</li>
-          <li>優先サポート</li>
-        </ul>
-        <button type="button" class="btn btn-grad" data-plan-buy="premium">このプランにする</button>
-      </div>
-    </div>
-    <!-- コイン購入(単発利用。アプリと同じ)。PCは横並び・モバイルは縦積み -->
-    <div class="coin-buy rv">
-      <div class="cb-left">
-        <span class="cb-name">RELA COIN</span>
-        <span class="cb-price num">¥300</span>
-        <span class="cb-per">180コイン（分析2回分）</span>
-      </div>
-      <ul class="cb-feats">
-        <li>プランに含まれない分析も単発で</li>
-        <li>画像生成・特別分析などに使用</li>
-      </ul>
-      <button type="button" class="btn btn-grad cb-btn" data-plan-buy="coins_180">180コイン購入</button>
-    </div>
-    <p class="p-note">価格はすべて税込。販売はWebで行います（App Storeでは取り扱いません）。お支払いはクレジットカードに対応予定です。プラン内容は予告なく変更される場合があります。</p>
-  </div>
-</section>
-
-<!-- ================= FAQ ================= -->
-<section class="faq" id="faq">
-  <div class="wrap">
-    <h2 class="sec rv">よくある質問</h2>
-    <div class="sec-line rv"><span class="dot"></span></div>
-    <div class="faq-list">
-      <details class="rv">
-        <summary>RELAは占いアプリですか？</summary>
-        <div class="a">RELAは「分析×哲学×AI」をコンセプトに、性格・相性・心理傾向をAIが多角的に分析するツールです。手相・人相・チャクラなどの分析はエンタメ・自己理解のための参考情報であり、コミュニケーションの意思決定はあなた自身が行います。</div>
-      </details>
-      <details class="rv">
-        <summary>分析の結果は当たりますか？</summary>
-        <div class="a">RELAの分析は「当てる」ためのものではなく、関係づくりの成功率を上げるための材料です。会話の傾向や相性の観点を可視化することで、次の行動を考えやすくすることを目的としています。参考情報としてご利用ください。</div>
-      </details>
-      <details class="rv">
-        <summary>登録した相手や会話の内容は安全ですか？</summary>
-        <div class="a">お預かりした情報は分析の目的にのみ使用し、登録した相手に通知が届くことは一切ありません。データは暗号化された環境で管理しています。詳しくはプライバシーポリシーをご覧ください。</div>
-      </details>
-      <details class="rv">
-        <summary>iPhoneでも使えますか？</summary>
-        <div class="a">はい。RELAはWebで販売・提供しています。iPhone・パソコンのブラウザからそのままご利用ください（ホーム画面に追加するとアプリのように使えます）。App Storeでの配信はありません。AndroidはGoogle Playでもご利用いただけます。</div>
-      </details>
-      <details class="rv">
-        <summary>解約はいつでもできますか？</summary>
-        <div class="a">はい。有料プランはいつでも解約できます。解約後も、その請求期間の終わりまでは有料機能をご利用いただけます。</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 最終CTA ================= -->
-<section class="final" id="start">
-  <div class="wrap">
-    <p class="tagline rv">すべての分析が、<br class="sp">あなたの人生をよりいい方向へ導く。</p>
-    <img class="rela-word-logo rv" src="assets/logo.png" alt="RELA">
-    <div class="rv">
-      <!-- CTA: Web販売が本線。購入はアプリ(rela-ai)内でRevenueCat Web Billing決済。App Store公開は廃止 -->
-      <a class="btn btn-white" href="https://rela.website/?signup=1" style="font-size:17px;padding:17px 48px">無料ではじめる</a>
-    </div>
-  </div>
-  <div class="floor" aria-hidden="true"></div>
-</section>
 
 <footer>
   <div class="foot">

@@ -120,15 +120,25 @@ h1 .big{font-size:1.32em;font-weight:700}
 @keyframes btnGlow{0%,100%{box-shadow:0 0 20px rgba(79,216,255,.32),inset 0 0 14px rgba(79,216,255,.1)}
   50%{box-shadow:0 0 38px rgba(120,180,255,.62),inset 0 0 22px rgba(79,216,255,.18)}}
 .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
-/* ヒーローの4つの入口ボタン(各機能セクションへ) */
-.hero-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:460px;margin:0 auto}
-.hnav-btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:16px 18px;border-radius:14px;
-  text-decoration:none;font-weight:700;font-size:15px;color:#eaf6ff;letter-spacing:.03em;
-  border:1.5px solid rgba(120,200,255,.42);background:linear-gradient(180deg,rgba(61,123,255,.16),rgba(155,92,246,.10));
-  box-shadow:0 0 18px rgba(79,216,255,.20);transition:transform .2s,box-shadow .2s,border-color .2s}
-.hnav-btn:hover{border-color:var(--cyan);box-shadow:0 0 32px rgba(79,216,255,.45);transform:translateY(-2px);color:#fff}
-.hn-ic{font-size:18px}
-@media(max-width:480px){.hero-nav{grid-template-columns:1fr;max-width:300px}}
+/* ヒーローの4つの入口ボタン(縦並び・サイバーHUD) */
+.hero-nav{display:flex;flex-direction:column;gap:13px;max-width:360px;margin:0 auto}
+.hnav-btn{position:relative;display:flex;align-items:center;gap:13px;padding:15px 20px;overflow:hidden;
+  text-decoration:none;font-weight:700;font-size:15.5px;color:#eaf6ff;letter-spacing:.05em;
+  background:linear-gradient(100deg,rgba(61,123,255,.16),rgba(155,92,246,.06));
+  border:1px solid rgba(120,200,255,.32);border-left:3px solid var(--cyan);
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 11px),calc(100% - 11px) 100%,0 100%);
+  box-shadow:0 0 16px rgba(79,216,255,.16),inset 0 0 22px rgba(79,216,255,.05);
+  transition:transform .2s,box-shadow .2s,border-color .2s}
+.hnav-btn::before{content:"";position:absolute;left:0;top:0;bottom:0;width:100%;
+  background:linear-gradient(90deg,transparent,rgba(79,216,255,.14),transparent);
+  transform:translateX(-100%);transition:transform .5s}
+.hnav-btn:hover::before{transform:translateX(100%)}
+.hnav-btn::after{content:"›";margin-left:auto;color:var(--cyan);font-size:22px;font-weight:400;line-height:1}
+.hnav-btn:hover{border-color:var(--cyan);color:#fff;transform:translateX(4px);
+  box-shadow:0 0 30px rgba(79,216,255,.42),inset 0 0 30px rgba(79,216,255,.10)}
+.hn-ic{font-size:19px;filter:drop-shadow(0 0 6px rgba(79,216,255,.7))}
+.hn-tx{position:relative;z-index:1}
+@media(max-width:480px){.hero-nav{max-width:300px}}
 .note{font-size:12px;color:var(--ink-dim);margin-top:14px}
 
 .offer{margin:34px auto 0;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;
@@ -192,10 +202,10 @@ footer a:hover{color:var(--cyan)}
   </div>
 
   <div class="hero-nav seq s4">
-    <a class="hnav-btn" href="./lp.html#partner"><span class="hn-ic">🔍</span>相手を読み解く</a>
-    <a class="hnav-btn" href="./lp.html#self"><span class="hn-ic">🧭</span>自分の分析</a>
-    <a class="hnav-btn" href="./lp.html#reading"><span class="hn-ic">🔮</span>分析＋鑑定</a>
-    <a class="hnav-btn" href="./lp.html#karte"><span class="hn-ic">📋</span>カルテ</a>
+    <a class="hnav-btn" href="./partner.html"><span class="hn-ic">🔍</span><span class="hn-tx">相手を読み解く</span></a>
+    <a class="hnav-btn" href="./self.html"><span class="hn-ic">🧭</span><span class="hn-tx">自分の分析</span></a>
+    <a class="hnav-btn" href="./reading.html"><span class="hn-ic">🔮</span><span class="hn-tx">分析＋鑑定</span></a>
+    <a class="hnav-btn" href="./karte.html"><span class="hn-ic">📋</span><span class="hn-tx">カルテ</span></a>
   </div>
   <p class="note seq s4">登録は無料。クレジットカードは必要ありません。</p>
 
