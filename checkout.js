@@ -16,11 +16,14 @@ const RC_SDK_URL = 'https://esm.sh/@revenuecat/purchases-js@1';
 const RC_CSS_URL = 'https://esm.sh/@revenuecat/purchases-js@1/dist/Purchases.css';
 
 // UI表示名。identifier は RevenueCat Offering(default) のパッケージ識別子と完全一致必須。
+// coins_180 は消費型(サブスクではない)コインパック。購入フローはサブスクと同じ。
 const PLAN_LABEL = {
   basic: 'BASIC（¥500/月）',
   standard: 'STANDARD（¥1,500/月）',
-  premium: 'PREMIUM（¥3,800/月）'
+  premium: 'PREMIUM（¥3,800/月）',
+  coins_180: 'RELA 180コイン（¥300）'
 };
+const COIN_PACKAGES = { coins_180: 180 }; // 消費型: 識別子→付与コイン枚数
 
 let sb = null;           // Supabaseクライアント
 let rc = null;           // RevenueCat Purchases インスタンス
@@ -111,8 +114,12 @@ function viewNotReady() {
     + '<button class="btn btn-line rc-btn" data-rc-close>閉じる</button>';
 }
 function viewDone(plan) {
+  var isCoin = !!COIN_PACKAGES[plan];
+  var body = isCoin
+    ? (COIN_PACKAGES[plan] + 'コインを付与しました。<br>同じアカウントでアプリからそのままご利用いただけます。')
+    : (esc(PLAN_LABEL[plan] || '') + ' が有効になりました。<br>同じアカウントでアプリからそのままご利用いただけます。');
   return '<h3 class="rc-h">ご購入ありがとうございます</h3>'
-    + '<p class="rc-p">' + esc(PLAN_LABEL[plan] || '') + ' が有効になりました。<br>同じアカウントでアプリからそのままご利用いただけます。</p>'
+    + '<p class="rc-p">' + body + '</p>'
     + '<a class="btn btn-grad rc-btn" href="https://rela.website/">RELAをひらく</a>';
 }
 function viewError(msg) {
