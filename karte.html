@@ -577,6 +577,18 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .karte-gallery{grid-template-columns:repeat(2,1fr);max-width:840px}
 .karte-gallery img{box-shadow:0 18px 50px rgba(0,0,0,.6)}
 @media(max-width:860px){.rd-gallery{grid-template-columns:repeat(2,1fr);gap:16px}.karte-gallery{grid-template-columns:1fr;max-width:420px}}
+.karte-fan{position:relative;height:480px;max-width:860px;margin:30px auto 0}
+.karte-fan .kf{position:absolute;left:50%;bottom:14px;width:206px;margin-left:-103px;border-radius:12px;overflow:hidden;border:1px solid rgba(210,190,130,.4);box-shadow:0 16px 42px rgba(0,0,0,.62);transform-origin:center 155%;transform:rotate(var(--r));transition:transform .4s ease,box-shadow .4s ease;display:block;cursor:pointer}
+.karte-fan .kf img{display:block;width:100%}
+.karte-fan .kf:hover{transform:rotate(var(--r)) scale(1.06);z-index:30!important;box-shadow:0 26px 64px rgba(0,0,0,.8),0 0 28px rgba(79,216,255,.4);border-color:rgba(79,216,255,.7)}
+.karte-contents{max-width:720px;margin:44px auto 0;color:var(--ink-soft);font-size:13.5px;line-height:1.9}
+.karte-contents b{color:var(--cyan)}
+.kc-hint{display:inline-block;margin-top:6px;font-size:12px;color:var(--ink-dim)}
+@media(max-width:720px){
+  .karte-fan{height:auto;display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 4px 18px;max-width:100%;scroll-snap-type:x mandatory}
+  .karte-fan .kf{position:static;margin:0;transform:none!important;flex:0 0 auto;width:150px;scroll-snap-align:center}
+  .karte-fan .kf:hover{transform:none!important}
+}
 </style>
 </head>
 <body>
@@ -626,12 +638,17 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     <div class="sec-line rv"><span class="dot"></span></div>
     <p class="rd-sub rv">RELAのすべての分析を一冊にまとめた「PERSONAL DOSSIER（鑑定書）」。四柱推命の命式・運気バイオリズム・自己分析レポート・守護神とパワースポットまで、全9ページの美しいPDFに収録。保存も共有もできる、あなただけの鑑定書です。</p>
 
-    <div class="rd-gallery karte-gallery rv">
-      <figure><img src="assets/karte-cover.jpg" alt="鑑定書 表紙" loading="lazy"><figcaption><b>表紙</b>あなた専用のPERSONAL DOSSIER（鑑定書）</figcaption></figure>
-      <figure><img src="assets/karte-saju.jpg" alt="四柱推命 命式と運気バイオリズム" loading="lazy"><figcaption><b>四柱推命・運気バイオリズム</b>命式と2026年の運気の波を可視化</figcaption></figure>
-      <figure><img src="assets/karte-self.jpg" alt="自己分析レポート" loading="lazy"><figcaption><b>自己分析レポート</b>7つの資質スコアと性格・恋愛・仕事傾向</figcaption></figure>
-      <figure><img src="assets/karte-shrine.jpg" alt="守護神・パワースポット" loading="lazy"><figcaption><b>守護神・パワースポット</b>あなたの守護神と相性の良い神社</figcaption></figure>
+    <div class="karte-fan rv" aria-label="鑑定書 全9ページ">
+      <a class="kf" style="--r:-35deg;z-index:1" href="assets/karte-cover2.jpg" target="_blank" rel="noopener"><img src="assets/karte-cover2.jpg" alt="表紙" loading="lazy"></a>
+      <a class="kf" style="--r:-25deg;z-index:2" href="assets/karte-attr2.jpg" target="_blank" rel="noopener"><img src="assets/karte-attr2.jpg" alt="属性・守護石" loading="lazy"></a>
+      <a class="kf" style="--r:-15deg;z-index:3" href="assets/karte-biorhythm2.jpg" target="_blank" rel="noopener"><img src="assets/karte-biorhythm2.jpg" alt="運気バイオリズム・命式" loading="lazy"></a>
+      <a class="kf" style="--r:-5deg;z-index:4" href="assets/karte-selfreport2.jpg" target="_blank" rel="noopener"><img src="assets/karte-selfreport2.jpg" alt="自己分析レポート" loading="lazy"></a>
+      <a class="kf" style="--r:5deg;z-index:5" href="assets/karte-chakra2.jpg" target="_blank" rel="noopener"><img src="assets/karte-chakra2.jpg" alt="12チャクラ解説" loading="lazy"></a>
+      <a class="kf" style="--r:15deg;z-index:6" href="assets/karte-shrine.jpg" target="_blank" rel="noopener"><img src="assets/karte-shrine.jpg" alt="属性神社・守護神" loading="lazy"></a>
+      <a class="kf" style="--r:25deg;z-index:7" href="assets/karte-palm2.jpg" target="_blank" rel="noopener"><img src="assets/karte-palm2.jpg" alt="手相分析" loading="lazy"></a>
+      <a class="kf" style="--r:35deg;z-index:8" href="assets/karte-back2.jpg" target="_blank" rel="noopener"><img src="assets/karte-back2.jpg" alt="裏表紙" loading="lazy"></a>
     </div>
+    <p class="karte-contents rv"><b>全9ページ</b>｜表紙・属性＆守護石・運気バイオリズム・四柱推命 命式・自己分析レポート・12チャクラ解説・属性神社＆守護神・手相分析・裏表紙<br><span class="kc-hint">カードをタップで拡大</span></p>
   </div>
 </section>
 
