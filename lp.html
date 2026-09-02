@@ -442,6 +442,23 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .plan li{padding:7px 0 7px 22px;position:relative;border-top:1px solid rgba(120,170,255,.1)}
 .plan li::before{content:"✓";position:absolute;left:0;color:var(--cyan);font-weight:700}
 .plan .btn{margin-top:22px;width:100%}
+/* コイン購入: PCは横並び全幅・モバイルは縦積み */
+.coin-buy{display:flex;align-items:center;gap:28px;margin:26px 0 0;padding:22px 30px;border-radius:18px;
+  border:1px solid rgba(240,200,96,.38);background:linear-gradient(135deg,rgba(240,200,96,.10),rgba(202,161,74,.05))}
+.cb-left{display:flex;flex-direction:column;gap:2px;flex:0 0 auto;min-width:150px}
+.cb-name{font-family:'Audiowide',sans-serif;font-size:12px;letter-spacing:.24em;color:#f0c860}
+.cb-price{font-family:'Inter',sans-serif;font-weight:700;font-size:30px;color:var(--cyan);line-height:1.1}
+.cb-per{font-size:11.5px;color:var(--ink-dim)}
+.cb-feats{list-style:none;flex:1;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--ink-soft)}
+.cb-feats li{padding-left:22px;position:relative}
+.cb-feats li::before{content:"✓";position:absolute;left:0;color:#f0c860;font-weight:700}
+.cb-btn{flex:0 0 auto;min-width:190px;width:auto}
+@media(max-width:640px){
+  .coin-buy{flex-direction:column;align-items:stretch;gap:14px;padding:20px}
+  .cb-left{align-items:center;text-align:center;min-width:0}
+  .cb-feats{align-items:center}
+  .cb-btn{width:100%}
+}
 .p-note{margin-top:24px;font-size:12px;color:var(--ink-dim);text-align:center}
 
 /* ---- FAQ ---- */
@@ -799,16 +816,18 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         <button type="button" class="btn btn-grad" data-plan-buy="premium">このプランにする</button>
       </div>
     </div>
-    <!-- コイン購入(単発利用。アプリ/Google Playと同じ仕組み)。他の料金カードとUIを揃える -->
-    <div class="plan rv" style="max-width:300px;margin:26px auto 0">
-      <div class="p-name">RELA COIN</div>
-      <div class="p-price num">¥300</div>
-      <div class="p-per">180コイン（分析2回分）</div>
-      <ul>
+    <!-- コイン購入(単発利用。アプリと同じ)。PCは横並び・モバイルは縦積み -->
+    <div class="coin-buy rv">
+      <div class="cb-left">
+        <span class="cb-name">RELA COIN</span>
+        <span class="cb-price num">¥300</span>
+        <span class="cb-per">180コイン（分析2回分）</span>
+      </div>
+      <ul class="cb-feats">
         <li>プランに含まれない分析も単発で</li>
         <li>画像生成・特別分析などに使用</li>
       </ul>
-      <button type="button" class="btn btn-grad" data-plan-buy="coins_180">180コイン購入</button>
+      <button type="button" class="btn btn-grad cb-btn" data-plan-buy="coins_180">180コイン購入</button>
     </div>
     <p class="p-note">価格はすべて税込。販売はWebで行います（App Storeでは取り扱いません）。お支払いはクレジットカードに対応予定です。プラン内容は予告なく変更される場合があります。</p>
   </div>
