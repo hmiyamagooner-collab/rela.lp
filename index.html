@@ -39,6 +39,15 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 .stage::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(ellipse 62% 46% at 50% 44%, rgba(3,4,10,.42), transparent 72%),
              linear-gradient(180deg, rgba(3,4,10,.5), transparent 16% 84%, rgba(3,4,10,.3))}
+/* スマホ(縦長)では hero.webp 中央の“縦の光の柱”が縦線に見えるので、その柱だけ暗く落とす（地平線グロー・格子床は残す） */
+@media (max-width:560px){
+  .stage::after{
+    background:
+      radial-gradient(ellipse 15% 26% at 50% 58%, rgba(3,4,10,.92), rgba(3,4,10,.5) 44%, transparent 72%),
+      radial-gradient(ellipse 62% 46% at 50% 44%, rgba(3,4,10,.42), transparent 72%),
+      linear-gradient(180deg, rgba(3,4,10,.5), transparent 16% 84%, rgba(3,4,10,.3));
+  }
+}
 
 /* ============ 第一幕: 由来スクロール(エンドロール) ============ */
 .intro{position:fixed;inset:0;z-index:50;overflow:hidden;background:rgba(3,4,10,.45);
