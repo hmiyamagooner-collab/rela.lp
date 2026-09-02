@@ -771,7 +771,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
           <li>自己分析</li>
           <li>拡張プロフィール機能</li>
         </ul>
-        <a class="btn btn-grad" href="https://rela.website/?plan=1">このプランにする</a>
+        <button type="button" class="btn btn-grad" data-plan-buy="basic">このプランにする</button>
       </div>
       <div class="plan featured rv">
         <span class="badge">いちばん選ばれています</span>
@@ -784,7 +784,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
           <li>画像生成機能</li>
           <li>AI相談の上限拡大</li>
         </ul>
-        <a class="btn btn-grad" href="https://rela.website/?plan=1">このプランにする</a>
+        <button type="button" class="btn btn-grad" data-plan-buy="standard">このプランにする</button>
       </div>
       <div class="plan rv">
         <div class="p-name">PREMIUM</div>
@@ -795,7 +795,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
           <li>すべての機能が使えます</li>
           <li>優先サポート</li>
         </ul>
-        <a class="btn btn-grad" href="https://rela.website/?plan=1">このプランにする</a>
+        <button type="button" class="btn btn-grad" data-plan-buy="premium">このプランにする</button>
       </div>
     </div>
     <p class="p-note">価格はすべて税込。販売はWebで行います（App Storeでは取り扱いません）。お支払いはクレジットカードに対応予定です。プラン内容は予告なく変更される場合があります。</p>
@@ -887,5 +887,26 @@ if(tog&&links){
   </button>
 </div>
 <script src="theme.js"></script>
+
+<!-- ===== Webチェックアウト（Supabaseマジックリンク + RevenueCat Web Billing）===== -->
+<style>
+  button.btn { font: inherit; border: none; cursor: pointer; }
+  #rc-modal { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center;
+    background: rgba(2,3,8,.72); backdrop-filter: blur(4px); padding: 20px; }
+  #rc-modal.open { display: flex; }
+  #rc-modal .rc-card { position: relative; width: 100%; max-width: 380px; background: #0b0e1b;
+    border: 1px solid rgba(120,140,255,.22); border-radius: 16px; padding: 26px 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6); color: #e9ecf6; }
+  #rc-modal .rc-h { font-size: 18px; font-weight: 700; margin: 0 0 10px; }
+  #rc-modal .rc-p { font-size: 13.5px; line-height: 1.7; color: #b9c0d6; margin: 0 0 6px; }
+  #rc-modal .rc-input { width: 100%; margin-top: 12px; padding: 12px 14px; font-size: 15px;
+    background: #06070f; border: 1px solid rgba(140,150,180,.3); border-radius: 10px; color: #fff; box-sizing: border-box; }
+  #rc-modal .rc-btn { width: 100%; margin-top: 12px; display: inline-block; text-align: center; }
+  #rc-modal .rc-msg { font-size: 12.5px; color: #ff9db0; margin: 10px 0 0; min-height: 1em; }
+  #rc-modal .rc-x { position: absolute; top: 10px; right: 12px; width: 32px; height: 32px; border: none;
+    background: transparent; color: #8891ad; font-size: 22px; line-height: 1; cursor: pointer; }
+</style>
+<div id="rc-modal" role="dialog" aria-modal="true"><div class="rc-card"><div id="rc-modal-body"></div></div></div>
+<script type="module" src="checkout.js"></script>
 </body>
 </html>
