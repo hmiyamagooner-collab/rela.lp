@@ -4,8 +4,8 @@
 }
 .stage > .bg-sweep{position:absolute}
 .bg-sweep i{
-  position:absolute;top:-35%;left:0;
-  width:22vmin;height:170%;
+  position:absolute;top:-20%;left:0;
+  width:26vmin;height:145%;
   background:linear-gradient(90deg,
     transparent 0%,
     rgba(79,216,255,0) 28%,
@@ -13,13 +13,13 @@
     rgba(122,108,245,.16) 56%,
     rgba(255,77,141,.10) 68%,
     transparent 100%);
-  filter:blur(14px);
+  filter:blur(15px);
   mix-blend-mode:screen;
-  animation:bg-sweep 8.8s ease-in-out infinite;
-  transform:translateX(-50vw) rotate(14deg);
+  animation:bg-sweep 9s ease-in-out infinite;
+  transform:translateX(-50vw) rotate(26deg);
 }
 .bg-sweep i:nth-child(2){
-  width:9vmin;
+  width:11vmin;
   opacity:.7;
   filter:blur(8px);
   animation-duration:12.5s;
@@ -30,10 +30,21 @@
     transparent);
 }
 @keyframes bg-sweep{
-  0%{transform:translateX(-55vw) rotate(14deg);opacity:0}
+  0%{transform:translateX(-55vw) rotate(26deg);opacity:0}
   12%{opacity:1}
   78%{opacity:.75}
-  100%{transform:translateX(135vw) rotate(14deg);opacity:0}
+  100%{transform:translateX(135vw) rotate(26deg);opacity:0}
+}
+/* スマホでは角度をさらに寝かせ+短くして、光が“縦に走る”ように見えないようにする */
+@media (max-width:560px){
+  .bg-sweep i{width:44vmin;height:118%;top:-8%;filter:blur(17px);animation-name:bg-sweep-m}
+  .bg-sweep i:nth-child(2){width:22vmin}
+  @keyframes bg-sweep-m{
+    0%{transform:translateX(-75vw) rotate(42deg);opacity:0}
+    12%{opacity:1}
+    78%{opacity:.7}
+    100%{transform:translateX(155vw) rotate(42deg);opacity:0}
+  }
 }
 @media (prefers-reduced-motion:reduce){
   .bg-sweep{display:none}
