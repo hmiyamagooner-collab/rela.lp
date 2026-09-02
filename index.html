@@ -257,10 +257,8 @@ footer a:hover{color:var(--cyan)}
 /* 第一幕→第二幕の制御: 33.6秒で自動遷移／スキップボタン・画面タップで即遷移／reduced-motionは第一幕を省略 */
 (function(){
   var intro = document.getElementById('intro'), done = false;
-  // セッション内で一度でも見たら(=戻る/再読込)オープニングを全スキップして即表示
-  var seen = false;
-  try { seen = sessionStorage.getItem('rela_seen') === '1'; sessionStorage.setItem('rela_seen','1'); } catch(e){}
-  if (seen || location.hash === '#app') {
+  // 戻る(#app)で来た時だけオープニングを全スキップ。通常訪問・再読込では必ず再生する
+  if (location.hash === '#app') {
     if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
     document.body.classList.add('instant');
     document.body.classList.add('play');
