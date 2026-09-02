@@ -799,13 +799,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         <button type="button" class="btn btn-grad" data-plan-buy="premium">このプランにする</button>
       </div>
     </div>
-    <!-- コイン購入(プランに含まれない分析を単発利用。アプリ/Google Playと同じ仕組み) -->
-    <div class="coin-buy rv" style="max-width:520px;margin:24px auto 0;padding:18px 20px;border-radius:18px;border:1px solid rgba(240,200,96,.38);background:linear-gradient(135deg,rgba(240,200,96,.10),rgba(202,161,74,.05));display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-      <div style="text-align:left;min-width:0">
-        <div style="font-size:15px;font-weight:800;color:#f0c860;margin-bottom:3px">RELAコイン（180枚）</div>
-        <div style="font-size:12.5px;color:#b9c0d6;line-height:1.6">プランに含まれない分析も、コインで単発でご利用いただけます。</div>
-      </div>
-      <button type="button" class="btn btn-grad" data-plan-buy="coins_180" style="white-space:nowrap">¥300 で購入</button>
+    <!-- コイン購入(単発利用。アプリ/Google Playと同じ仕組み)。他の料金カードとUIを揃える -->
+    <div class="plan rv" style="max-width:300px;margin:26px auto 0">
+      <div class="p-name">RELA COIN</div>
+      <div class="p-price num">¥300</div>
+      <div class="p-per">180コイン（分析2回分）</div>
+      <ul>
+        <li>プランに含まれない分析も単発で</li>
+        <li>画像生成・特別分析などに使用</li>
+      </ul>
+      <button type="button" class="btn btn-grad" data-plan-buy="coins_180">180コイン購入</button>
     </div>
     <p class="p-note">価格はすべて税込。販売はWebで行います（App Storeでは取り扱いません）。お支払いはクレジットカードに対応予定です。プラン内容は予告なく変更される場合があります。</p>
   </div>
