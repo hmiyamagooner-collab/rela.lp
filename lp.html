@@ -419,6 +419,23 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .step h3{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;letter-spacing:.06em;margin-bottom:8px}
 .step p{font-size:13.5px;color:var(--ink-soft)}
 
+/* ---- ① 相手を読み解く: 注釈付きスクショ ---- */
+.rd-sec{padding:92px 0;position:relative;z-index:1}
+.rd-sub{text-align:center;color:var(--ink-soft);font-size:clamp(14px,1.9vw,17px);margin:0 auto 46px;line-height:1.9;max-width:640px}
+.annot{display:flex;gap:46px;align-items:center;justify-content:center;max-width:940px;margin:0 auto;flex-wrap:wrap}
+.annot-frame{position:relative;flex:0 0 auto;width:338px;max-width:86vw}
+.annot-img{display:block;width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.amk{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#03040a;font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#5fd8ff,#7a6cf5);box-shadow:0 0 0 3px rgba(3,4,10,.7),0 0 14px rgba(79,216,255,.85)}
+.annot-list{list-style:none;flex:1 1 340px;min-width:270px;display:flex;flex-direction:column;gap:14px}
+.annot-list li{display:flex;gap:13px;align-items:flex-start}
+.annot-list .an{flex:0 0 auto;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:12.5px;font-weight:800;color:#03040a;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#5fd8ff,#7a6cf5);margin-top:1px}
+.annot-list b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+.annot-list li>div{font-size:13px;color:var(--ink-soft);line-height:1.7}
+@media(max-width:820px){.annot{gap:30px}}
+
 /* ---- 料金 ---- */
 .plans{border-top:1px solid var(--line)}
 .plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -567,6 +584,40 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     </div>
   </nav>
 </header>
+
+<!-- ================= ① 相手を読み解く ================= -->
+<section class="rd-sec" id="partner" style="scroll-margin-top:70px">
+  <div class="wrap">
+    <h2 class="sec rv">相手を読み解く</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <p class="rd-sub rv">相手の“今”を、ひと目で。連絡すべきタイミングまで AI が提案します。</p>
+    <div class="annot rv">
+      <div class="annot-frame">
+        <img class="annot-img" src="assets/ss-partner-hero.jpg" alt="相手分析カード（相性スコア・天中殺・推奨送信日・関係度）" loading="lazy">
+        <span class="amk" style="left:24%;top:9%">1</span>
+        <span class="amk" style="left:86%;top:9%">2</span>
+        <span class="amk" style="left:90%;top:22%">3</span>
+        <span class="amk" style="left:86%;top:31%">4</span>
+        <span class="amk" style="left:57%;top:39%">5</span>
+        <span class="amk" style="left:26%;top:62%">6</span>
+        <span class="amk" style="left:48%;top:75%">7</span>
+        <span class="amk" style="left:28%;top:90%">8</span>
+        <span class="amk" style="left:72%;top:90%">9</span>
+      </div>
+      <ol class="annot-list">
+        <li><span class="an">1</span><div><b>種類 & 温度感</b>「ビジネス／冷却中」で関係の性質と“今の熱”をひと目で。</div></li>
+        <li><span class="an">2</span><div><b>SNS連携</b>Instagram・LINE にワンタップで移動。すぐ連絡できる。</div></li>
+        <li><span class="an">3</span><div><b>RELAスコア＆推移</b>相性を数値化。前回比（▼5）で変化も追える。</div></li>
+        <li><span class="an">4</span><div><b>天中殺</b>算命学の“整える時期”を、動くタイミングの参考に。</div></li>
+        <li><span class="an">5</span><div><b>推奨送信日</b>AIが「次に連絡すべき日時」を提案（超過も警告）。</div></li>
+        <li><span class="an">6</span><div><b>AI分析アドバイス</b>会話の流れをAIが見立て、状態をひと言で要約。</div></li>
+        <li><span class="an">7</span><div><b>関係度・信頼度</b>好意と信頼を別々に可視化。数値で変化がわかる。</div></li>
+        <li><span class="an">8</span><div><b>メッセージ分析</b>スクショから相手の本音・脈をAIが読み解く。</div></li>
+        <li><span class="an">9</span><div><b>編集・分析</b>いつでも情報を更新して、何度でも再分析。</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
 
 <!-- ================= RELAでできること(11機能)＝このページの入口 ================= -->
 <section class="features" id="features" style="scroll-margin-top:70px">
