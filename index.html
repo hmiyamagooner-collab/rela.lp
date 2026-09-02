@@ -145,13 +145,23 @@ h1 .big{font-size:1.32em;font-weight:700}
 @media(max-width:480px){.hero-nav{max-width:340px}.hnav-btn{padding:19px 24px;font-size:16.5px}}
 .note{font-size:12px;color:var(--ink-dim);margin-top:14px}
 
-.offer{margin:34px auto 0;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;
-  background:linear-gradient(180deg,rgba(79,216,255,.09),rgba(61,123,255,.05));border:1px solid rgba(120,150,220,.3);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);font-size:clamp(12.5px,1.7vw,15px);letter-spacing:.05em;color:var(--ink-soft);font-weight:600}
-.offer .spark{color:var(--cyan)}
-.offer b{color:var(--ink);font-weight:800}
-.offer .plus{margin:0 .55em;color:var(--ink-dim);font-weight:400}
-.offer .gift{color:#ffd27a;font-weight:700}
+.offer{margin:34px auto 0;display:flex;align-items:center;justify-content:center;gap:18px;max-width:760px}
+.offer::before,.offer::after{content:"";height:1px;flex:1;max-width:110px;
+  background:linear-gradient(90deg,transparent,rgba(120,180,255,.5));box-shadow:0 0 8px rgba(79,216,255,.3)}
+.offer::after{background:linear-gradient(90deg,rgba(120,180,255,.5),transparent)}
+.offer .offer-text{white-space:nowrap;font-size:clamp(13px,1.75vw,16px);letter-spacing:.06em;
+  color:var(--ink-soft);font-weight:600}
+.offer .spark{color:var(--cyan);margin-right:.35em;text-shadow:0 0 12px rgba(79,216,255,.7)}
+.offer b{font-weight:800;background:linear-gradient(90deg,#8becff,#a99bff);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.offer .plus{margin:0 .5em;color:var(--ink-dim);font-weight:400}
+.offer .gift{color:#ffd27a;font-weight:800;text-shadow:0 0 14px rgba(255,210,122,.4)}
+@media(max-width:600px){
+  .offer{gap:10px}
+  .offer::before,.offer::after{max-width:24px}
+  .offer .offer-text{white-space:normal;text-align:center;line-height:1.7}
+  .offer .plus{display:inline-block;margin:0 .4em}
+}
 .get{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:26px}
 .get-card{display:flex;align-items:center;gap:14px;text-decoration:none;padding:14px;border-radius:16px;
   border:1px solid var(--line);background:rgba(8,12,24,.55);transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;width:300px}
@@ -214,7 +224,7 @@ footer a:hover{color:var(--cyan)}
   <p class="note seq s4">登録は無料。クレジットカードは必要ありません。</p>
 
   <div class="seq s5">
-    <div class="offer"><span class="spark">✦</span><span>今なら<b>スタンダード3日間無料</b><span class="plus">＋</span><span class="gift">180コインプレゼント</span></span></div>
+    <div class="offer"><span class="offer-text"><span class="spark">✦</span>今なら<b>スタンダード3日間無料</b><span class="plus">＋</span><span class="gift">180コインプレゼント</span></span></div>
   </div>
 
   <div class="get seq s6">
