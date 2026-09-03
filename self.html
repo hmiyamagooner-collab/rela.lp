@@ -593,6 +593,26 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
   .sa-lb::before{content:"▹";flex:0 0 auto;color:var(--cyan);font-weight:800}
   .sa-block{margin-bottom:52px}
 }
+.nav-dd{position:relative;display:inline-flex;align-items:center}
+.nav-dd-toggle{color:var(--ink-soft);font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;user-select:none}
+.nav-dd-toggle:hover{color:var(--ink)}
+.nav-dd-caret{font-size:10px;transition:transform .18s}
+.nav-dd:hover .nav-dd-caret{transform:rotate(180deg)}
+.nav-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:180px;
+  background:rgba(8,11,22,.98);border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;
+  flex-direction:column;gap:2px;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s,visibility .18s;
+  box-shadow:0 16px 42px rgba(0,0,0,.55);z-index:70}
+.nav-dd:hover .nav-dd-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(4px)}
+.nav-dd-menu a{padding:9px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap;color:var(--ink-soft)}
+.nav-dd-menu a:hover{background:rgba(120,170,255,.12);color:var(--ink)}
+.nav-dd-menu a.active{color:var(--cyan);font-weight:700}
+@media(max-width:960px){
+  .nav-dd{display:block;width:100%}
+  .nav-dd-toggle{padding:12px 4px;border-bottom:1px solid rgba(120,170,255,.1)}
+  .nav-dd-menu{position:static;transform:none!important;opacity:1;visibility:visible;background:none;border:none;
+    box-shadow:none;padding:2px 0 6px 14px;min-width:0}
+  .nav-dd-menu a{padding:11px 4px;border-bottom:1px solid rgba(120,170,255,.08)}
+}
 </style>
 </head>
 <body>
@@ -624,12 +644,19 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="./partner.html">相手を可視化</a>
-      <a href="./self.html" class="active">自分の分析</a>
-      <a href="./reading.html">分析・鑑定</a>
-      <a href="./karte.html">カルテ</a>
-      <a href="./team.html">チーム編成</a>
-      <a href="./lp.html#plans">料金</a>
+      <div class="nav-dd">
+        <span class="nav-dd-toggle" tabindex="0">RELAとは？<span class="nav-dd-caret">▾</span></span>
+        <div class="nav-dd-menu">
+        <a href="./partner.html">相手を可視化</a>
+        <a href="./self.html" class="active">自分の分析</a>
+        <a href="./reading.html">分析・鑑定</a>
+        <a href="./karte.html">カルテ</a>
+        <a href="./team.html">チーム編成</a>
+        </div>
+      </div>
+      <a href="./lp.html#plans">料金プラン</a>
+      <a href="./lp.html#faq">Q&amp;A</a>
+      <a href="./lp.html#addhome">使い方のコツ</a>
     </div>
   </nav>
 </header>
