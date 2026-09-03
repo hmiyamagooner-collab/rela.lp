@@ -24,6 +24,13 @@ const PLAN_LABEL = {
   coins_180: 'RELA 180コイン（¥300）'
 };
 const COIN_PACKAGES = { coins_180: 180 }; // 消費型: 識別子→付与コイン枚数
+// 申込み最終確認画面（特商法：金額・無料期間・自動更新・解約期限/方法を購入確定前に表示）用のメタ
+const PLAN_META = {
+  basic:     { name: 'BASIC',        price: '¥500',   sub: true,  trial: 0 },
+  standard:  { name: 'STANDARD',     price: '¥1,500', sub: true,  trial: 3 },
+  premium:   { name: 'PREMIUM',      price: '¥3,800', sub: true,  trial: 0 },
+  coins_180: { name: 'RELA 180コイン', price: '¥300',   sub: false, trial: 0 }
+};
 
 let sb = null;           // Supabaseクライアント
 let rc = null;           // RevenueCat Purchases インスタンス
@@ -127,13 +134,48 @@ function viewError(msg) {
     + '<p class="rc-p">' + esc(msg || '購入を完了できませんでした。時間をおいて再度お試しください。') + '</p>'
     + '<button class="btn btn-line rc-btn" data-rc-close>閉じる</button>';
 }
+// 申込み最終確認画面（特商法：ボタン押下で課金契約が成立することを明示）
+function viewConfirm(plan) {
+  var m = PLAN_META[plan] || {};
+  var r = [];
+  function row(k, v) { r.push('<div class="rc-row"><span>' + k + '</span><b>' + v + '</b></div>'); }
+  row('プラン', esc(m.name || '') + (m.sub ? '（月額プラン）' : '（単発購入）'));
+  row('料金', esc(m.price || '') + '（税込）' + (m.sub ? ' ／ 月' : ''));
+  if (m.trial) {
+    row('無料お試し', '初回 ' + m.trial + '日間 無料');
+    row('初回課金日', '無料期間の終了後（お申し込みから約 ' + m.trial + '日後）');
+  } else if (m.sub) {
+    row('初回課金', 'お申し込み時');
+  }
+  if (m.sub) {
+    row('更新', '以後、毎月 自動更新（解約するまで継続）');
+    row('解約期限', '次回更新日の 24時間前 まで');
+    row('解約方法', 'マイページ、または購入時メールの「サブスクリプションの管理」から。' + (m.trial ? '無料期間中に解約すれば料金は発生しません。' : ''));
+  }
+  row('提供時期', '決済完了後' + (m.trial ? '（お試しはお申し込み後）' : '') + '、ただちに利用可能');
+  row('返金', 'デジタル役務・コインの性質上、原則不可（詳細は特商法表記）');
+  return '<h3 class="rc-h">お申し込み内容の確認</h3>'
+    + '<div class="rc-terms">' + r.join('') + '</div>'
+    + '<p class="rc-note">下のボタンを押すと、上記の内容で'
+    + (m.sub ? '<b>課金（自動更新サブスクリプション）契約が成立</b>します。' : '<b>購入が確定</b>します。') + '</p>'
+    + '<button id="rc-confirm" class="btn btn-grad rc-btn" data-plan-confirm="' + esc(plan) + '">上記に同意して申し込む</button>'
+    + '<p class="rc-links"><a href="tokushoho.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>　<a href="terms.html" target="_blank" rel="noopener">利用規約</a></p>'
+    + '<button class="rc-x" data-rc-close aria-label="閉じる">×</button>';
+}
 
 /* ============ 購入フロー ============ */
 async function runCheckout(plan) {
   if (!PLAN_LABEL[plan]) return;
   const user = await refreshUser();
   if (!user) { openModal(viewLogin(plan)); return; }
+  // 未ログインでなければ、購入前に「申込み内容の最終確認」を必ず表示（特商法）
+  openModal(viewConfirm(plan));
+}
+async function doPurchase(plan) {
+  if (!PLAN_LABEL[plan]) return;
   openModal(viewProcessing('購入手続きを準備中…'));
+  const user = await refreshUser();
+  if (!user) { openModal(viewLogin(plan)); return; }
   const inst = await ensureRC(user.id);
   if (!inst) { openModal(viewNotReady()); return; }
   try {
@@ -156,6 +198,10 @@ async function runCheckout(plan) {
 document.addEventListener('click', async (ev) => {
   const buyBtn = ev.target.closest ? ev.target.closest('[data-plan-buy]') : null;
   if (buyBtn) { ev.preventDefault(); runCheckout(buyBtn.getAttribute('data-plan-buy')); return; }
+
+  // 申込み最終確認画面の「上記に同意して申し込む」→ 実際の購入へ
+  const confirmBtn = ev.target.closest ? ev.target.closest('[data-plan-confirm]') : null;
+  if (confirmBtn) { ev.preventDefault(); doPurchase(confirmBtn.getAttribute('data-plan-confirm')); return; }
 
   if (ev.target.id === 'rc-send') {
     const plan = ev.target.getAttribute('data-plan');
