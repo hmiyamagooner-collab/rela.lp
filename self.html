@@ -789,5 +789,7 @@ if(tog&&links){
 </style>
 <div id="rc-modal" role="dialog" aria-modal="true"><div class="rc-card"><div id="rc-modal-body"></div></div></div>
 <script type="module" src="checkout.js"></script>
+<script>/* brand "RELA" を自動翻訳(relax→リラックス)から保護: translate="no"を付与 */
+(function(){function mark(el){try{if(el&&el.getAttribute&&el.getAttribute('translate')!=='no'&&!el.closest('[translate="no"]'))el.setAttribute('translate','no');}catch(e){}}function scan(root){try{var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while(n=w.nextNode()){if(/RELA/.test(n.nodeValue||''))mark(n.parentElement);}}catch(e){}}function init(){scan(document.body);try{new MutationObserver(function(ms){ms.forEach(function(m){(m.addedNodes||[]).forEach(function(nd){if(nd.nodeType===1)scan(nd);else if(nd.nodeType===3&&/RELA/.test(nd.nodeValue||''))mark(nd.parentElement);});});}).observe(document.body,{childList:true,subtree:true});}catch(e){}}if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);})();</script>
 </body>
 </html>
