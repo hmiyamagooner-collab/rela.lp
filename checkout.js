@@ -122,9 +122,10 @@ function viewNotReady() {
 }
 function viewDone(plan) {
   var isCoin = !!COIN_PACKAGES[plan];
+  var reflectNote = '<br><span style="opacity:.85">同じアカウントでログインしたRELA（アプリ／ブラウザ）に反映されます。反映まで少し時間がかかる場合は、アプリを開き直してください。</span>';
   var body = isCoin
-    ? (COIN_PACKAGES[plan] + 'コインを付与しました。<br>同じアカウントでアプリからそのままご利用いただけます。')
-    : (esc(PLAN_LABEL[plan] || '') + ' が有効になりました。<br>同じアカウントでアプリからそのままご利用いただけます。');
+    ? (COIN_PACKAGES[plan] + 'コインを付与しました。' + reflectNote)
+    : (esc(PLAN_LABEL[plan] || '') + ' が有効になりました。' + reflectNote);
   return '<h3 class="rc-h">ご購入ありがとうございます</h3>'
     + '<p class="rc-p">' + body + '</p>'
     + '<a class="btn btn-grad rc-btn" href="https://rela.website/">RELAをひらく</a>';
