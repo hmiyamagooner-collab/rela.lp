@@ -122,7 +122,7 @@ function viewNotReady() {
 }
 function viewDone(plan) {
   var isCoin = !!COIN_PACKAGES[plan];
-  var reflectNote = '<br><span style="opacity:.85">同じアカウントでログインしたRELA（アプリ／ブラウザ）に反映されます。反映まで少し時間がかかる場合は、アプリを開き直してください。</span>';
+  var reflectNote = '<br><span style="opacity:.85">同じアカウントでログインしたRELA（アプリ／ブラウザ）に反映されます。反映まで少し時間がかかる場合は、アプリを開き直してください。<br>💡 どの端末・ブラウザでも確実に反映させるには、アプリの設定「データの引継ぎ」で<b>メールアドレスとパスワードの登録</b>がおすすめです。</span>';
   var body = isCoin
     ? (COIN_PACKAGES[plan] + 'コインを付与しました。' + reflectNote)
     : (esc(PLAN_LABEL[plan] || '') + ' が有効になりました。' + reflectNote);
