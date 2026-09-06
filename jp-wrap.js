@@ -37,8 +37,24 @@
     try { return getComputedStyle(el).textAlign === 'center'; } catch (e) { return false; }
   }
 
+  // リード文は「。」の直後（末尾以外）で改行し、文単位で読みやすくする。
+  // 行内の折り返しは後段の BudouX が文節単位で受け持つ。
+  function breakAtSentences(el) {
+    try {
+      if (el.querySelector && el.querySelector('br')) return; // 既に改行済みなら触らない
+      if (el.innerHTML.indexOf('。') === -1) return;
+      el.innerHTML = el.innerHTML.replace(/。(?!\s*$)/g, '。<br>');
+    } catch (e) {}
+  }
+
   function run() {
     try {
+      // 見出しに近いリード文(.rd-sub)は文(。)単位で改行してからラップ
+      document.querySelectorAll('.rd-sub').forEach(function (el) {
+        if (el.closest && el.closest(SKIP)) return;
+        breakAtSentences(el);
+        wrap(el);
+      });
       document.querySelectorAll(SELECTORS).forEach(wrap);
       // 取りこぼし防止: 本文中の「中央寄せの段落」も対象にする
       document.querySelectorAll('main p, .stage p, section p').forEach(function (p) {
