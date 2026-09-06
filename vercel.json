@@ -1,3 +1,40 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=meta&utm_medium=organic&utm_campaign=launch_2609&utm_content=bio",
+      "permanent": false
+    },
+    {
+      "source": "/tt",
+      "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=launch_2609&utm_content=bio",
+      "permanent": false
+    },
+    {
+      "source": "/qr",
+      "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=launch_2609&utm_content=qr",
+      "permanent": false
+    },
+    {
+      "source": "/hiro",
+      "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=hiro",
+      "permanent": false
+    },
+    {
+      "source": "/sayaka",
+      "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=sayaka",
+      "permanent": false
+    },
+    {
+      "source": "/noji",
+      "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=noji",
+      "permanent": false
+    },
+    {
+      "source": "/tanji",
+      "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=tanji",
+      "permanent": false
+    }
+  ]
 }
