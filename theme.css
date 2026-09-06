@@ -1,5 +1,5 @@
 .theme-player{
-  position:fixed;right:18px;bottom:18px;z-index:50;
+  position:fixed;right:18px;top:14px;z-index:50;
 }
 .theme-player button{
   display:flex;align-items:center;gap:10px;
@@ -42,4 +42,12 @@
 @keyframes theme-pulse{50%{transform:scale(1.08)}}
 @media (prefers-reduced-motion:reduce){
   .theme-player button[aria-pressed="true"] .ico{animation:none}
+}
+/* スマホ: 説明文を隠してアイコンのみのコンパクトな丸ボタンに（特商法等への被り・邪魔を解消）。
+   ノッチ端末では上部セーフエリア分だけ下げる。ON/OFF表示はアイコン内テキストで維持。 */
+@media (max-width:640px){
+  .theme-player{right:12px;top:calc(env(safe-area-inset-top, 0px) + 10px)}
+  .theme-player button{padding:7px;gap:0}
+  .theme-player .txt{display:none}
+  .theme-player .ico{width:30px;height:30px;font-size:9.5px}
 }
