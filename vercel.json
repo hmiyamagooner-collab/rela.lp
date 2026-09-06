@@ -4,37 +4,37 @@
     {
       "source": "/ig",
       "destination": "/?utm_source=meta&utm_medium=organic&utm_campaign=launch_2609&utm_content=bio",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/tt",
       "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=launch_2609&utm_content=bio",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/qr",
       "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=launch_2609&utm_content=qr",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/hiro",
       "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=hiro",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/sayaka",
       "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=sayaka",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/noji",
       "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=noji",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/tanji",
       "destination": "/?utm_source=friend&utm_medium=referral&utm_campaign=launch_2609&utm_content=tanji",
-      "permanent": false
+      "statusCode": 302
     }
   ]
 }
