@@ -583,8 +583,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 .karte-fan .kf{position:absolute;left:50%;bottom:14px;width:206px;margin-left:-103px;border-radius:12px;overflow:hidden;border:1px solid rgba(210,190,130,.4);box-shadow:0 16px 42px rgba(0,0,0,.62);transform-origin:center 155%;transform:rotate(var(--r));transition:transform .4s ease,box-shadow .4s ease;display:block;cursor:pointer}
 .karte-fan .kf img{display:block;width:100%}
 .karte-fan .kf:hover{transform:rotate(var(--r)) scale(1.06);z-index:30!important;box-shadow:0 26px 64px rgba(0,0,0,.8),0 0 28px rgba(79,216,255,.4);border-color:rgba(79,216,255,.7)}
-.karte-contents{max-width:720px;margin:130px auto 0;color:var(--ink-soft);font-size:13.5px;line-height:1.9}
+.karte-contents{max-width:none;margin:130px auto 0;color:var(--ink-soft);font-size:13.5px;line-height:1.9;text-align:center}
 .karte-contents b{color:var(--cyan)}
+/* 目次は必ず1行（改行させない）。狭い画面ではフォントを縮めて収める */
+.kc-main{display:inline-block;white-space:nowrap;font-size:clamp(4.5px,1.2vw,13.5px);line-height:1.6}
 .kc-hint{display:inline-block;margin-top:6px;font-size:12px;color:var(--ink-dim)}
 @media(max-width:720px){
   .karte-fan{height:auto;display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 4px 18px;max-width:100%;scroll-snap-type:x mandatory}
@@ -678,7 +680,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
       <a class="kf" style="--r:25deg;z-index:7" href="assets/karte-palm2.jpg" target="_blank" rel="noopener"><img src="assets/karte-palm2.jpg" alt="手相分析" loading="lazy"></a>
       <a class="kf" style="--r:35deg;z-index:8" href="assets/karte-back2.jpg" target="_blank" rel="noopener"><img src="assets/karte-back2.jpg" alt="裏表紙" loading="lazy"></a>
     </div>
-    <p class="karte-contents rv"><b>全9ページ</b>｜表紙・属性と守護石・運気バイオリズム・四柱推命 命式・自己分析レポート・12チャクラ解説・属性神社と守護神・手相分析・裏表紙<br><span class="kc-hint">カードをタップで拡大</span></p>
+    <p class="karte-contents rv"><span class="kc-main"><b>全9ページ</b>｜表紙・属性と守護石・運気バイオリズム・四柱推命 命式・自己分析レポート・12チャクラ解説・属性神社と守護神・手相分析・裏表紙</span><br><span class="kc-hint">カードをタップで拡大</span></p>
   </div>
 </section>
 
