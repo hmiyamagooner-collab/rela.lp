@@ -102,8 +102,8 @@ window.__rcClose = closeModal;
 
 function esc(s) { return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 function viewLogin(plan) {
-  return '<h3 class="rc-h">ログインして購入</h3>'
-    + '<p class="rc-p">' + esc(PLAN_LABEL[plan] || '') + ' を購入します。メールにログインリンクを送ります（同じアカウントでアプリでも有効になります）。</p>'
+  return '<h3 class="rc-h">ログインして申し込む</h3>'
+    + '<p class="rc-p">' + esc(PLAN_LABEL[plan] || '') + ' に申し込みます。メールアドレスへログインリンクを送ります（同じアカウントでアプリでも有効になります）。</p>'
     + '<input id="rc-email" class="rc-input" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" />'
     + '<button id="rc-send" class="btn btn-grad rc-btn" data-plan="' + esc(plan) + '">ログインリンクを送る</button>'
     + '<p id="rc-msg" class="rc-msg"></p>'
