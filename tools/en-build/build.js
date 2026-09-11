@@ -93,6 +93,7 @@ for (const pg of PAGES) {
   const enImg = (v) => { const m = v && v.match(/^\.\.\/assets\/([^/?#]+)$/); if (m && fs.existsSync(path.join(ROOT, "assets", "en", m[1]))) { swapped.add(m[1]); return "../assets/en/" + m[1]; } return v; };
   const swapped = new Set();
   doc.querySelectorAll("img[src],video[poster],source[src]").forEach(el => ["src", "poster"].forEach(a => { if (el.hasAttribute(a)) el.setAttribute(a, enImg(el.getAttribute(a))); }));
+  doc.querySelectorAll("a[href]").forEach(el => el.setAttribute("href", enImg(el.getAttribute("href"))));   // 拡大表示リンク(鑑定書カード等)も英語画像へ
   doc.querySelectorAll("img[srcset]").forEach(el => el.setAttribute("srcset", el.getAttribute("srcset").split(",").map(p => { const [u, d] = p.trim().split(/\s+/); return [enImg(u), d].filter(Boolean).join(" "); }).join(", ")));
   const swapUrl = (css) => css.replace(/url\((['"]?)(?:\.\.\/)?assets\/([^'")]+)\1\)/g, (m0, q, f) => fs.existsSync(path.join(ROOT, "assets", "en", f)) ? (swapped.add(f), "url(" + q + "../assets/en/" + f + q + ")") : m0);
   doc.querySelectorAll("[style]").forEach(el => el.setAttribute("style", swapUrl(el.getAttribute("style"))));
