@@ -17,7 +17,14 @@ const RC_CSS_URL = 'https://esm.sh/@revenuecat/purchases-js@1/dist/Purchases.css
 
 // UI表示名。identifier は RevenueCat Offering(default) のパッケージ識別子と完全一致必須。
 // coins_180 は消費型(サブスクではない)コインパック。購入フローはサブスクと同じ。
-const PLAN_LABEL = {
+// 英語版LP(/en/, <html lang="en">)では英語＋USD表示。JP側の文言・金額は従来どおり。
+const EN = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
+const PLAN_LABEL = EN ? {
+  basic: 'BASIC ($4.99/month)',
+  standard: 'STANDARD ($9.99/month)',
+  premium: 'PREMIUM ($24.99/month)',
+  coins_180: 'RELA 180 coins ($2.99)'
+} : {
   basic: 'BASIC（¥500/月）',
   standard: 'STANDARD（¥1,500/月）',
   premium: 'PREMIUM（¥3,800/月）',
@@ -25,7 +32,12 @@ const PLAN_LABEL = {
 };
 const COIN_PACKAGES = { coins_180: 180 }; // 消費型: 識別子→付与コイン枚数
 // 申込み最終確認画面（特商法：金額・無料期間・自動更新・解約期限/方法を購入確定前に表示）用のメタ
-const PLAN_META = {
+const PLAN_META = EN ? {
+  basic:     { name: 'BASIC',          price: '$4.99',  sub: true,  trial: 0 },
+  standard:  { name: 'STANDARD',       price: '$9.99',  sub: true,  trial: 3 },
+  premium:   { name: 'PREMIUM',        price: '$24.99', sub: true,  trial: 0 },
+  coins_180: { name: 'RELA 180 coins', price: '$2.99',  sub: false, trial: 0 }
+} : {
   basic:     { name: 'BASIC',        price: '¥500',   sub: true,  trial: 0 },
   standard:  { name: 'STANDARD',     price: '¥1,500', sub: true,  trial: 3 },
   premium:   { name: 'PREMIUM',      price: '¥3,800', sub: true,  trial: 0 },
@@ -102,6 +114,79 @@ window.__rcClose = closeModal;
 
 function esc(s) { return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 function viewLogin(plan) {
+  if (EN) return '<h3 class="rc-h">Sign in to subscribe</h3>'
+    + '<p class="rc-p">You are subscribing to ' + esc(PLAN_LABEL[plan] || '') + '. We will email you a sign-in link (the same account works in the app).</p>'
+    + '<input id="rc-email" class="rc-input" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" />'
+    + '<button id="rc-send" class="btn btn-grad rc-btn" data-plan="' + esc(plan) + '">Send sign-in link</button>'
+    + '<p id="rc-msg" class="rc-msg"></p>'
+    + '<button class="rc-x" data-rc-close aria-label="Close">×</button>';
+  return viewLoginJa(plan);
+}
+function viewSent() {
+  if (EN) return '<h3 class="rc-h">Email sent</h3>'
+    + '<p class="rc-p">Open the link in the email to come back here and continue your purchase. If it does not arrive, please check your spam folder.</p>'
+    + '<button class="btn btn-line rc-btn" data-rc-close>Close</button>';
+  return viewSentJa();
+}
+function viewProcessing(t) {
+  if (EN) return '<h3 class="rc-h">' + esc(t || 'Processing…') + '</h3><p class="rc-p">Please wait a moment.</p>';
+  return viewProcessingJa(t);
+}
+function viewNotReady() {
+  if (EN) return '<h3 class="rc-h">Coming soon</h3>'
+    + '<p class="rc-p">Web checkout will open shortly. Please check back soon.</p>'
+    + '<button class="btn btn-line rc-btn" data-rc-close>Close</button>';
+  return viewNotReadyJa();
+}
+function viewDone(plan) {
+  if (EN) {
+    var isCoinEn = !!COIN_PACKAGES[plan];
+    var noteEn = '<br><span style="opacity:.85">It applies to RELA (app / browser) signed in with the same account. If it takes a moment, reopen the app.<br>💡 To make sure it applies on every device and browser, we recommend registering an <b>email address and password</b> in the app under Settings → “Data transfer”.</span>';
+    var bodyEn = isCoinEn ? (COIN_PACKAGES[plan] + ' coins have been added.' + noteEn) : (esc(PLAN_LABEL[plan] || '') + ' is now active.' + noteEn);
+    return '<h3 class="rc-h">Thank you for your purchase</h3>'
+      + '<p class="rc-p">' + bodyEn + '</p>'
+      + '<a class="btn btn-grad rc-btn" href="https://rela.website/en/">Open RELA</a>';
+  }
+  return viewDoneJa(plan);
+}
+function viewError(msg) {
+  if (EN) return '<h3 class="rc-h">Error</h3>'
+    + '<p class="rc-p">' + esc(msg || 'We could not complete your purchase. Please try again later.') + '</p>'
+    + '<button class="btn btn-line rc-btn" data-rc-close>Close</button>';
+  return viewErrorJa(msg);
+}
+// 申込み最終確認画面(英語): 金額・無料期間・自動更新・解約期限/方法を購入確定前に表示
+function viewConfirm(plan) {
+  if (!EN) return viewConfirmJa(plan);
+  var m = PLAN_META[plan] || {};
+  var r = [];
+  function row(k, v) { r.push('<div class="rc-row"><span>' + k + '</span><b>' + v + '</b></div>'); }
+  row('Plan', esc(m.name || '') + (m.sub ? ' (monthly plan)' : ' (one-time purchase)'));
+  row('Price', esc(m.price || '') + ' + applicable tax' + (m.sub ? ' / month' : ''));
+  if (m.trial) {
+    row('Free trial', 'First ' + m.trial + ' days free');
+    row('First charge', 'After the free period ends (about ' + m.trial + ' days after sign-up)');
+  } else if (m.sub) {
+    row('First charge', 'At sign-up');
+  }
+  if (m.sub) {
+    row('Renewal', 'Renews automatically every month until you cancel');
+    row('Cancellation deadline', 'Up to 24 hours before the next renewal date');
+    row('How to cancel', 'From the “Manage subscription” link (billing portal) in your purchase confirmation email.' + (m.trial ? ' Cancel during the free period and you will not be charged.' : ''));
+  }
+  row('Availability', 'Immediately after payment' + (m.trial ? ' (the trial starts at sign-up)' : ''));
+  row('Refunds', 'Digital services and coins are generally non-refundable (see Legal Notice)');
+  return '<h3 class="rc-h">Review your order</h3>'
+    + '<div class="rc-terms">' + r.join('') + '</div>'
+    + '<p class="rc-note">By pressing the button below, you '
+    + (m.sub ? 'enter into a <b>paid, auto-renewing subscription</b>' : 'confirm your <b>purchase</b>') + ' on the terms above.</p>'
+    + '<button id="rc-confirm" class="btn btn-grad rc-btn" data-plan-confirm="' + esc(plan) + '">Agree and subscribe</button>'
+    + '<p class="rc-links"><a href="../tokushoho.html" target="_blank" rel="noopener">Legal Notice (Japanese)</a>　<a href="../terms.html" target="_blank" rel="noopener">Terms of Service (Japanese)</a></p>'
+    + '<button class="rc-x" data-rc-close aria-label="Close">×</button>';
+}
+
+/* ---- 日本語版(従来どおり・不変) ---- */
+function viewLoginJa(plan) {
   return '<h3 class="rc-h">ログインして申し込む</h3>'
     + '<p class="rc-p">' + esc(PLAN_LABEL[plan] || '') + ' に申し込みます。メールアドレスへログインリンクを送ります（同じアカウントでアプリでも有効になります）。</p>'
     + '<input id="rc-email" class="rc-input" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" />'
@@ -109,18 +194,18 @@ function viewLogin(plan) {
     + '<p id="rc-msg" class="rc-msg"></p>'
     + '<button class="rc-x" data-rc-close aria-label="閉じる">×</button>';
 }
-function viewSent() {
+function viewSentJa() {
   return '<h3 class="rc-h">メールを送りました</h3>'
     + '<p class="rc-p">メール内のリンクを開くと、この画面に戻って購入を続けられます。届かない場合は迷惑メールもご確認ください。</p>'
     + '<button class="btn btn-line rc-btn" data-rc-close>閉じる</button>';
 }
-function viewProcessing(t) { return '<h3 class="rc-h">' + esc(t || '処理中…') + '</h3><p class="rc-p">しばらくお待ちください。</p>'; }
-function viewNotReady() {
+function viewProcessingJa(t) { return '<h3 class="rc-h">' + esc(t || '処理中…') + '</h3><p class="rc-p">しばらくお待ちください。</p>'; }
+function viewNotReadyJa() {
   return '<h3 class="rc-h">ただいま準備中です</h3>'
     + '<p class="rc-p">Web決済はまもなく開始します。少しお待ちください。</p>'
     + '<button class="btn btn-line rc-btn" data-rc-close>閉じる</button>';
 }
-function viewDone(plan) {
+function viewDoneJa(plan) {
   var isCoin = !!COIN_PACKAGES[plan];
   var reflectNote = '<br><span style="opacity:.85">同じアカウントでログインしたRELA（アプリ／ブラウザ）に反映されます。反映まで少し時間がかかる場合は、アプリを開き直してください。<br>💡 どの端末・ブラウザでも確実に反映させるには、アプリの設定「データの引継ぎ」で<b>メールアドレスとパスワードの登録</b>がおすすめです。</span>';
   var body = isCoin
@@ -130,13 +215,13 @@ function viewDone(plan) {
     + '<p class="rc-p">' + body + '</p>'
     + '<a class="btn btn-grad rc-btn" href="https://rela.website/">RELAをひらく</a>';
 }
-function viewError(msg) {
+function viewErrorJa(msg) {
   return '<h3 class="rc-h">エラー</h3>'
     + '<p class="rc-p">' + esc(msg || '購入を完了できませんでした。時間をおいて再度お試しください。') + '</p>'
     + '<button class="btn btn-line rc-btn" data-rc-close>閉じる</button>';
 }
 // 申込み最終確認画面（特商法：ボタン押下で課金契約が成立することを明示）
-function viewConfirm(plan) {
+function viewConfirmJa(plan) {
   var m = PLAN_META[plan] || {};
   var r = [];
   function row(k, v) { r.push('<div class="rc-row"><span>' + k + '</span><b>' + v + '</b></div>'); }
@@ -174,7 +259,7 @@ async function runCheckout(plan) {
 }
 async function doPurchase(plan) {
   if (!PLAN_LABEL[plan]) return;
-  openModal(viewProcessing('購入手続きを準備中…'));
+  openModal(viewProcessing(EN ? 'Preparing checkout…' : '購入手続きを準備中…'));
   const user = await refreshUser();
   if (!user) { openModal(viewLogin(plan)); return; }
   const inst = await ensureRC(user.id);
@@ -208,10 +293,10 @@ document.addEventListener('click', async (ev) => {
     const plan = ev.target.getAttribute('data-plan');
     const email = (($('rc-email') || {}).value || '').trim();
     const msg = $('rc-msg');
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { if (msg) msg.textContent = 'メールアドレスを正しく入力してください。'; return; }
-    ev.target.disabled = true; if (msg) msg.textContent = '送信中…';
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { if (msg) msg.textContent = EN ? 'Please enter a valid email address.' : 'メールアドレスを正しく入力してください。'; return; }
+    ev.target.disabled = true; if (msg) msg.textContent = EN ? 'Sending…' : '送信中…';
     const err = await sendMagicLink(email, plan);
-    if (err) { ev.target.disabled = false; if (msg) msg.textContent = '送信に失敗しました。時間をおいて再度お試しください。'; }
+    if (err) { ev.target.disabled = false; if (msg) msg.textContent = EN ? 'Failed to send. Please try again later.' : '送信に失敗しました。時間をおいて再度お試しください。'; }
     else openModal(viewSent());
     return;
   }

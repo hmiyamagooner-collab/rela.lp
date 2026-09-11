@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>相手を可視化する｜RELA（リラ）</title>
+<title>RELA | Visualize yourself and the people you love with AI</title>
 <meta name="theme-color" content="#03040a">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
-<meta property="og:title" content="RELA（リラ）| AIで自分と相手を可視化する">
-<meta property="og:description" content="性格・相性・心理傾向をAIが多角的に分析。分析×哲学×AI。">
-<meta property="og:image" content="https://rela.info/assets/og.png">
+<meta property="og:title" content="RELA | Visualize yourself and the people you love with AI">
+<meta property="og:description" content="AI analyzes personality, compatibility and psychological tendencies from every angle. Analysis × Philosophy × AI.">
+<meta property="og:image" content="https://rela.info/assets/og-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="ja_JP">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="RELA（リラ）| AIで自分と相手を可視化する">
-<meta name="twitter:description" content="性格・相性・心理傾向をAIが多角的に分析。分析×哲学×AI。">
-<meta name="twitter:image" content="https://rela.info/assets/og.png">
+<meta name="twitter:title" content="RELA | Visualize yourself and the people you love with AI">
+<meta name="twitter:description" content="AI analyzes personality, compatibility and psychological tendencies from every angle. Analysis × Philosophy × AI.">
+<meta name="twitter:image" content="https://rela.info/assets/og-en.png">
 
-<meta name="description" content="RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。">
+<meta name="description" content="RELA is an app where AI analyzes personality, compatibility and psychological tendencies from multiple angles. Analysis × Philosophy × AI. Visualize the relationship between you and the people who matter, and turn it into hints for better days.">
 <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="stylesheet" href="sweep.css">
-<link rel="stylesheet" href="theme.css">
-<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
+<link rel="stylesheet" href="../sweep.css">
+<link rel="stylesheet" href="../theme.css">
+<link rel="apple-touch-icon" href="../assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Audiowide&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Audiowide&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <style>
 /* =========================================================
    RELA LP v3 — 販促ビジュアル準拠
@@ -422,24 +421,15 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .step h3{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;letter-spacing:.06em;margin-bottom:8px}
 .step p{font-size:13.5px;color:var(--ink-soft)}
 
-/* ---- ① 相手を可視化する: 注釈付きスクショ ---- */
+/* ---- ① 相手を読み解く: 注釈付きスクショ ---- */
 .rd-sec{padding:92px 0;position:relative;z-index:1}
 .rd-sub{text-align:center;color:var(--ink-soft);font-size:clamp(14px,1.9vw,17px);margin:0 auto 46px;line-height:1.9;max-width:640px}
 .annot{position:relative;width:min(980px,100%);aspect-ratio:98/62;margin:0 auto}
-.annot-frame{position:absolute;left:30%;top:24%;width:40%}
-.annot-img{display:block;width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 14px 44px rgba(0,0,0,.55)}
-.amk{position:absolute;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;z-index:2;
-  background:radial-gradient(circle,#c8f4ff,#5fd8ff 55%,#7a6cf5);box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 10px rgba(79,216,255,.95);
-  animation:amkPulse 2.2s ease-in-out infinite}
-@keyframes amkPulse{0%,100%{box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 8px rgba(79,216,255,.8)}50%{box-shadow:0 0 0 2px rgba(3,4,10,.5),0 0 16px rgba(79,216,255,1)}}
-/* メッセージ分析 → 分析結果スクショ */
-.msg-flow{max-width:760px;margin:40px auto 0;text-align:center}
-.mf-arrow{display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--cyan);font-weight:700;font-size:14px;margin-bottom:20px;letter-spacing:.04em}
-.mf-arrow svg{width:24px;height:36px;filter:drop-shadow(0 0 6px rgba(79,216,255,.8))}
-.mf-shots{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
-.mf-shots figure{margin:0;max-width:280px;flex:1 1 240px}
-.mf-shots img{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.5)}
-.mf-shots figcaption{font-size:12px;color:var(--ink-soft);margin-top:11px;line-height:1.65}
+.annot-frame{position:absolute;left:33%;top:26%;width:34%}
+.annot-img{display:block;width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.55)}
+.amk{position:absolute;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;z-index:2;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#03040a;font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#5fd8ff,#7a6cf5);box-shadow:0 0 0 2px rgba(3,4,10,.7),0 0 12px rgba(79,216,255,.9)}
 .annot-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:1}
 .aln{stroke:#5fd8ff;stroke-width:1.3;fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;
   filter:drop-shadow(0 0 3px rgba(95,216,255,.9));opacity:.82;stroke-dasharray:5 4;animation:alnFlow 2.4s linear infinite}
@@ -449,13 +439,11 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .alb.l{left:1.5%;text-align:right}
 .alb.r{right:1.5%;text-align:left}
 @media(max-width:860px){
-  .annot{aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:540px}
-  .annot-frame{position:static;width:min(360px,90vw)}
-  .amk{display:none}
+  .annot{aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:520px}
+  .annot-frame{position:static;width:min(320px,84vw)}
   .annot-svg{display:none}
-  .alb{position:static;transform:none;width:100%;text-align:left!important;display:flex;gap:10px;align-items:flex-start}
-  .alb::before{content:"▹";flex:0 0 auto;color:var(--cyan);font-weight:800;font-size:16px;line-height:1.4}
-  .mf-shots figure{flex:1 1 44%}
+  .alb{position:static;transform:none;width:100%;text-align:left!important;display:flex;gap:11px;align-items:flex-start}
+  .alb::before{content:attr(data-n);flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#03040a;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#5fd8ff,#7a6cf5);margin-top:1px}
 }
 
 /* ---- 料金 ---- */
@@ -567,34 +555,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
   .f-grid,.plan-grid{grid-template-columns:1fr}
   .k-fan{height:300px;transform:scale(.9);transform-origin:left top}
 }
-.back-link{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;color:var(--cyan);text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.05em;border:1px solid rgba(120,200,255,.42);border-radius:999px;background:rgba(61,123,255,.09);transition:.2s}
-.back-link:hover{border-color:var(--cyan);background:rgba(61,123,255,.18);box-shadow:0 0 16px rgba(79,216,255,.3)}
-.back-link .bl-ar{font-size:19px;line-height:1;margin-top:-2px}
-.back-row{text-align:left;margin-bottom:14px}
-.mf-intro{max-width:840px;margin:64px auto 8px;text-align:center}
-.mf-h{font-family:'Shippori Mincho',serif;font-size:clamp(18px,2.5vw,23px);letter-spacing:.06em;margin-bottom:26px}
-.mf-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
-.mf-step{text-align:left;background:rgba(11,14,27,.55);border:1px solid var(--line);border-radius:14px;padding:20px;font-size:13px;color:var(--ink-soft);line-height:1.7}
-.mf-step b{display:block;color:var(--ink);font-size:15px;margin:10px 0 4px}
-.mf-n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-family:'Inter',sans-serif;font-weight:700;color:#03040a;background:linear-gradient(135deg,#5fd8ff,#7a6cf5);box-shadow:0 0 14px rgba(79,216,255,.5)}
-@media(max-width:860px){.mf-steps{grid-template-columns:1fr}}
-.frame-legend{max-width:740px;margin:6px auto 0;text-align:center}
-.fl-title{font-size:14.5px;color:var(--ink);font-weight:700;margin-bottom:14px}
-.fl-title b{color:var(--cyan)}
-.fl-items{display:flex;flex-wrap:wrap;gap:11px 14px;justify-content:center}
-.fl-item{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);background:rgba(11,14,27,.55);border:1px solid var(--line);border-radius:999px;padding:7px 15px}
-.fl-item i{width:12px;height:12px;border-radius:3px;display:inline-block;flex:0 0 auto;box-shadow:0 0 8px rgba(0,0,0,.4)}
-.ma-flow{max-width:920px;margin:26px auto 0}
-.ma-row{display:flex;gap:34px;align-items:center;justify-content:center;margin:0 auto 44px}
-.ma-row.reverse{flex-direction:row-reverse}
-.ma-shot{margin:0;flex:0 0 auto;width:266px}
-.ma-shot img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 14px 40px rgba(0,0,0,.55)}
-.ma-cap{display:block;font-size:11.5px;color:var(--ink-dim);margin-top:9px;text-align:center}
-.ma-exp{list-style:none;margin:0;padding:0;flex:1 1 320px;text-align:left;display:flex;flex-direction:column;gap:15px}
-.ma-exp li{font-size:13px;color:var(--ink-soft);line-height:1.7;padding-left:17px;position:relative}
-.ma-exp li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
-.ma-exp b{display:block;color:var(--ink);font-size:14px;margin-bottom:2px}
-@media(max-width:760px){.ma-row,.ma-row.reverse{flex-direction:column;gap:16px;margin-bottom:34px}.ma-shot{width:min(300px,82vw)}}
 .nav-dd{position:relative;display:inline-flex;align-items:center}
 .nav-dd-toggle{color:var(--ink-soft);font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;user-select:none}
 .nav-dd-toggle:hover{color:var(--ink)}
@@ -616,6 +576,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
   .nav-dd-menu a{padding:11px 4px;border-bottom:1px solid rgba(120,170,255,.08)}
 }
 </style>
+
+<link rel="canonical" href="https://rela.info/en/lp">
+<link rel="alternate" hreflang="en" href="https://rela.info/en/lp">
+<link rel="alternate" hreflang="ja" href="https://rela.info/lp">
+<link rel="alternate" hreflang="x-default" href="https://rela.info/lp">
 </head>
 <body>
 <div class="bg-sweep" aria-hidden="true"><i></i><i></i></div>
@@ -624,147 +589,205 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#37c8f0"/>
-      <stop offset="50%" stop-color="#7a6cf5"/>
-      <stop offset="100%" stop-color="#ff4d8d"/>
+      <stop offset="0%" stop-color="#37c8f0"></stop>
+      <stop offset="50%" stop-color="#7a6cf5"></stop>
+      <stop offset="100%" stop-color="#ff4d8d"></stop>
     </linearGradient>
     <g id="circuitHeart">
-      <path d="M50 88 C22 66 8 48 8 32 C8 18 19 8 32 8 C40 8 47 12 50 19 C53 12 60 8 68 8 C81 8 92 18 92 32 C92 48 78 66 50 88 Z"
-        fill="none" stroke="url(#heartGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M50 19 L50 40 L64 52" fill="none" stroke="url(#heartGrad)" stroke-width="5" stroke-linecap="round"/>
-      <circle cx="64" cy="52" r="6" fill="none" stroke="url(#heartGrad)" stroke-width="4.5"/>
-      <circle cx="32" cy="30" r="5.5" fill="none" stroke="url(#heartGrad)" stroke-width="4.5"/>
-      <path d="M32 30 L44 42" fill="none" stroke="url(#heartGrad)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 88 C22 66 8 48 8 32 C8 18 19 8 32 8 C40 8 47 12 50 19 C53 12 60 8 68 8 C81 8 92 18 92 32 C92 48 78 66 50 88 Z" fill="none" stroke="url(#heartGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M50 19 L50 40 L64 52" fill="none" stroke="url(#heartGrad)" stroke-width="5" stroke-linecap="round"></path>
+      <circle cx="64" cy="52" r="6" fill="none" stroke="url(#heartGrad)" stroke-width="4.5"></circle>
+      <circle cx="32" cy="30" r="5.5" fill="none" stroke="url(#heartGrad)" stroke-width="4.5"></circle>
+      <path d="M32 30 L44 42" fill="none" stroke="url(#heartGrad)" stroke-width="5" stroke-linecap="round"></path>
     </g>
   </defs>
 </svg>
 
 <header>
-  <nav class="nav" aria-label="メイン">
+  <nav class="nav" aria-label="Main">
     <a class="logo" href="./index.html#app">
-      <img src="assets/logo.png" alt="RELA" class="nav-brand">
+      <img src="../assets/logo.png" alt="RELA" class="nav-brand">
     </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
-    <div class="nav-links" id="nav-links"><a href="/en/partner" class="nav-lang" lang="en">English</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links"><a href="/lp" class="nav-lang" lang="ja">日本語</a><a href="/en/lp" class="nav-lang" lang="en">English</a>
       <div class="nav-dd">
-        <span class="nav-dd-toggle" tabindex="0">RELAとは？<span class="nav-dd-caret">▾</span></span>
+        <span class="nav-dd-toggle" tabindex="0">What is RELA?<span class="nav-dd-caret">▾</span></span>
         <div class="nav-dd-menu">
-        <a href="./partner.html" class="active">相手を可視化</a>
-        <a href="./self.html">自分の分析</a>
-        <a href="./reading.html">分析・鑑定</a>
-        <a href="./karte.html">カルテ</a>
-        <a href="./team.html">チーム編成</a>
+        <a href="./partner.html">Visualize others</a>
+        <a href="./self.html">Self-analysis</a>
+        <a href="./reading.html">Analysis &amp; Readings</a>
+        <a href="./karte.html">Personal Dossier</a>
+        <a href="./team.html">Team Building</a>
         </div>
       </div>
-      <a href="./lp.html#addhome">使い方のコツ</a>
-      <a href="./lp.html#plans">料金プラン</a>
-      <a href="./lp.html#faq">Q&amp;A</a>
+      <a href="#addhome">Tips</a>
+      <a href="#plans">Pricing</a>
+      <a href="#faq">Q&amp;A</a>
     </div>
   </nav>
 </header>
 
-<!-- ================= ① 相手を可視化する ================= -->
-<section class="rd-sec" id="partner" style="scroll-margin-top:70px">
+<!-- ================= ホーム画面に追加(アプリのように使う) ================= -->
+<section class="webapp addhome" id="addhome" style="scroll-margin-top:70px">
   <div class="wrap">
-    <div class="back-row"><a class="back-link" href="./index.html#app"><span class="bl-ar">‹</span>トップへ戻る</a></div>
-    <h2 class="sec rv">相手を可視化する</h2>
+    <h2 class="sec rv">Tips</h2>
     <div class="sec-line rv"><span class="dot"></span></div>
-    <p class="rd-sub rv">相手の“今”を、ひと目で。連絡すべきタイミングまで AI が提案します。</p>
-    <div class="annot rv">
-      <svg class="annot-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <line class="aln" x1="39.6" y1="28.7" x2="26" y2="22"/>
-        <line class="aln" x1="40.4" y1="56.1" x2="26" y2="52"/>
-        <line class="aln" x1="49.2" y1="62.9" x2="26" y2="64"/>
-        <line class="aln" x1="41.2" y1="70.6" x2="26" y2="76"/>
-        <line class="aln" x1="64.4" y1="28.7" x2="74" y2="20"/>
-        <line class="aln" x1="66"   y1="35.4" x2="74" y2="34"/>
-        <line class="aln" x1="64.4" y1="40.1" x2="74" y2="45"/>
-        <line class="aln" x1="52.8" y1="44.2" x2="74" y2="56"/>
-        <line class="aln" x1="58.8" y1="70.6" x2="74" y2="76"/>
-      </svg>
-      <div class="annot-frame">
-        <img class="annot-img" src="assets/ss-partner-hero.jpg" alt="相手分析カード（相性スコア・天中殺・推奨送信日・関係度）" loading="lazy">
-        <span class="amk" style="left:24%;top:9%"></span>
-        <span class="amk" style="left:86%;top:9%"></span>
-        <span class="amk" style="left:90%;top:22%"></span>
-        <span class="amk" style="left:86%;top:31%"></span>
-        <span class="amk" style="left:57%;top:39%"></span>
-        <span class="amk" style="left:26%;top:62%"></span>
-        <span class="amk" style="left:48%;top:75%"></span>
-        <span class="amk" style="left:28%;top:90%"></span>
-        <span class="amk" style="left:72%;top:90%"></span>
+    <p class="webapp-lead rv">RELA needs <b>no install</b>. <b>Add it to your home screen</b> and launch it from an icon just like an app (iPhone / Android · free).</p>
+    <div class="addhome-grid">
+      <div class="addhome-card rv">
+        <img class="addhome-shot" src="../assets/ss-add-1.jpg" alt="If opened inside another app, tap “Open in browser” from the menu" loading="lazy">
+        <div class="addhome-step"><span class="wnum">1</span><h3>Open in Safari</h3></div>
+        <p>If you opened this inside another app (Instagram, Messenger, LINE, etc.), choose <b>“Open in browser”</b> from the menu to view it in Safari.</p>
       </div>
-      <div class="alb l" style="--y:22%"><b>種類 & 温度感</b>「ビジネス／冷却中」など、関係の性質と“今の熱”をひと目で</div>
-      <div class="alb l" style="--y:52%"><b>AI分析アドバイス</b>会話の流れをAIが見立て、状態をひと言で要約</div>
-      <div class="alb l" style="--y:64%"><b>関係度・信頼度</b>好意と信頼を別々に可視化。数値で変化がわかる</div>
-      <div class="alb l" style="--y:76%"><b>メッセージ分析</b>スクショから相手の心理傾向・脈をAIが推測</div>
-      <div class="alb r" style="--y:20%"><b>SNS連携</b>Instagram・LINE にワンタップで移動</div>
-      <div class="alb r" style="--y:34%"><b>RELAスコア＆推移</b>相性を数値化。前回からの増減（例：▼5）で上下の変化も追える</div>
-      <div class="alb r" style="--y:45%"><b>天中殺</b>算命学の“整える時期”を、動くタイミングの参考に</div>
-      <div class="alb r" style="--y:56%"><b>推奨送信日</b>AIが「次に連絡すべき日時」を提案（超過も警告）</div>
-      <div class="alb r" style="--y:76%"><b>編集・分析</b>いつでも更新して、何度でも再分析</div>
-    </div>
-
-    <!-- メッセージ分析ボタン → 分析結果スクショ への矢印 -->
-    <div class="frame-legend rv">
-      <p class="fl-title">カードの<b>枠色</b>＝相手との“今の関係状態”を表します</p>
-      <div class="fl-items">
-        <span class="fl-item"><i style="background:linear-gradient(180deg,#46d39a,#3ea8ff)"></i>良好（発展期待・関係向上・安定）</span>
-        <span class="fl-item"><i style="background:#ffb86b"></i>停滞・慎重</span>
-        <span class="fl-item"><i style="background:#ff5b7f"></i>冷却・要注意</span>
-        <span class="fl-item"><i style="background:#3a4150"></i>情報不足</span>
+      <div class="addhome-card rv">
+        <img class="addhome-shot" src="../assets/ss-add-2.jpg" alt="Open the Share menu in Safari" loading="lazy">
+        <div class="addhome-step"><span class="wnum">2</span><h3>Open Share</h3></div>
+        <p>Tap Safari’s <b>“Share”</b> button (the share icon at the bottom of the screen, or in the menu).</p>
+      </div>
+      <div class="addhome-card rv">
+        <img class="addhome-shot" src="../assets/ss-add-3.jpg" alt="Tap “Add to Home Screen” in the Share menu" loading="lazy">
+        <div class="addhome-step"><span class="wnum">3</span><h3>Add to Home Screen</h3></div>
+        <p>Tap <b>“Add to Home Screen”</b> in the list. A RELA icon will be created on your home screen.</p>
       </div>
     </div>
+    <p class="addhome-note rv"><b>On Android:</b> open the page in Chrome, tap the menu (⋮) at the top right → <b>“Add to Home screen”</b> (or “Install app”).</p>
+  </div>
+</section>
 
-    <div class="msg-flow rv">
-      <div class="mf-arrow"><span>「メッセージ分析」を押すと…</span><svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 2 V32 M4 24 L12 34 L20 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="ma-flow">
-        <div class="ma-row">
-          <figure class="ma-shot"><img src="assets/ss-partner-1.jpg" alt="推薦アクション・親密度・推薦返信案" loading="lazy"><span class="ma-cap">相手カルテ・推薦返信案</span></figure>
-          <ul class="ma-exp">
-            <li><b>総合相性</b>相手との相性を100点満点で表示。まず全体感をつかめます。</li>
-            <li><b>推薦アクション</b>いま取るべき動き（進める／様子見／引く）をAIが提示。迷ったらこの通りに動けばOK。</li>
-            <li><b>時間を割く価値</b>この相手にどれだけ労力をかける価値があるかの目安。低ければ深追いしない判断に。</li>
-            <li><b>親密度</b>いまの距離感を数値化。会話を重ねるごとの変化を追えます。</li>
-            <li><b>推薦返信案（A・B）</b>そのまま送れる返信をAIが用意。ワンタップでコピーして即送信できます。</li>
-          </ul>
-        </div>
-        <div class="ma-row reverse">
-          <figure class="ma-shot"><img src="assets/ss-partner-2.jpg" alt="関係性スコア・好意レベル・発言別の心理傾向" loading="lazy"><span class="ma-cap">関係性スコア・発言別の心理傾向</span></figure>
-          <ul class="ma-exp">
-            <li><b>力関係・依存度・温度差</b>どちらが主導権を握り、どちらが熱いかを可視化。押す・引くの判断に使えます。</li>
-            <li><b>脈の4指標</b>好意レベル・デート成立確率・恋愛発展確率・社交辞令度を%で表示。“社交辞令度”が高いほど、好意は薄いサインです。</li>
-            <li><b>メッセージ分析結果</b>相手の心理傾向と関係のフェーズを、AIが率直な言葉でまとめます。</li>
-            <li><b>発言別の心理傾向</b>相手の一言ごとの心理傾向をAIが推測し、脈のサインの手がかりを示します。</li>
-          </ul>
-        </div>
+<!-- ================= 料金 ================= -->
+<section class="plans" id="plans">
+  <div class="wrap">
+    <h2 class="sec rv">Pricing</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <div class="plan-grid">
+      <div class="plan rv">
+        <div class="p-name">FREE</div>
+        <div class="p-price num">$0</div>
+        <div class="p-per">Free forever</div>
+        <ul>
+          <li>Register up to 1 partner</li>
+          <li>Basic self-analysis</li>
+          <li>AI consultation (limited)</li>
+        </ul>
+        <a class="btn btn-line" href="https://rela.website/en/?signup=1">Start for free</a>
+      </div>
+      <div class="plan rv">
+        <div class="p-name">BASIC</div>
+        <div class="p-price num">$4.99<small>/month</small></div>
+        <div class="p-per">For getting to know one person deeply</div>
+        <ul>
+          <li>Register up to 3 partners</li>
+          <li>Self-analysis</li>
+          <li>Extended profile features</li>
+        </ul>
+        <button type="button" class="btn btn-grad" data-plan-buy="basic">Choose this plan</button>
+      </div>
+      <div class="plan featured rv">
+        <span class="badge">Most popular</span>
+        <div class="p-name">STANDARD</div>
+        <div class="p-price num">$9.99<small>/month</small></div>
+        <div class="p-per">For those serious about building relationships</div>
+        <div class="p-trial" style="margin:2px 0 10px;padding:7px 10px;border-radius:9px;background:rgba(240,200,96,.14);border:1px solid rgba(240,200,96,.4);color:#f0c860;font-size:12px;font-weight:700;line-height:1.5">🎁 Sign up now and get a <b>3-day free trial</b></div>
+        <ul>
+          <li>Register up to 5 partners</li>
+          <li>Personality analysis report</li>
+          <li>Image generation</li>
+          <li>Higher AI consultation limit</li>
+        </ul>
+        <button type="button" class="btn btn-grad" data-plan-buy="standard">Try free for 3 days</button>
+      </div>
+      <div class="plan rv">
+        <div class="p-name">PREMIUM</div>
+        <div class="p-price num">$24.99<small>/month</small></div>
+        <div class="p-per">Every relationship, without limits</div>
+        <ul>
+          <li>Unlimited partner registrations</li>
+          <li>All features included</li>
+          <li>Priority support</li>
+        </ul>
+        <button type="button" class="btn btn-grad" data-plan-buy="premium">Choose this plan</button>
       </div>
     </div>
-
-    <div class="mf-intro rv">
-      <h3 class="mf-h">会話のスクショを貼るだけで、相手の心理傾向まで推測</h3>
-      <div class="mf-steps">
-        <div class="mf-step"><span class="mf-n">1</span><b>会話を貼る</b>LINE・Instagramのやり取りをスクショで読み込むだけ。</div>
-        <div class="mf-step"><span class="mf-n">2</span><b>AIが分析</b>言葉づかい・返信の速さ・温度感から、相手の心理傾向を推測します。</div>
-        <div class="mf-step"><span class="mf-n">3</span><b>結果を提示</b>相性スコア・好意レベル・心理傾向・次の一手（推薦返信）まで表示。</div>
+    <!-- コイン購入(単発利用。アプリと同じ)。PCは横並び・モバイルは縦積み -->
+    <div class="coin-buy rv">
+      <div class="cb-left">
+        <span class="cb-name">RELA COIN</span>
+        <span class="cb-price num">$2.99</span>
+        <span class="cb-per">180 coins (about 2 analyses)</span>
       </div>
+      <ul class="cb-feats">
+        <li>One-off analyses not included in your plan</li>
+        <li>Used for image generation, special analyses, etc.</li>
+      </ul>
+      <button type="button" class="btn btn-grad cb-btn" data-plan-buy="coins_180">Buy 180 coins</button>
+    </div>
+    <p class="p-note">Prices are in US dollars; applicable sales tax is calculated at checkout. Sold on the web (not available on the App Store). Credit cards accepted via Stripe. Plan contents may change; major changes to pricing or core features will be announced in advance.</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2 class="sec rv">FAQ</h2>
+    <div class="sec-line rv"><span class="dot"></span></div>
+    <div class="faq-list">
+      <details class="rv">
+        <summary>Is RELA an analysis app?</summary>
+        <div class="a">RELA is built on the concept of “Analysis × Philosophy × AI”: a tool where AI analyzes personality, compatibility and psychological tendencies from multiple angles. Readings such as palmistry, face reading and chakras are reference information for entertainment and self-understanding; decisions about your communication are yours to make.</div>
+      </details>
+      <details class="rv">
+        <summary>Are the results accurate?</summary>
+        <div class="a">RELA’s analysis is not about “predicting”; it is material for raising your odds of building a good relationship. By visualizing conversation patterns and compatibility, it aims to make your next move easier to think through. Please treat it as reference information.</div>
+      </details>
+      <details class="rv">
+        <summary>Is the information about the people I register and our conversations safe?</summary>
+        <div class="a">The information you provide is used only for analysis, and the people you register are never notified. Data is managed in an encrypted environment. See our Privacy Policy for details.</div>
+      </details>
+      <details class="rv">
+        <summary>Can I use it on iPhone?</summary>
+        <div class="a">Yes. RELA is sold and delivered on the web. Use it directly in your iPhone or desktop browser (add it to your home screen to use it like an app). It is not distributed on the App Store. On Android it is also available on Google Play.</div>
+      </details>
+      <details class="rv">
+        <summary>Is there a free trial? When does billing start?</summary>
+        <div class="a">The Standard plan comes with a <b>3-day free trial for first-time subscribers</b>. During the trial you can try each feature once; after 3 days it automatically continues at $9.99/month. <b>Cancel within the free period and you will not be charged</b>. Basic and Premium are billed from the time you subscribe (the details shown on the checkout screen take precedence).</div>
+      </details>
+      <details class="rv">
+        <summary>Can I use it on a new phone or another device? (Data transfer)</summary>
+        <div class="a">Yes. Your plan and remaining coins are tied to your <b>account</b>, so <b>signing in with the same account on any device</b> — iPhone, Android or a desktop browser — brings everything with you. To be safe when switching phones or reinstalling, <b>register an email address and password</b> in the app under Settings → “Data transfer” so you can always sign in from anywhere.</div>
+      </details>
+      <details class="rv">
+        <summary>Can I cancel anytime? Where do I cancel?</summary>
+        <div class="a">Yes, you can cancel anytime. Where you cancel depends on where you purchased.<br> ・<b>Purchased on the web (browser)</b>: use the “Manage subscription” link (billing portal) in the confirmation email you received at purchase.<br> ・<b>Purchased on Android (Google Play)</b>: cancel from “Subscriptions” in Google Play.<br> ・<b>From the app</b>: Settings (⚙) → “How to use” → the “Cancel / manage subscription” button at the bottom.<br> Note that <b>simply selecting the “Free” plan on the app’s plan screen does not cancel</b> (auto-renewal continues). After canceling, paid features stay available until the end of the current billing period. <b>Your account, analysis data and remaining coins are kept</b> (you just return to the free plan limits). Questions? Contact info@gooner-info.co.jp.</div>
+      </details>
+      <details class="rv">
+        <summary>I purchased, but it does not seem to be applied (it opens in a different browser / app)</summary>
+        <div class="a">Your purchase and sign-in are <b>saved as a session in the browser you used</b>. Opening a link from an email (Gmail, etc.) can launch <b>a different app or browser (Chrome / Google)</b> than the one you started in (e.g. Safari); that other browser has no session, so <b>the purchase may look like it has not been applied</b>. Rest assured: <b>your purchase is always recorded on your account and never lost</b>.<br><br> <b>What to do:</b><br> ・Reopen RELA in the browser you used first (e.g. Safari) — it will be applied there.<br> ・To use a different browser or app, sign in to the same account there.<br> ・<b>Recommended: register an email address and password in the app under Settings → “Data transfer”</b>. Then you can <b>sign in to the same account on any browser or device</b> without relying on magic links, and your purchases and coins are always applied.<br><br> If it still does not apply, contact info@gooner-info.co.jp.</div>
+      </details>
     </div>
   </div>
 </section>
 
+<!-- ================= 最終CTA ================= -->
+<section class="final" id="start">
+  <div class="wrap">
+    <p class="tagline rv">Turn every analysis<br class="sp">into hints for better relationships.</p>
+    <img class="rela-word-logo rv" src="../assets/logo.png" alt="RELA">
+  </div>
+  <div class="floor" aria-hidden="true"></div>
+</section>
 
-<p class="ai-disclaimer" style="max-width:760px;margin:0 auto;padding:6px 24px 14px;text-align:center;color:var(--ink-dim);font-size:11.5px;line-height:1.8">※ RELAの分析・鑑定は、AIによる推測にもとづく参考情報です。事実・心理・好意・将来などを保証するものではありません。最終的な判断はご自身で行ってください。</p>
+<p class="ai-disclaimer" style="max-width:760px;margin:0 auto;padding:6px 24px 14px;text-align:center;color:var(--ink-dim);font-size:11.5px;line-height:1.8">* RELA’s analyses and readings are reference information based on AI inference. They do not guarantee facts, feelings, affection or future outcomes. Final decisions are yours.</p>
 <footer>
   <div class="foot">
     <div>
-      <img src="assets/logo.png" alt="RELA" style="height:46px;width:auto;display:inline-block;margin-bottom:6px">
+      <img src="../assets/logo.png" alt="RELA" style="height:46px;width:auto;display:inline-block;margin-bottom:6px">
       © 2026 GOONER CO., LTD.
     </div>
     <div class="foot-links">
-      <a href="terms.html">利用規約</a>
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="tokushoho.html">特定商取引法に基づく表記</a>
-      <a href="company.html">運営会社</a>
+      <a href="../terms.html">Terms of Service (Japanese)</a>
+      <a href="../privacy.html">Privacy Policy (Japanese)</a>
+      <a href="../tokushoho.html">Legal Notice (Japanese)</a>
+      <a href="../company.html">Company</a>
     </div>
   </div>
 </footer>
@@ -789,15 +812,15 @@ if(tog&&links){
 
 </script>
 <div class="theme-player">
-  <audio id="theme-audio" src="assets/theme.mp3" loop autoplay playsinline preload="auto"></audio>
-  <button type="button" id="theme-toggle" aria-pressed="true" aria-label="大切な人を、もっと深く理解するために OFF">
+  <audio id="theme-audio" src="../assets/theme.mp3" loop="" autoplay="" playsinline="" preload="auto"></audio>
+  <button type="button" id="theme-toggle" aria-pressed="true" aria-label="To understand the people you cherish, more deeply — OFF">
     <span class="ico">ON</span>
-    <span class="txt"><span class="ttl">大切な人を、もっと深く理解するために</span><span class="state">ON</span></span>
+    <span class="txt"><span class="ttl">To understand the people you cherish, more deeply</span><span class="state">ON</span></span>
   </button>
 </div>
-<script src="utm.js"></script>
-<script src="theme.js"></script>
-<script src="jp-wrap.js"></script>
+<script src="../utm.js"></script>
+<script src="../theme.js"></script>
+
 
 <!-- ===== Webチェックアウト（Supabaseマジックリンク + RevenueCat Web Billing）===== -->
 <style>
@@ -805,11 +828,21 @@ if(tog&&links){
   #rc-modal { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center;
     background: rgba(2,3,8,.72); backdrop-filter: blur(4px); padding: 20px; }
   #rc-modal.open { display: flex; }
-  #rc-modal .rc-card { position: relative; width: 100%; max-width: 380px; background: #0b0e1b;
+  #rc-modal .rc-card { position: relative; width: 100%; max-width: 420px; background: #0b0e1b;
     border: 1px solid rgba(120,140,255,.22); border-radius: 16px; padding: 26px 22px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.6); color: #e9ecf6; }
+    box-shadow: 0 20px 60px rgba(0,0,0,.6); color: #e9ecf6; max-height: 90vh; overflow-y: auto; }
   #rc-modal .rc-h { font-size: 18px; font-weight: 700; margin: 0 0 10px; }
   #rc-modal .rc-p { font-size: 13.5px; line-height: 1.7; color: #b9c0d6; margin: 0 0 6px; }
+  #rc-modal .rc-terms { margin: 12px 0 4px; border: 1px solid rgba(140,150,180,.18); border-radius: 12px; overflow: hidden; }
+  #rc-modal .rc-row { display: flex; gap: 12px; padding: 9px 13px; font-size: 12.5px; line-height: 1.55;
+    border-top: 1px solid rgba(140,150,180,.12); }
+  #rc-modal .rc-row:first-child { border-top: none; }
+  #rc-modal .rc-row > span { flex: 0 0 82px; color: #8891ad; }
+  #rc-modal .rc-row > b { flex: 1; color: #e9ecf6; font-weight: 600; }
+  #rc-modal .rc-note { font-size: 12.5px; line-height: 1.7; color: #cfd5e8; margin: 13px 0 2px; }
+  #rc-modal .rc-note b { color: #ffd27a; }
+  #rc-modal .rc-links { font-size: 11.5px; margin: 13px 0 0; text-align: center; color: #8891ad; }
+  #rc-modal .rc-links a { color: #7fb2ff; text-decoration: underline; }
   #rc-modal .rc-input { width: 100%; margin-top: 12px; padding: 12px 14px; font-size: 15px;
     background: #06070f; border: 1px solid rgba(140,150,180,.3); border-radius: 10px; color: #fff; box-sizing: border-box; }
   #rc-modal .rc-btn { width: 100%; margin-top: 12px; display: inline-block; text-align: center; }
@@ -818,8 +851,9 @@ if(tog&&links){
     background: transparent; color: #8891ad; font-size: 22px; line-height: 1; cursor: pointer; }
 </style>
 <div id="rc-modal" role="dialog" aria-modal="true"><div class="rc-card"><div id="rc-modal-body"></div></div></div>
-<script type="module" src="checkout.js"></script>
+<script type="module" src="../checkout.js"></script>
 <script>/* brand "RELA" を自動翻訳(relax→リラックス)から保護: translate="no"を付与 */
 (function(){function mark(el){try{if(el&&el.getAttribute&&el.getAttribute('translate')!=='no'&&!el.closest('[translate="no"]'))el.setAttribute('translate','no');}catch(e){}}function scan(root){try{var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while(n=w.nextNode()){if(/RELA/.test(n.nodeValue||''))mark(n.parentElement);}}catch(e){}}function init(){scan(document.body);try{new MutationObserver(function(ms){ms.forEach(function(m){(m.addedNodes||[]).forEach(function(nd){if(nd.nodeType===1)scan(nd);else if(nd.nodeType===3&&/RELA/.test(nd.nodeValue||''))mark(nd.parentElement);});});}).observe(document.body,{childList:true,subtree:true});}catch(e){}}if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);})();</script>
-</body>
-</html>
+
+
+</body></html>
