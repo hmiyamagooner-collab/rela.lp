@@ -155,7 +155,7 @@ h1 .big{font-size:1.32em;font-weight:700}
   50%{box-shadow:0 0 38px rgba(120,180,255,.62),inset 0 0 22px rgba(79,216,255,.18)}}
 .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
 /* ヒーローの4つの入口ボタン(縦並び・サイバーHUD) */
-.hero-nav{display:flex;flex-direction:column;gap:16px;max-width:440px;width:100%;margin:0 auto}
+.hero-nav{display:flex;flex-direction:column;gap:16px;max-width:440px;width:100%;margin:28px auto 0}
 .hnav-btn{position:relative;display:flex;align-items:center;gap:15px;padding:19px 26px;
   text-decoration:none;font-weight:600;font-size:17px;color:#fff;letter-spacing:.06em;
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.4);border-radius:14px;
@@ -191,7 +191,7 @@ h1 .big{font-size:1.32em;font-weight:700}
   .offer .offer-text{white-space:normal;text-align:center;line-height:1.7}
   .offer .plus{display:inline-block;margin:0 .4em}
 }
-.get{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.get{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:0}
 .get-card{display:flex;align-items:center;gap:14px;text-decoration:none;padding:14px;border-radius:16px;
   border:1px solid var(--line);background:rgba(8,12,24,.55);transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;width:300px}
 .get-card:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 22px rgba(79,216,255,.13)}
@@ -270,13 +270,6 @@ footer a.ig svg{display:block;width:24px;height:24px}
     <span class="pill p">AI</span>
   </div>
 
-  <div class="hero-nav seq s4">
-    <a class="hnav-btn" href="./partner.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.3" r="3"></circle><path d="M6.6 19a5.5 5.5 0 0 1 10.8 0"></path><path d="M3 6.5V4.5A1.5 1.5 0 0 1 4.5 3H6.5M21 6.5V4.5A1.5 1.5 0 0 0 19.5 3H17.5M3 17.5V19.5A1.5 1.5 0 0 0 4.5 21H6.5M21 17.5V19.5A1.5 1.5 0 0 1 19.5 21H17.5"></path></svg></span><span class="hn-tx">Visualize the other person</span></a>
-    <a class="hnav-btn" href="./self.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="4"></circle><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"></circle><path d="M12 12L18 8.5"></path></svg></span><span class="hn-tx">Self-analysis</span></a>
-    <a class="hnav-btn" href="./reading.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 2.6c.6 5.4 1.5 6.3 6.9 6.9-5.4.6-6.3 1.5-6.9 6.9-.6-5.4-1.5-6.3-6.9-6.9 5.4-.6 6.3-1.5 6.9-6.9Z"></path><path d="M18 15c.3 2.3.6 2.6 2.9 2.9-2.3.3-2.6.6-2.9 2.9-.3-2.3-.6-2.6-2.9-2.9 2.3-.3 2.6-.6 2.9-2.9Z"></path></svg></span><span class="hn-tx">Analysis &amp; Readings</span></a>
-    <a class="hnav-btn" href="./karte.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2"></rect><path d="M9 3.5V3a1.5 1.5 0 0 1 3 0v.5"></path><line x1="8" y1="9" x2="16" y2="9"></line><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="13" y2="17"></line></svg></span><span class="hn-tx">Personal Dossier</span></a>
-    <a class="hnav-btn" href="./team.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="2.7"></circle><path d="M3.5 19.5a5 5 0 0 1 10 0"></path><circle cx="16.8" cy="9" r="2.2"></circle><path d="M15 13.4a4.5 4.5 0 0 1 5.5 4.1"></path></svg></span><span class="hn-tx">Build the best team</span></a>
-  </div>
   <!-- QRカードはボタンより上に配置(2026-09-11: 下部にあるとDLに気づかない人がいたため) -->
   <div class="get seq s4">
     <a class="get-card" href="./lp.html#plans" aria-label="Start on iPhone or PC. Takes you to the plan selection screen.">
@@ -291,6 +284,13 @@ footer a.ig svg{display:block;width:24px;height:24px}
   </div>
   <p class="get-note seq s4">Scan the QR with your phone, or tap a card.</p>
 
+  <div class="hero-nav seq s4">
+    <a class="hnav-btn" href="./partner.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.3" r="3"></circle><path d="M6.6 19a5.5 5.5 0 0 1 10.8 0"></path><path d="M3 6.5V4.5A1.5 1.5 0 0 1 4.5 3H6.5M21 6.5V4.5A1.5 1.5 0 0 0 19.5 3H17.5M3 17.5V19.5A1.5 1.5 0 0 0 4.5 21H6.5M21 17.5V19.5A1.5 1.5 0 0 1 19.5 21H17.5"></path></svg></span><span class="hn-tx">Visualize the other person</span></a>
+    <a class="hnav-btn" href="./self.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="4"></circle><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"></circle><path d="M12 12L18 8.5"></path></svg></span><span class="hn-tx">Self-analysis</span></a>
+    <a class="hnav-btn" href="./reading.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 2.6c.6 5.4 1.5 6.3 6.9 6.9-5.4.6-6.3 1.5-6.9 6.9-.6-5.4-1.5-6.3-6.9-6.9 5.4-.6 6.3-1.5 6.9-6.9Z"></path><path d="M18 15c.3 2.3.6 2.6 2.9 2.9-2.3.3-2.6.6-2.9 2.9-.3-2.3-.6-2.6-2.9-2.9 2.3-.3 2.6-.6 2.9-2.9Z"></path></svg></span><span class="hn-tx">Analysis &amp; Readings</span></a>
+    <a class="hnav-btn" href="./karte.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2"></rect><path d="M9 3.5V3a1.5 1.5 0 0 1 3 0v.5"></path><line x1="8" y1="9" x2="16" y2="9"></line><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="13" y2="17"></line></svg></span><span class="hn-tx">Personal Dossier</span></a>
+    <a class="hnav-btn" href="./team.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="2.7"></circle><path d="M3.5 19.5a5 5 0 0 1 10 0"></path><circle cx="16.8" cy="9" r="2.2"></circle><path d="M15 13.4a4.5 4.5 0 0 1 5.5 4.1"></path></svg></span><span class="hn-tx">Build the best team</span></a>
+  </div>
   <div class="seq s5" style="text-align:center;margin-top:26px"><a class="btn btn-glow" href="https://rela.website/en/">Start RELA now</a></div>
   <p class="seq s5" style="text-align:center;margin-top:8px;font-size:12.5px;line-height:1.5"><a href="./lp.html#plans" style="color:var(--cyan);text-decoration:underline;font-weight:700">Try Standard free for 3 days</a></p>
   <p class="note seq s5">Signing up is free. No credit card required.</p>
