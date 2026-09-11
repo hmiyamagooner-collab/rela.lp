@@ -265,12 +265,13 @@ async function doPurchase(plan) {
   const inst = await ensureRC(user.id);
   if (!inst) { openModal(viewNotReady()); return; }
   try {
-    const offerings = await inst.getOfferings();
+    // 英語版(/en/)は USD 価格の Offering を取得(RevenueCat Web商品に追加したUSD価格)。JPは従来どおり既定通貨。
+    const offerings = EN ? await inst.getOfferings({ currency: 'USD' }) : await inst.getOfferings();
     const cur = offerings && offerings.current;
     const pkgs = (cur && cur.availablePackages) || [];
     const pkg = pkgs.find(p => p.identifier === plan);
     if (!pkg) { openModal(viewNotReady()); return; } // ダッシュボード未整備
-    const result = await inst.purchase({ rcPackage: pkg });
+    const result = await inst.purchase(EN ? { rcPackage: pkg, selectedLocale: 'en' } : { rcPackage: pkg });
     if (result && result.customerInfo) openModal(viewDone(plan));
     else openModal(viewError());
   } catch (e) {
