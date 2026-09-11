@@ -12,6 +12,7 @@ const legalEnName = (ja) => Object.keys(LEGAL_EN).find(k => LEGAL_EN[k] === ja) 
 const ja = /[぀-ヿ一-鿿]/;
 const norm = s => s.replace(/\s+/g, " ").trim();
 const EN_QR = fs.readFileSync(path.join(__dirname, "qr_en_lp.svg"), "utf8");
+const CONFIG = JSON.parse(fs.readFileSync(path.join(__dirname, "config.json"), "utf8"));   // playAvailable 等の切替フラグ
 const report = {};
 
 function deepestContaining(doc, text) {
@@ -110,6 +111,23 @@ for (const pg of PAGES) {
   // 8) index: 英語版プラン画面へのQRに差し替え(1枚目のカード)
   if (pg === "index") {
     const qr = doc.querySelector(".get-card .get-qr"); if (qr) qr.innerHTML = EN_QR;
+    // 9) index: Google Play カードは米国で正式ローンチするまで COMING SOON(リンク無効・QRを薄く・帯を重ねる)。config.json の playAvailable で切替
+    const play = doc.querySelector('a.get-card[href*="play.google.com"]');
+    if (play && !CONFIG.playAvailable) {
+      const span = doc.createElement("span");
+      span.className = play.className + " get-soon"; span.setAttribute("aria-disabled", "true"); span.setAttribute("title", "Coming soon");
+      span.innerHTML = play.innerHTML; play.replaceWith(span);
+      const sub = span.querySelector(".get-sub"), cta = span.querySelector(".get-cta");
+      if (sub) sub.textContent = CONFIG.playSoonSub || "Android app · Coming soon";
+      if (cta) cta.textContent = CONFIG.playSoonCta || "Not available yet";
+      const st = doc.createElement("style"); st.setAttribute("data-en-play-soon", "");
+      st.textContent = ".get-card.get-soon{cursor:default;opacity:.9}.get-card.get-soon:hover{transform:none;border-color:var(--line);box-shadow:none}"
+        + ".get-soon .get-qr{position:relative}.get-soon .get-qr svg{opacity:.22;filter:grayscale(1)}"
+        + ".get-soon .get-qr::after{content:\"COMING SOON\";position:absolute;left:-28%;top:50%;width:156%;transform:translateY(-50%) rotate(-24deg);background:#ff4d8d;color:#fff;font:800 9.5px/1 'Zen Kaku Gothic New',sans-serif;letter-spacing:.16em;text-align:center;padding:5px 0;box-shadow:0 2px 8px rgba(0,0,0,.45)}"
+        + ".get-soon .get-cta{color:var(--ink-dim)}";
+      doc.head.appendChild(st);
+      console.log("  [index] Google Play カードは COMING SOON 表示(config.json playAvailable=false)");
+    }
   }
   const out = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
   fs.writeFileSync(path.join(OUT, pg + ".html"), out);
