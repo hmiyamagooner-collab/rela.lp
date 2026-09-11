@@ -24,6 +24,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="stylesheet" href="sweep.css">
 <link rel="stylesheet" href="theme.css">
+<script src="lang.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Audiowide&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -52,6 +53,34 @@ body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',san
 }
 
 /* ============ 第一幕: 由来スクロール(エンドロール) ============ */
+/* ============ 言語ゲート(JP/US): 記憶がない初回だけ、オープニングの前に選ぶ ============ */
+.lang-gate{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;background:#03040a;
+  background-image:radial-gradient(60% 45% at 50% 30%,rgba(61,123,255,.18),transparent 70%),
+  linear-gradient(rgba(79,216,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(79,216,255,.06) 1px,transparent 1px);
+  background-size:auto,44px 44px,44px 44px}
+body.lang-gate-on .lang-gate{display:flex}
+body.lang-gate-on .intro{visibility:hidden}
+body.lang-gate-on .scroll-text{animation-play-state:paused}
+.lg-box{text-align:center;padding:24px 20px;width:min(92vw,520px)}
+.lg-logo{width:min(56%,240px);filter:drop-shadow(0 0 18px rgba(79,216,255,.5))}
+.lg-eyebrow{font-family:'Audiowide',sans-serif;letter-spacing:.3em;font-size:11px;color:var(--cyan);margin:26px 0 8px}
+.lg-title{font-family:'Shippori Mincho',serif;font-size:clamp(16px,2.6vw,20px);color:var(--ink);letter-spacing:.08em;margin:0 0 22px;line-height:1.6}
+.lg-title .en{display:block;font-family:'Audiowide',sans-serif;font-size:.78em;color:var(--ink-soft);letter-spacing:.14em;margin-top:6px}
+.lg-btns{display:flex;gap:14px;justify-content:center}
+.lg-btn{flex:1 1 0;max-width:220px;cursor:pointer;position:relative;padding:20px 12px 16px;border-radius:16px;
+  border:1px solid rgba(79,216,255,.45);background:linear-gradient(180deg,rgba(11,14,27,.92),rgba(8,13,28,.75));color:var(--ink);
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  box-shadow:0 0 0 1px rgba(79,216,255,.08) inset,0 0 26px rgba(61,123,255,.18);transition:transform .2s,box-shadow .2s,border-color .2s}
+.lg-btn:hover,.lg-btn:focus-visible{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 0 0 1px rgba(79,216,255,.25) inset,0 0 36px rgba(79,216,255,.35);outline:none}
+.lg-btn .flag{font-family:'Audiowide',sans-serif;font-size:11px;letter-spacing:.28em;color:var(--cyan)}
+.lg-btn .name{display:block;font-size:clamp(18px,3vw,22px);font-weight:700;margin:8px 0 4px;letter-spacing:.1em}
+.lg-btn .sub{display:block;font-size:11.5px;color:var(--ink-soft);letter-spacing:.06em}
+.lg-btn::before,.lg-btn::after{content:"";position:absolute;width:14px;height:14px;border-color:var(--cyan);border-style:solid;opacity:.9}
+.lg-btn::before{top:-1px;left:-1px;border-width:2px 0 0 2px;border-radius:16px 0 0 0}
+.lg-btn::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;border-radius:0 0 16px 0}
+.lg-foot{margin-top:22px;font-size:11px;color:var(--ink-dim);letter-spacing:.06em}
+@media (max-width:360px){.lg-btns{flex-direction:column;align-items:center}.lg-btn{width:100%;max-width:260px}}
+
 .intro{position:fixed;inset:0;z-index:50;overflow:hidden;background:rgba(3,4,10,.45);
   display:flex;justify-content:center;transition:opacity .9s ease}
 .intro.done{opacity:0;pointer-events:none}
@@ -191,6 +220,22 @@ footer a.ig svg{display:block;width:24px;height:24px}
 </style>
 </head>
 <body>
+<!-- ============ 言語ゲート: 記憶(rela_lp_lang)がない初回だけ JP / US を選ぶ。選択後にオープニング開始 ============ -->
+<div class="lang-gate" id="langGate" role="dialog" aria-modal="true" aria-label="Language / 言語">
+  <div class="lg-box">
+    <img class="lg-logo" src="assets/logo-word.png" alt="RELA">
+    <p class="lg-eyebrow">SELECT LANGUAGE</p>
+    <p class="lg-title">言語を選んでください<span class="en">Choose your language</span></p>
+    <div class="lg-btns">
+      <button type="button" class="lg-btn" data-lang-choice="ja" lang="ja"><span class="flag">JP</span><span class="name">日本語</span><span class="sub">日本のお客様</span></button>
+      <button type="button" class="lg-btn" data-lang-choice="en" lang="en"><span class="flag">US</span><span class="name">English</span><span class="sub">United States · English</span></button>
+    </div>
+    <p class="lg-foot">You can switch anytime / あとから切り替えできます</p>
+  </div>
+</div>
+<script>/* 初回(記憶なし)はオープニングより先にゲートを出す(描画前にクラス付与してチラつき防止) */
+(function(){try{if(location.hash!=='#app'&&!(window.RELA_LANG&&window.RELA_LANG.get()))document.body.classList.add('lang-gate-on');}catch(e){}})();</script>
+
 <!-- ============ 第一幕: RELA由来スクロール(エンドロール) ============ -->
 <div class="intro" id="intro">
   <div class="scroll-text">
@@ -279,8 +324,10 @@ footer a.ig svg{display:block;width:24px;height:24px}
 /* 第一幕→第二幕の制御: 33.6秒で自動遷移／スキップボタン・画面タップで即遷移／reduced-motionは第一幕を省略 */
 (function(){
   var intro = document.getElementById('intro'), done = false;
+  if (window.RELA_LANG && window.RELA_LANG.redirected) return;   // 記憶した言語のトップへ移動中
   // 戻る(#app)で来た時だけオープニングを全スキップ。通常訪問・再読込では必ず再生する
   if (location.hash === '#app') {
+    var g0 = document.getElementById('langGate'); if (g0 && g0.parentNode) g0.parentNode.removeChild(g0);
     if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
     document.body.classList.add('instant');
     document.body.classList.add('play');
@@ -297,11 +344,33 @@ footer a.ig svg{display:block;width:24px;height:24px}
       });
     }, 950);
   }
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { end(); return; }
-  var t = setTimeout(end, 21600);                    // 完走(20s+0.8s delay)+約0.8s
+  var t = null;
+  function start(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { end(); return; }
+    t = setTimeout(end, 21600);                      // 完走(20s+0.8s delay)+約0.8s
+  }
   var sb = document.getElementById('skipBtn');
   if (sb) sb.addEventListener('click', function(e){ e.stopPropagation(); clearTimeout(t); end(); });
   intro.addEventListener('click', function(){ clearTimeout(t); end(); });
+  // 言語ゲート: 記憶がない初回だけ表示。選んだ言語がこのページと違えばもう一方のトップへ、同じならオープニング開始
+  var gate = document.getElementById('langGate');
+  var page = (document.documentElement.getAttribute('lang') === 'en') ? 'en' : 'ja';
+  var stored = (window.RELA_LANG && window.RELA_LANG.get()) || null;
+  if (gate && !stored) {
+    document.body.classList.add('lang-gate-on');
+    var btns = gate.querySelectorAll('[data-lang-choice]');
+    for (var i = 0; i < btns.length; i++) btns[i].addEventListener('click', function(){
+      var l = this.getAttribute('data-lang-choice');
+      if (window.RELA_LANG) window.RELA_LANG.set(l);
+      if (l !== page) { location.href = (l === 'en' ? '/en/' : '/') + location.search + location.hash; return; }
+      document.body.classList.remove('lang-gate-on');
+      if (gate.parentNode) gate.parentNode.removeChild(gate);
+      start();
+    });
+  } else {
+    if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+    start();
+  }
 })();
 </script>
 <script>/* brand "RELA" を自動翻訳(relax→リラックス)から保護: translate="no"を付与 */

@@ -1,16 +1,49 @@
 {
  "__overrides": [
-  { "contains": "RELAはインストール不要", "html": "RELA needs <b>no install</b>. <b>Add it to your home screen</b> and launch it from an icon just like an app (iPhone / Android · free)." },
-  { "contains": "LINEやInstagramの中で開いた場合は", "html": "If you opened this inside another app (Instagram, Messenger, LINE, etc.), choose <b>“Open in browser”</b> from the menu to view it in Safari." },
-  { "contains": "Safariの「共有」ボタン", "html": "Tap Safari’s <b>“Share”</b> button (the share icon at the bottom of the screen, or in the menu)." },
-  { "contains": "一覧から「ホーム画面に追加」をタップ", "html": "Tap <b>“Add to Home Screen”</b> in the list. A RELA icon will be created on your home screen." },
-  { "contains": "Androidの場合：", "html": "<b>On Android:</b> open the page in Chrome, tap the menu (⋮) at the top right → <b>“Add to Home screen”</b> (or “Install app”)." },
-  { "contains": "いま申し込むと", "html": "🎁 Sign up now and get a <b>3-day free trial</b>" },
-  { "contains": "スタンダードプランには初回3日間の無料お試し", "html": "The Standard plan comes with a <b>3-day free trial for first-time subscribers</b>. During the trial you can try each feature once; after 3 days it automatically continues at $9.99/month. <b>Cancel within the free period and you will not be charged</b>. Basic and Premium are billed from the time you subscribe (the details shown on the checkout screen take precedence)." },
-  { "contains": "はい。プランや残コインはアカウントに紐づくため", "html": "Yes. Your plan and remaining coins are tied to your <b>account</b>, so <b>signing in with the same account on any device</b> — iPhone, Android or a desktop browser — brings everything with you. To be safe when switching phones or reinstalling, <b>register an email address and password</b> in the app under Settings → “Data transfer” so you can always sign in from anywhere." },
-  { "contains": "はい、いつでも解約できます。ご購入経路によって", "html": "Yes, you can cancel anytime. Where you cancel depends on where you purchased.<br> ・<b>Purchased on the web (browser)</b>: use the “Manage subscription” link (billing portal) in the confirmation email you received at purchase.<br> ・<b>Purchased on Android (Google Play)</b>: cancel from “Subscriptions” in Google Play.<br> ・<b>From the app</b>: Settings (⚙) → “How to use” → the “Cancel / manage subscription” button at the bottom.<br> Note that <b>simply selecting the “Free” plan on the app’s plan screen does not cancel</b> (auto-renewal continues). After canceling, paid features stay available until the end of the current billing period. <b>Your account, analysis data and remaining coins are kept</b> (you just return to the free plan limits). Questions? Contact info@gooner-info.co.jp." },
-  { "contains": "ご購入・ログインは、操作したブラウザにログイン状態", "html": "Your purchase and sign-in are <b>saved as a session in the browser you used</b>. Opening a link from an email (Gmail, etc.) can launch <b>a different app or browser (Chrome / Google)</b> than the one you started in (e.g. Safari); that other browser has no session, so <b>the purchase may look like it has not been applied</b>. Rest assured: <b>your purchase is always recorded on your account and never lost</b>.<br><br> <b>What to do:</b><br> ・Reopen RELA in the browser you used first (e.g. Safari) — it will be applied there.<br> ・To use a different browser or app, sign in to the same account there.<br> ・<b>Recommended: register an email address and password in the app under Settings → “Data transfer”</b>. Then you can <b>sign in to the same account on any browser or device</b> without relying on magic links, and your purchases and coins are always applied.<br><br> If it still does not apply, contact info@gooner-info.co.jp." },
-  { "contains": "すべての分析を、", "html": "Turn every analysis<br class=\"sp\">into hints for better relationships." }
+  {
+   "contains": "RELAはインストール不要",
+   "html": "RELA needs <b>no install</b>. <b>Add it to your home screen</b> and launch it from an icon just like an app (iPhone / Android · free)."
+  },
+  {
+   "contains": "LINEやInstagramの中で開いた場合は",
+   "html": "If you opened this inside another app (Instagram, Messenger, LINE, etc.), choose <b>“Open in browser”</b> from the menu to view it in Safari."
+  },
+  {
+   "contains": "Safariの「共有」ボタン",
+   "html": "Tap Safari’s <b>“Share”</b> button (the share icon at the bottom of the screen, or in the menu)."
+  },
+  {
+   "contains": "一覧から「ホーム画面に追加」をタップ",
+   "html": "Tap <b>“Add to Home Screen”</b> in the list. A RELA icon will be created on your home screen."
+  },
+  {
+   "contains": "Androidの場合：",
+   "html": "<b>On Android:</b> open the page in Chrome, tap the menu (⋮) at the top right → <b>“Add to Home screen”</b> (or “Install app”)."
+  },
+  {
+   "contains": "いま申し込むと",
+   "html": "🎁 Sign up now and get a <b>3-day free trial</b>"
+  },
+  {
+   "contains": "スタンダードプランには初回3日間の無料お試し",
+   "html": "The Standard plan comes with a <b>3-day free trial for first-time subscribers</b>. During the trial you can try each feature once; after 3 days it automatically continues at $9.99/month. <b>Cancel within the free period and you will not be charged</b>. Basic and Premium are billed from the time you subscribe (the details shown on the checkout screen take precedence)."
+  },
+  {
+   "contains": "はい。プランや残コインはアカウントに紐づくため",
+   "html": "Yes. Your plan and remaining coins are tied to your <b>account</b>, so <b>signing in with the same account on any device</b> — iPhone, Android or a desktop browser — brings everything with you. To be safe when switching phones or reinstalling, <b>register an email address and password</b> in the app under Settings → “Data transfer” so you can always sign in from anywhere."
+  },
+  {
+   "contains": "はい、いつでも解約できます。ご購入経路によって",
+   "html": "Yes, you can cancel anytime. Where you cancel depends on where you purchased.<br> ・<b>Purchased on the web (browser)</b>: use the “Manage subscription” link (billing portal) in the confirmation email you received at purchase.<br> ・<b>Purchased on Android (Google Play)</b>: cancel from “Subscriptions” in Google Play.<br> ・<b>From the app</b>: Settings (⚙) → “How to use” → the “Cancel / manage subscription” button at the bottom.<br> Note that <b>simply selecting the “Free” plan on the app’s plan screen does not cancel</b> (auto-renewal continues). After canceling, paid features stay available until the end of the current billing period. <b>Your account, analysis data and remaining coins are kept</b> (you just return to the free plan limits). Questions? Contact info@gooner-info.co.jp."
+  },
+  {
+   "contains": "ご購入・ログインは、操作したブラウザにログイン状態",
+   "html": "Your purchase and sign-in are <b>saved as a session in the browser you used</b>. Opening a link from an email (Gmail, etc.) can launch <b>a different app or browser (Chrome / Google)</b> than the one you started in (e.g. Safari); that other browser has no session, so <b>the purchase may look like it has not been applied</b>. Rest assured: <b>your purchase is always recorded on your account and never lost</b>.<br><br> <b>What to do:</b><br> ・Reopen RELA in the browser you used first (e.g. Safari) — it will be applied there.<br> ・To use a different browser or app, sign in to the same account there.<br> ・<b>Recommended: register an email address and password in the app under Settings → “Data transfer”</b>. Then you can <b>sign in to the same account on any browser or device</b> without relying on magic links, and your purchases and coins are always applied.<br><br> If it still does not apply, contact info@gooner-info.co.jp."
+  },
+  {
+   "contains": "すべての分析を、",
+   "html": "Turn every analysis<br class=\"sp\">into hints for better relationships."
+  }
  ],
  "RELAとは？": "What is RELA?",
  "相手を可視化": "Visualize others",
@@ -69,9 +102,9 @@
  "解約はいつでもできますか？どこで解約しますか？": "Can I cancel anytime? Where do I cancel?",
  "購入したのに反映されていないように見えます（別のブラウザ／アプリで開いてしまう）": "I purchased, but it does not seem to be applied (it opens in a different browser / app)",
  "※ RELAの分析・鑑定は、AIによる推測にもとづく参考情報です。事実・心理・好意・将来などを保証するものではありません。最終的な判断はご自身で行ってください。": "* RELA’s analyses and readings are reference information based on AI inference. They do not guarantee facts, feelings, affection or future outcomes. Final decisions are yours.",
- "利用規約": "Terms of Service (Japanese)",
- "プライバシーポリシー": "Privacy Policy (Japanese)",
- "特定商取引法に基づく表記": "Legal Notice (Japanese)",
+ "利用規約": "Terms of Service",
+ "プライバシーポリシー": "Privacy Policy",
+ "特定商取引法に基づく表記": "Legal Notice",
  "運営会社": "Company",
  "大切な人を、もっと深く理解するために": "To understand the people you cherish, more deeply",
  "メイン": "Main",

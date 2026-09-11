@@ -6,6 +6,9 @@ const ROOT = path.resolve(__dirname, "..", ".."); const OUT = path.join(ROOT, "e
 const I18N = path.join(__dirname, "i18n");
 const PAGES = ["index", "lp", "partner", "self", "reading", "karte", "team"];
 const LEGAL = ["terms", "privacy", "tokushoho", "company"];
+// 英語法務ページ: 出力名 → 日本語の器(ヘッダ/フッタ/スクリプトを流用)。本文は legal/<出力名>.html(先頭に <title> と description)
+const LEGAL_EN = { terms: "terms", privacy: "privacy", legal: "tokushoho", company: "company" };
+const legalEnName = (ja) => Object.keys(LEGAL_EN).find(k => LEGAL_EN[k] === ja) || ja;
 const ja = /[぀-ヿ一-鿿]/;
 const norm = s => s.replace(/\s+/g, " ").trim();
 const EN_QR = fs.readFileSync(path.join(__dirname, "qr_en_lp.svg"), "utf8");
@@ -77,8 +80,8 @@ for (const pg of PAGES) {
       return v;
     }
     let m = v.match(/^\.?\/?([a-z]+)\.html(#.*)?$/) || v.match(/^\.?\/?(lp|index)(#.*)?$/);
-    if (m) { const name = m[1], hash = m[2] || ""; if (PAGES.includes(name)) return "./" + name + ".html" + hash; if (LEGAL.includes(name)) return "../" + name + ".html" + hash; }
-    if (/^(assets\/|theme\.css|sweep\.css|legal\.css|theme\.js|utm\.js|checkout\.js|budoux-ja\.min\.js|jp-wrap\.js)/.test(v)) return "../" + v;
+    if (m) { const name = m[1], hash = m[2] || ""; if (PAGES.includes(name)) return "./" + name + ".html" + hash; if (LEGAL.includes(name)) return "./" + legalEnName(name) + ".html" + hash; }
+    if (/^(assets\/|theme\.css|sweep\.css|legal\.css|theme\.js|utm\.js|lang\.js|checkout\.js|budoux-ja\.min\.js|jp-wrap\.js)/.test(v)) return "../" + v;
     return v;
   };
   doc.querySelectorAll("[href],[src],[poster]").forEach(el => ["href", "src", "poster"].forEach(a => { if (el.hasAttribute(a)) el.setAttribute(a, fixPath(el.getAttribute(a))); }));
@@ -97,6 +100,56 @@ for (const pg of PAGES) {
   const out = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
   fs.writeFileSync(path.join(OUT, pg + ".html"), out);
   report[pg] = { hits, missing: [...missing] };
+}
+// ---- 英語法務ページ(en/terms, privacy, legal, company): 日本語ページの器 + legal/*.html の本文 ----
+const idxMap = JSON.parse(fs.readFileSync(path.join(I18N, "index.en.json"), "utf8"));
+for (const [enName, jaName] of Object.entries(LEGAL_EN)) {
+  const frag = fs.readFileSync(path.join(__dirname, "legal", enName + ".html"), "utf8");
+  const title = (frag.match(/<title>([\s\S]*?)<\/title>/) || [, ""])[1];
+  const desc = (frag.match(/<meta name="description" content="([^"]*)">/) || [, ""])[1];
+  const mainHtml = (frag.match(/<main[\s\S]*<\/main>/) || [""])[0];
+  if (!title || !mainHtml) throw new Error("legal fragment invalid: " + enName);
+  const src = fs.readFileSync(path.join(ROOT, jaName + ".html"), "utf8");
+  const dom = new JSDOM(src); const doc = dom.window.document;
+  doc.querySelectorAll(".lang-sw, .nav-lang").forEach(e => e.remove());
+  const main = doc.querySelector("main"); if (!main) throw new Error("main not found: " + jaName);
+  main.outerHTML = mainHtml;
+  const t = doc.querySelector("title"); if (t) t.innerHTML = title;
+  const md = doc.querySelector("meta[name='description']"); if (md) md.setAttribute("content", desc);
+  // ナビ: 「トップへ戻る」→ Back to top + 日本語版へのリンク
+  doc.querySelectorAll("nav a").forEach(a => { if (norm(a.textContent) === "トップへ戻る") a.outerHTML = `<span class="nav-r"><a href="../${jaName}.html" class="nav-lang" lang="ja">日本語</a><a href="index.html">Back to top</a></span>`; });
+  // 共通部品(BGMボタン等)の文言は index の辞書で置換
+  const walker = doc.createTreeWalker(doc.body, 4); const nodes = []; let n;
+  while ((n = walker.nextNode())) nodes.push(n);
+  for (const node of nodes) { const p = node.parentNode; if (!p || /^(SCRIPT|STYLE|NOSCRIPT)$/.test(p.nodeName) || p.closest("main")) continue; const k = norm(node.nodeValue); if (k && idxMap[k]) node.nodeValue = node.nodeValue.replace(k, idxMap[k]); }
+  doc.querySelectorAll("body [alt],body [aria-label]").forEach(el => ["alt", "aria-label"].forEach(a => { if (el.closest("main")) return; const k = norm(el.getAttribute(a) || ""); if (k && idxMap[k]) el.setAttribute(a, idxMap[k]); }));
+  const enUrl = "https://rela.info/en/" + enName, jaUrl = "https://rela.info/" + jaName;
+  const head = doc.querySelector("head");
+  head.querySelectorAll("link[rel='canonical'],link[rel='alternate'][hreflang]").forEach(e => e.remove());
+  head.insertAdjacentHTML("beforeend", `\n<link rel="canonical" href="${enUrl}">\n<link rel="alternate" hreflang="en" href="${enUrl}">\n<link rel="alternate" hreflang="ja" href="${jaUrl}">\n<link rel="alternate" hreflang="x-default" href="${jaUrl}">\n`);
+  doc.documentElement.setAttribute("lang", "en");
+  doc.querySelectorAll("script[src]").forEach(sc => { const v = sc.getAttribute("src"); if (/budoux-ja|jp-wrap/.test(v)) sc.remove(); });
+  const fixLegalPath = (v) => {
+    if (!v) return v;
+    if (/^(https?:|mailto:|tel:|#|data:|\/)/.test(v)) return v;
+    if (/^\.\.\//.test(v)) return v;                                  // 本文中の日本語版リンク(../terms.html 等)はそのまま
+    let m = v.match(/^\.?\/?([a-z]+)\.html(#.*)?$/);
+    if (m) { const name = m[1], hash = m[2] || ""; if (name === "index") return "./index.html" + hash; if (LEGAL.includes(name)) return "./" + legalEnName(name) + ".html" + hash; if (Object.keys(LEGAL_EN).includes(name)) return "./" + name + ".html" + hash; }
+    if (/^(assets\/|theme\.css|sweep\.css|legal\.css|theme\.js|utm\.js|lang\.js|checkout\.js)/.test(v)) return "../" + v;
+    return v;
+  };
+  doc.querySelectorAll("[href],[src]").forEach(el => ["href", "src"].forEach(a => { if (el.hasAttribute(a)) el.setAttribute(a, fixLegalPath(el.getAttribute(a))); }));
+  fs.writeFileSync(path.join(OUT, enName + ".html"), "<!DOCTYPE html>\n" + doc.documentElement.outerHTML);
+  console.log("legal", enName, "生成");
+}
+// 日本語法務ページ: ナビに英語版リンク(未追加なら)
+for (const jaName of LEGAL) {
+  const f = path.join(ROOT, jaName + ".html"); let s = fs.readFileSync(f, "utf8");
+  if (s.includes('class="nav-lang"')) continue;
+  const a = '<a href="index.html">トップへ戻る</a>';
+  if (s.split(a).length - 1 !== 1) { console.warn("nav anchor not unique:", jaName); continue; }
+  s = s.replace(a, `<span class="nav-r"><a href="/en/${legalEnName(jaName)}" class="nav-lang" lang="en">English</a>${a}</span>`);
+  fs.writeFileSync(f, s);
 }
 // 日本語ページ: 言語切替リンク(EN)を追加(未追加なら)
 for (const pg of PAGES) {

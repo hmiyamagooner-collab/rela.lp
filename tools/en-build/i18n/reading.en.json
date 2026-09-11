@@ -1,6 +1,9 @@
 {
  "__overrides": [
-  { "contains": "RELAは東洋命理から統計・心理学まで", "html": "From Eastern destiny studies to statistics and psychology, RELA cross-references <b>18 kinds</b> of material to read you. Only some appear on screen; much of it works “behind the scenes” inside the AI analysis." }
+  {
+   "contains": "RELAは東洋命理から統計・心理学まで",
+   "html": "From Eastern destiny studies to statistics and psychology, RELA cross-references <b>18 kinds</b> of material to read you. Only some appear on screen; much of it works “behind the scenes” inside the AI analysis."
+  }
  ],
  "RELAとは？": "What is RELA?",
  "相手を可視化": "Visualize others",
@@ -55,9 +58,9 @@
  "守護神・属性神社": "Guardian deity & attribute shrines",
  "パワーストーン": "Power stones",
  "※ 手相・人相・チャクラ・守護石などの鑑定は、自己理解とエンタメのための参考情報です。": "* Readings such as palmistry, face reading, chakras and guardian stones are reference information for self-understanding and entertainment.",
- "利用規約": "Terms of Service (Japanese)",
- "プライバシーポリシー": "Privacy Policy (Japanese)",
- "特定商取引法に基づく表記": "Legal Notice (Japanese)",
+ "利用規約": "Terms of Service",
+ "プライバシーポリシー": "Privacy Policy",
+ "特定商取引法に基づく表記": "Legal Notice",
  "運営会社": "Company",
  "大切な人を、もっと深く理解するために": "To understand the people you cherish, more deeply",
  "メイン": "Main",

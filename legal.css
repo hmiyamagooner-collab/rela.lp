@@ -60,3 +60,7 @@ footer .foot-logo{height:46px;width:auto;display:inline-block;margin-bottom:8px;
   td{border-bottom:none;padding:2px 2px}
   td:first-child{white-space:normal;width:auto;padding-top:2px;padding-bottom:4px}
 }
+
+/* ナビ右側(言語切替/トップへ戻る)は右上固定のBGMボタンと重ならないよう、必要な幅だけ右に余白 */
+.nav .nav-r{display:flex;gap:16px;align-items:center;padding-right:max(0px,min(210px,calc(1260px - 100vw)))}
+@media (max-width:640px){.nav .nav-r{padding-right:56px}}

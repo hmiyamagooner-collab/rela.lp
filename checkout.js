@@ -181,7 +181,7 @@ function viewConfirm(plan) {
     + '<p class="rc-note">By pressing the button below, you '
     + (m.sub ? 'enter into a <b>paid, auto-renewing subscription</b>' : 'confirm your <b>purchase</b>') + ' on the terms above.</p>'
     + '<button id="rc-confirm" class="btn btn-grad rc-btn" data-plan-confirm="' + esc(plan) + '">Agree and subscribe</button>'
-    + '<p class="rc-links"><a href="../tokushoho.html" target="_blank" rel="noopener">Legal Notice (Japanese)</a>　<a href="../terms.html" target="_blank" rel="noopener">Terms of Service (Japanese)</a></p>'
+    + '<p class="rc-links"><a href="legal.html" target="_blank" rel="noopener">Legal Notice</a>　<a href="terms.html" target="_blank" rel="noopener">Terms of Service</a></p>'
     + '<button class="rc-x" data-rc-close aria-label="Close">×</button>';
 }
 
