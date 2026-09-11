@@ -6,6 +6,16 @@ const fs = require("fs"); const path = require("path");
 const sharp = require("C:/Users/miyama/APP/renai-crm/node_modules/sharp");
 const ROOT = path.resolve(__dirname, "..", ".."); const IN = path.join(ROOT, "assets", "en", "_inbox"); const OUT = path.join(ROOT, "assets", "en");
 const MAP = {
+  "S__50159633_0.jpg": { out: "ss-team-2.jpg", crop: [0, 0.36] },      // チーム分析 結果(上部のみ・JPと同じ横長比に)
+  "S__50159634_0.jpg": { out: "ss-team.jpg", crop: [0.04, 0] },        // チーム分析 種類とメンバー選択(ステータスバーを落とす)
+  "S__50159635_0.jpg": { out: "karte-back2.jpg", crop: [0.02, 0.02] }, // 鑑定書: 裏表紙
+  "S__50159636_0.jpg": { out: "karte-palm2.jpg", crop: [0.02, 0.02] }, // 鑑定書: 手相
+  "S__50159637_0.jpg": { out: "karte-shrine.jpg", crop: [0.02, 0.02] },// 鑑定書: 属性神社・守護神
+  "S__50159638_0.jpg": { out: "karte-selfreport2.jpg", crop: [0.02, 0.02] }, // 鑑定書: 自己分析レポート
+  "S__50159639_0.jpg": { out: "karte-biorhythm2.jpg", crop: [0.02, 0.02] },  // 鑑定書: 運気バイオリズム
+  "S__50159640_0.jpg": { out: "karte-attr2.jpg", crop: [0.02, 0.02] }, // 鑑定書: 属性・守護石
+  "S__50159641_0.jpg": { out: "karte-cover2.jpg", crop: [0.045, 0.01] }, // 鑑定書: 表紙(ビューアの 1/9 表示を落とす)
+  "S__50159642_0.jpg": { out: "ss-energy.jpg" },                        // エネルギーカラー
   "S__50159644_0.jpg": { out: "ss-future.jpg" },                         // 未来ビジョン(生成画像)
   "S__50159645_0.jpg": { out: "ss-guardian.jpg" },                       // 守護神
   "S__50159646_0.jpg": { out: "ss-chakra.jpg" },                         // チャクラ分析
