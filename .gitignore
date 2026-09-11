@@ -4,3 +4,7 @@
 node_modules
 .DS_Store
 Thumbs.db
+
+# 英語LP画像の受け入れ用(作業フォルダ・原本は置かない)
+assets/en/_inbox/*
+!assets/en/_inbox/.gitkeep

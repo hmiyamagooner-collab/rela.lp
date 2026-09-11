@@ -32,9 +32,13 @@ for (const pg of PAGES) {
 
   // 1) 要素単位の差し替え(分断された段落)
   for (const o of overrides) {
-    const el = o.selector ? doc.querySelector(o.selector) : deepestContaining(doc, o.contains);
-    if (!el) { console.warn(`[${pg}] override not found: ${o.contains || o.selector}`); continue; }
-    el.innerHTML = o.html; hits++;
+    const els = o.selector ? (o.all ? [...doc.querySelectorAll(o.selector)] : [doc.querySelector(o.selector)].filter(Boolean)) : [deepestContaining(doc, o.contains)].filter(Boolean);
+    if (!els.length) { console.warn(`[${pg}] override not found: ${o.contains || o.selector}`); continue; }
+    for (const el of els) {
+      if (typeof o.html === "string") el.innerHTML = o.html;                                   // 中身の差し替え
+      if (o.attrs) for (const [k, v] of Object.entries(o.attrs)) el.setAttribute(k, v);       // 属性の上書き(style/d 等)
+      hits++;
+    }
   }
   // 2) テキストノード
   const walker = doc.createTreeWalker(doc.body, 4); const nodes = []; let n;

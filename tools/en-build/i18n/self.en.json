@@ -48,5 +48,98 @@
  "自分の分析｜RELA（リラ）": "Self-analysis | RELA",
  "RELA（リラ）| AIで自分と相手を可視化する": "RELA | Visualize yourself and the people you love with AI",
  "性格・相性・心理傾向をAIが多角的に分析。分析×哲学×AI。": "AI analyzes personality, compatibility and psychological tendencies from every angle. Analysis × Philosophy × AI.",
- "RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。": "RELA is an app where AI analyzes personality, compatibility and psychological tendencies from multiple angles. Analysis × Philosophy × AI. Visualize your relationships with the people who matter and steer your life in a better direction."
+ "RELA（リラ）は、性格・相性・心理傾向をAIが多角的に分析するアプリ。分析×哲学×AI。あなたと大切な人の関係を可視化し、人生をよりいい方向へ導きます。": "RELA is an app where AI analyzes personality, compatibility and psychological tendencies from multiple angles. Analysis × Philosophy × AI. Visualize your relationships with the people who matter and steer your life in a better direction.",
+ "__overrides": [
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-dot:nth-of-type(1)",
+   "attrs": {
+    "style": "left:32%;top:13%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-dot:nth-of-type(2)",
+   "attrs": {
+    "style": "left:32%;top:45%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-dot:nth-of-type(3)",
+   "attrs": {
+    "style": "left:41%;top:92%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-dot:nth-of-type(4)",
+   "attrs": {
+    "style": "left:43%;top:14%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-dot:nth-of-type(5)",
+   "attrs": {
+    "style": "left:51%;top:72%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-ln:nth-of-type(1)",
+   "attrs": {
+    "d": "M24 13 L32 13"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-ln:nth-of-type(2)",
+   "attrs": {
+    "d": "M24 45 L32 45"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-ln:nth-of-type(3)",
+   "attrs": {
+    "d": "M24 92 L41 92"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-ln:nth-of-type(4)",
+   "attrs": {
+    "d": "M76 14 L43 14"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-ln:nth-of-type(5)",
+   "attrs": {
+    "d": "M76 72 L51 72"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-lb:nth-of-type(1)",
+   "attrs": {
+    "style": "top:13%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-lb:nth-of-type(2)",
+   "attrs": {
+    "style": "top:45%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-lb:nth-of-type(3)",
+   "attrs": {
+    "style": "top:92%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-lb:nth-of-type(4)",
+   "attrs": {
+    "style": "top:14%"
+   }
+  },
+  {
+   "selector": ".sa-figure:has(img[src$=\"ss-self-score.jpg\"]) .sa-lb:nth-of-type(5)",
+   "attrs": {
+    "style": "top:72%"
+   }
+  }
+ ],
+ "__note_score": "英語版の今日のスコア画像(assets/en/ss-self-score.jpg, 展開表示)に合わせた注釈位置。画像を差し替えたら要調整"
 }
