@@ -25,6 +25,7 @@ for (const pg of PAGES) {
   const overrides = map.__overrides || []; delete map.__overrides;
   const dom = new JSDOM(src); const doc = dom.window.document;
   const missing = new Set(); let hits = 0;
+  doc.querySelectorAll(".lang-sw, .nav-lang").forEach(e => e.remove());   // 日本語ページ側の言語切替(EN)は複製しない
 
   // 1) 要素単位の差し替え(分断された段落)
   for (const o of overrides) {

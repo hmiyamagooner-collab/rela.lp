@@ -1,8 +1,12 @@
 {
  "__overrides": [
-  { "contains": "可視化", "selector": "h1.seq.s1", "html": "<span class=\"big\">AI</span> that reveals <span class=\"big\">you</span> and <span class=\"big\">them</span>" }
+  {
+   "contains": "可視化",
+   "selector": "h1.seq.s1",
+   "html": "<span class=\"big\">AI</span> that reveals <span class=\"big\">you</span> and <span class=\"big\">them</span>"
+  }
  ],
- "今なら": "Right now: ",
+ "今なら": "Right now — ",
  "その名は、": "Its name comes from",
  "「関係」と「知性」の出会いから": "the meeting of “Relationship” and “Intelligence” —",
  "生まれました。": "that is where RELA was born.",
@@ -38,7 +42,6 @@
  "今すぐRELAをはじめる": "Start RELA now",
  "スタンダードは3日間無料でお試しいただけます": "Try Standard free for 3 days",
  "登録は無料。クレジットカードは必要ありません。": "Signing up is free. No credit card required.",
- "今なら": "Right now:",
  "スタンダード3日間無料": "Standard free for 3 days",
  "180コインプレゼント": "180 bonus coins",
  "大切な人を、もっと深く理解するために": "To understand the people you cherish, more deeply",
