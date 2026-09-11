@@ -85,6 +85,15 @@ for (const pg of PAGES) {
     return v;
   };
   doc.querySelectorAll("[href],[src],[poster]").forEach(el => ["href", "src", "poster"].forEach(a => { if (el.hasAttribute(a)) el.setAttribute(a, fixPath(el.getAttribute(a))); }));
+  // 6b) 英語版の画像: assets/en/<同名> が存在すればそちらを使う(アプリ画面の英語スクショ等)。無ければ日本語版の画像のまま
+  const enImg = (v) => { const m = v && v.match(/^\.\.\/assets\/([^/?#]+)$/); if (m && fs.existsSync(path.join(ROOT, "assets", "en", m[1]))) { swapped.add(m[1]); return "../assets/en/" + m[1]; } return v; };
+  const swapped = new Set();
+  doc.querySelectorAll("img[src],video[poster],source[src]").forEach(el => ["src", "poster"].forEach(a => { if (el.hasAttribute(a)) el.setAttribute(a, enImg(el.getAttribute(a))); }));
+  doc.querySelectorAll("img[srcset]").forEach(el => el.setAttribute("srcset", el.getAttribute("srcset").split(",").map(p => { const [u, d] = p.trim().split(/\s+/); return [enImg(u), d].filter(Boolean).join(" "); }).join(", ")));
+  const swapUrl = (css) => css.replace(/url\((['"]?)(?:\.\.\/)?assets\/([^'")]+)\1\)/g, (m0, q, f) => fs.existsSync(path.join(ROOT, "assets", "en", f)) ? (swapped.add(f), "url(" + q + "../assets/en/" + f + q + ")") : m0);
+  doc.querySelectorAll("[style]").forEach(el => el.setAttribute("style", swapUrl(el.getAttribute("style"))));
+  doc.querySelectorAll("style").forEach(st => { st.textContent = swapUrl(st.textContent); });
+  if (swapped.size) console.log("  [" + pg + "] 英語画像に差し替え:", [...swapped].join(", "));
   doc.querySelectorAll("[style]").forEach(el => { const s = el.getAttribute("style"); if (/url\((['"]?)assets\//.test(s)) el.setAttribute("style", s.replace(/url\((['"]?)assets\//g, "url($1../assets/")); });
   doc.querySelectorAll("style").forEach(st => { st.textContent = st.textContent.replace(/url\((['"]?)assets\//g, "url($1../assets/"); });
   // 7) 言語切替(日本語へ)
