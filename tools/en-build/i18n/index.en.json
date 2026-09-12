@@ -8,8 +8,13 @@
   {
    "selector": ".lg-title",
    "html": "Choose your language<span class=\"en\">言語を選んでください</span>"
+  },
+  {
+   "selector": "footer a.ig",
+   "attrs": { "href": "https://www.instagram.com/rela_ai_en", "aria-label": "Instagram @rela_ai_en" }
   }
  ],
+ "@rela_ai": "@rela_ai_en",
  "今なら": "Right now — ",
  "その名は、": "Its name comes from",
  "「関係」と「知性」の出会いから": "the meeting of “Relationship” and “Intelligence” —",
