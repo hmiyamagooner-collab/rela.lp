@@ -86,7 +86,7 @@ for (const pg of PAGES) {
     }
     let m = v.match(/^\.?\/?([a-z]+)\.html(#.*)?$/) || v.match(/^\.?\/?(lp|index)(#.*)?$/);
     if (m) { const name = m[1], hash = m[2] || ""; if (PAGES.includes(name)) return "./" + name + ".html" + hash; if (LEGAL.includes(name)) return "./" + legalEnName(name) + ".html" + hash; }
-    if (/^(assets\/|theme\.css|sweep\.css|legal\.css|theme\.js|utm\.js|lang\.js|checkout\.js|budoux-ja\.min\.js|jp-wrap\.js)/.test(v)) return "../" + v;
+    if (/^(assets\/|theme\.css|sweep\.css|legal\.css|theme\.js|utm\.js|ig\.js|lang\.js|checkout\.js|budoux-ja\.min\.js|jp-wrap\.js)/.test(v)) return "../" + v;
     return v;
   };
   doc.querySelectorAll("[href],[src],[poster]").forEach(el => ["href", "src", "poster"].forEach(a => { if (el.hasAttribute(a)) el.setAttribute(a, fixPath(el.getAttribute(a))); }));

@@ -45,6 +45,21 @@
       "source": "/us-ad",
       "destination": "/en/?lang=en&utm_source=meta&utm_medium=paid&utm_campaign=us_launch&utm_content=ad",
       "statusCode": 302
+    },
+    {
+      "source": "/us-dm-relationship",
+      "destination": "/en/?lang=en&utm_source=instagram&utm_medium=dm&utm_campaign=us_launch&utm_content=relationship",
+      "statusCode": 302
+    },
+    {
+      "source": "/us-dm-self",
+      "destination": "/en/?lang=en&utm_source=instagram&utm_medium=dm&utm_campaign=us_launch&utm_content=self",
+      "statusCode": 302
+    },
+    {
+      "source": "/us-dm-someone",
+      "destination": "/en/?lang=en&utm_source=instagram&utm_medium=dm&utm_campaign=us_launch&utm_content=someone",
+      "statusCode": 302
     }
   ]
 }

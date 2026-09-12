@@ -130,6 +130,7 @@ h1 .big{font-size:1.32em;font-weight:700}
 @media (max-width:480px){
   h1{font-size:clamp(16px,4.35vw,22px);letter-spacing:.02em;white-space:nowrap}
   h1 .big{font-size:1.2em}
+  body.ig-dm h1{white-space:normal;padding:0 8px}   /* Instagram DM流入(ig.js)の長い見出しは折り返す */
 }
 .subline{font-family:'Shippori Mincho',serif;color:var(--ink-soft);
   font-size:clamp(14px,1.8vw,19px);letter-spacing:.22em;margin-bottom:40px}
@@ -326,6 +327,7 @@ footer a.ig:hover .ig-h{color:#fff}
   </div>
 </footer>
 <script src="utm.js"></script>
+<script src="ig.js"></script>
 <script src="theme.js"></script>
 <script src="jp-wrap.js"></script>
 <script>
@@ -333,8 +335,8 @@ footer a.ig:hover .ig-h{color:#fff}
 (function(){
   var intro = document.getElementById('intro'), done = false;
   if (window.RELA_LANG && window.RELA_LANG.redirected) return;   // 記憶した言語のトップへ移動中
-  // 戻る(#app)で来た時だけオープニングを全スキップ。通常訪問・再読込では必ず再生する
-  if (location.hash === '#app') {
+  // 戻る(#app)で来た時と、Instagram DM流入(ig.js が intent を受け付けた時)だけオープニングを全スキップ。通常訪問・再読込では必ず再生する
+  if (location.hash === '#app' || window.RELA_IG_SKIP_INTRO) {
     var g0 = document.getElementById('langGate'); if (g0 && g0.parentNode) g0.parentNode.removeChild(g0);
     if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
     document.body.classList.add('instant');
