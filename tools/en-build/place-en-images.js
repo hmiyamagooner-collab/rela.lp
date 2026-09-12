@@ -30,6 +30,15 @@ const MAP = {
   "S__50159656_0.jpg": { out: "ss-self-score.jpg" },                     // 今日のスコア
   "S__50159657_0.jpg": { out: "ss-biorhythm.jpg" },                      // 運気バイオリズム
   "S__50159658_0.jpg": { out: "karte-chakra2.jpg", crop: [0.06, 0.02] }, // 鑑定書: 12チャクラ解説(周囲の余白を落とす)
+  // 2026-09-12 差し替え: 英語モードの鑑定書スクショ(2回目・全ページ英語化後)。人相ページ(8/9)はLP未掲載のため無し
+  "S__50225173_0.jpg": { out: "karte-cover2.jpg", crop: [0.02, 0.02] },      // 鑑定書: 表紙
+  "S__50225174_0.jpg": { out: "karte-attr2.jpg", crop: [0.02, 0.02] },       // 鑑定書: 属性・守護石(※イメージアート4行はアプリ修正後の再描画で差し替え)
+  "S__50225175_0.jpg": { out: "karte-biorhythm2.jpg", crop: [0.02, 0.02] },  // 鑑定書: 運気バイオリズム・命式
+  "S__50225176_0.jpg": { out: "karte-selfreport2.jpg", crop: [0.02, 0.02] }, // 鑑定書: 自己分析レポート
+  "S__50225177_0.jpg": { out: "karte-chakra2.jpg", crop: [0.02, 0.02] },     // 鑑定書: 12チャクラ解説
+  "S__50225178_0.jpg": { out: "karte-shrine.jpg", crop: [0.02, 0.02] },      // 鑑定書: 属性神社・守護神
+  "S__50225179_0.jpg": { out: "karte-palm2.jpg", crop: [0.02, 0.02] },       // 鑑定書: 手相
+  "S__50225180_0.jpg": { out: "karte-back2.jpg", crop: [0.02, 0.02] },       // 鑑定書: 裏表紙
 };
 (async () => {
   for (const [src, cfg] of Object.entries(MAP)) {
