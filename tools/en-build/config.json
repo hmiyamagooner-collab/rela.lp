@@ -1,6 +1,6 @@
 {
   "_comment": "英語LPの切替フラグ。playAvailable を true にして build.js を再実行すると、トップの Google Play QR が通常表示(リンク有効)になる",
-  "playAvailable": false,
+  "playAvailable": true,
   "playSoonSub": "Android app · US release coming soon",
   "playSoonCta": "Not available yet"
 }
