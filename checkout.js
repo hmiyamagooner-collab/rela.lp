@@ -20,10 +20,10 @@ const RC_CSS_URL = 'https://esm.sh/@revenuecat/purchases-js@1/dist/Purchases.css
 // 英語版LP(/en/, <html lang="en">)では英語＋USD表示。JP側の文言・金額は従来どおり。
 const EN = (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'en');
 const PLAN_LABEL = EN ? {
-  basic: 'BASIC ($4.99/month)',
-  standard: 'STANDARD ($9.99/month)',
-  premium: 'PREMIUM ($24.99/month)',
-  coins_180: 'RELA 180 coins ($2.99)'
+  basic: 'BASIC (US$4.99/month)',
+  standard: 'STANDARD (US$9.99/month)',
+  premium: 'PREMIUM (US$24.99/month)',
+  coins_180: 'RELA 180 Coins (US$2.99)'
 } : {
   basic: 'BASIC（¥500/月）',
   standard: 'STANDARD（¥1,500/月）',
@@ -32,11 +32,12 @@ const PLAN_LABEL = EN ? {
 };
 const COIN_PACKAGES = { coins_180: 180 }; // 消費型: 識別子→付与コイン枚数
 // 申込み最終確認画面（特商法：金額・無料期間・自動更新・解約期限/方法を購入確定前に表示）用のメタ
+// 英語版の価格表記は法務原稿(Legal Notice & Subscription Terms)と同じ "US$" で統一
 const PLAN_META = EN ? {
-  basic:     { name: 'BASIC',          price: '$4.99',  sub: true,  trial: 0 },
-  standard:  { name: 'STANDARD',       price: '$9.99',  sub: true,  trial: 3 },
-  premium:   { name: 'PREMIUM',        price: '$24.99', sub: true,  trial: 0 },
-  coins_180: { name: 'RELA 180 coins', price: '$2.99',  sub: false, trial: 0 }
+  basic:     { name: 'BASIC',          price: 'US$4.99',  sub: true,  trial: 0 },
+  standard:  { name: 'STANDARD',       price: 'US$9.99',  sub: true,  trial: 3 },
+  premium:   { name: 'PREMIUM',        price: 'US$24.99', sub: true,  trial: 0 },
+  coins_180: { name: 'RELA 180 Coins', price: 'US$2.99',  sub: false, trial: 0 }
 } : {
   basic:     { name: 'BASIC',        price: '¥500',   sub: true,  trial: 0 },
   standard:  { name: 'STANDARD',     price: '¥1,500', sub: true,  trial: 3 },
@@ -138,11 +139,21 @@ function viewNotReady() {
     + '<button class="btn btn-line rc-btn" data-rc-close>Close</button>';
   return viewNotReadyJa();
 }
-function viewDone(plan) {
+function enDate(d) { try { return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); } catch (e) { return d.toDateString(); } }
+function viewDone(plan, info) {
   if (EN) {
     var isCoinEn = !!COIN_PACKAGES[plan];
     var noteEn = '<br><span style="opacity:.85">It applies to RELA (app / browser) signed in with the same account. If it takes a moment, reopen the app.<br>💡 To make sure it applies on every device and browser, we recommend registering an <b>email address and password</b> in the app under Settings → “Data transfer”.</span>';
-    var bodyEn = isCoinEn ? (COIN_PACKAGES[plan] + ' coins have been added.' + noteEn) : (esc(PLAN_LABEL[plan] || '') + ' is now active.' + noteEn);
+    // 無料体験(Standard): 法務指示書 2026-09-11 / Terms §6「体験終了日と初回課金日を確認メッセージにも表示」。RevenueCatの
+    // entitlement(expirationDate=体験終了日)が取れればその日付、取れなければ申込みから3日後の概算で表示する。
+    var trialEn = '';
+    if (plan === 'standard') {
+      var end = null;
+      try { var ent = info && info.entitlements && info.entitlements.active && info.entitlements.active.standard; var raw = ent && (ent.expirationDate || ent.expiresDate); if (raw) end = new Date(raw); } catch (e) {}
+      if (!end || isNaN(end.getTime())) end = new Date(Date.now() + 3 * 864e5);
+      trialEn = '<br><b>Your 3-day free trial has started and ends on ' + esc(enDate(end)) + '.</b> Unless you cancel at least 24 hours before then, US$9.99 plus applicable tax will be charged on that date and your Standard plan will renew automatically each month until canceled. A confirmation email with a link to manage or cancel your subscription will be sent to you.';
+    }
+    var bodyEn = isCoinEn ? (COIN_PACKAGES[plan] + ' coins have been added.' + noteEn) : (esc(PLAN_LABEL[plan] || '') + ' is now active.' + trialEn + noteEn);
     return '<h3 class="rc-h">Thank you for your purchase</h3>'
       + '<p class="rc-p">' + bodyEn + '</p>'
       + '<a class="btn btn-grad rc-btn" href="https://rela.website/en/">Open RELA</a>';
@@ -155,33 +166,57 @@ function viewError(msg) {
     + '<button class="btn btn-line rc-btn" data-rc-close>Close</button>';
   return viewErrorJa(msg);
 }
-// 申込み最終確認画面(英語): 金額・無料期間・自動更新・解約期限/方法を購入確定前に表示
+// 申込み最終確認画面(英語): 法務指示書 2026-09-11 §4/§5/§8 に準拠。
+//   ・確定ボタンの直前に、価格・税・月次自動更新・24時間前解約・返金条件リンクを「通常サイズ」で表示(規約リンクの中だけに入れない)
+//   ・ボタン文言に金額/プラン名を含める(Standard: "Start 3-Day Free Trial – Then US$9.99/month")
+//   ・ボタン操作で継続課金に同意することを示す一文をボタン付近に表示
+//   ・有料購入は18歳以上(または居住地の成年年齢以上)に限定
 function viewConfirm(plan) {
   if (!EN) return viewConfirmJa(plan);
   var m = PLAN_META[plan] || {};
   var r = [];
   function row(k, v) { r.push('<div class="rc-row"><span>' + k + '</span><b>' + v + '</b></div>'); }
-  row('Plan', esc(m.name || '') + (m.sub ? ' (monthly plan)' : ' (one-time purchase)'));
-  row('Price', esc(m.price || '') + ' + applicable tax' + (m.sub ? ' / month' : ''));
+  var TERMS = '<a href="terms.html" target="_blank" rel="noopener">Terms of Service</a>';
+  var SUBT = '<a href="legal.html" target="_blank" rel="noopener">Subscription Terms</a>';
+  var REFUND = '<a href="legal.html" target="_blank" rel="noopener">refund conditions</a>';
+  var price = esc(m.price || '');
+  var trialEnd = m.trial ? enDate(new Date(Date.now() + m.trial * 864e5)) : '';
+  row('Plan', esc(m.name || '') + (m.sub ? ' (monthly subscription)' : ' (one-time purchase)'));
+  row('Price', price + ' plus applicable tax' + (m.sub ? ' per month' : ''));
   if (m.trial) {
-    row('Free trial', 'First ' + m.trial + ' days free');
-    row('First charge', 'After the free period ends (about ' + m.trial + ' days after sign-up)');
+    row('Free trial', m.trial + ' days, one per person and account. A payment method is required to start.');
+    row('First charge', 'When the trial ends (about ' + esc(trialEnd) + '), unless you cancel at least 24 hours before then');
   } else if (m.sub) {
-    row('First charge', 'At sign-up');
+    row('First charge', 'Today, at sign-up');
   }
   if (m.sub) {
-    row('Renewal', 'Renews automatically every month until you cancel');
-    row('Cancellation deadline', 'Up to 24 hours before the next renewal date');
-    row('How to cancel', 'From the “Manage subscription” link (billing portal) in your purchase confirmation email.' + (m.trial ? ' Cancel during the free period and you will not be charged.' : ''));
+    row('Renewal', 'Renews automatically each month at the same price until canceled');
+    row('Cancellation deadline', 'At least 24 hours before ' + (m.trial ? 'the trial ends or ' : '') + 'your next renewal date');
+    row('How to cancel', 'In the Stripe billing portal, opened from the Plan screen in RELA or from the link in your purchase confirmation email. Selecting the Free plan in RELA does not cancel.');
   }
-  row('Availability', 'Immediately after payment' + (m.trial ? ' (the trial starts at sign-up)' : ''));
-  row('Refunds', 'Digital services and coins are generally non-refundable (see Legal Notice)');
+  row('Availability', m.sub ? ('Immediately after ' + (m.trial ? 'the trial starts' : 'payment')) : 'Coins are credited immediately after payment');
+  row('Refunds', 'Digital services and Coins are generally non-refundable. See the ' + REFUND + '.');
+  row('Eligibility', 'You must be at least 18 years old, or the age of majority where you live, to purchase.');
+  var summary, btn, consent;
+  if (m.trial) {
+    summary = m.trial + '-day free trial, then ' + price + ' per month plus applicable tax. Your subscription renews automatically each month until canceled. Cancel at least 24 hours before the trial ends or your next renewal date to avoid the next charge. See the ' + TERMS + ' and ' + SUBT + '.';
+    btn = 'Start ' + m.trial + '-Day Free Trial – Then ' + price + '/month';
+    consent = 'By selecting the button, you agree to the ' + TERMS + ' and authorize recurring charges as described above.';
+  } else if (m.sub) {
+    summary = price + ' per month plus applicable tax, charged today. Your subscription renews automatically each month until canceled. Cancel at least 24 hours before your next renewal date to avoid the next charge. See the ' + TERMS + ', ' + SUBT + ', and ' + REFUND + '.';
+    btn = 'Subscribe to ' + esc(m.name || '') + ' – ' + price + '/month';
+    consent = 'By selecting the button, you agree to the ' + TERMS + ' and authorize recurring charges as described above.';
+  } else {
+    summary = 'One-time purchase of ' + esc(m.name || '') + ' for ' + price + ' plus applicable tax. Coins can be used only within RELA and are non-refundable after delivery, except as described in the ' + REFUND + '. See the ' + TERMS + ' and ' + SUBT + '.';
+    btn = 'Buy ' + esc(m.name || '') + ' – ' + price;
+    consent = 'By selecting the button, you agree to the ' + TERMS + ' and confirm your purchase as described above.';
+  }
   return '<h3 class="rc-h">Review your order</h3>'
     + '<div class="rc-terms">' + r.join('') + '</div>'
-    + '<p class="rc-note">By pressing the button below, you '
-    + (m.sub ? 'enter into a <b>paid, auto-renewing subscription</b>' : 'confirm your <b>purchase</b>') + ' on the terms above.</p>'
-    + '<button id="rc-confirm" class="btn btn-grad rc-btn" data-plan-confirm="' + esc(plan) + '">Agree and subscribe</button>'
-    + '<p class="rc-links"><a href="legal.html" target="_blank" rel="noopener">Legal Notice</a>　<a href="terms.html" target="_blank" rel="noopener">Terms of Service</a></p>'
+    + '<p class="rc-p" style="margin:12px 0 4px;color:#e9ecf6">' + summary + '</p>'
+    + '<button id="rc-confirm" class="btn btn-grad rc-btn" data-plan-confirm="' + esc(plan) + '">' + btn + '</button>'
+    + '<p class="rc-note" style="text-align:center">' + consent + '</p>'
+    + '<p class="rc-links"><a href="legal.html" target="_blank" rel="noopener">Legal Notice &amp; Subscription Terms</a>　' + TERMS + '</p>'
     + '<button class="rc-x" data-rc-close aria-label="Close">×</button>';
 }
 
@@ -272,7 +307,7 @@ async function doPurchase(plan) {
     const pkg = pkgs.find(p => p.identifier === plan);
     if (!pkg) { openModal(viewNotReady()); return; } // ダッシュボード未整備
     const result = await inst.purchase(EN ? { rcPackage: pkg, selectedLocale: 'en' } : { rcPackage: pkg });
-    if (result && result.customerInfo) openModal(viewDone(plan));
+    if (result && result.customerInfo) openModal(viewDone(plan, result.customerInfo));
     else openModal(viewError());
   } catch (e) {
     if (isCancel(e)) { closeModal(); return; }

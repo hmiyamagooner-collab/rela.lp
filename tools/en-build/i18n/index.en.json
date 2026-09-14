@@ -12,6 +12,15 @@
   {
    "selector": "footer a.ig",
    "attrs": { "href": "https://www.instagram.com/rela_ai_en", "aria-label": "Instagram @rela_ai_en" }
+  },
+  {
+   "_comment": "法務指示書 2026-09-11 §3: 無料登録と有料の無料体験を分けて表示(英語版のみ)。1行目=無料アカウント作成、2行目=Standard無料体験(決済手段が必要・US$9.99/月・24時間前解約)",
+   "selector": "p.seq.s5:has(> a[href=\"./lp#plans\"])",
+   "html": "Create a free account – no credit card required."
+  },
+  {
+   "selector": "p.note.seq.s5",
+   "html": "<a href=\"./lp#plans\" style=\"color:var(--cyan);text-decoration:underline;font-weight:700\">Start a 3-day Standard trial</a> – payment method required. Then US$9.99/month plus applicable tax unless canceled at least 24 hours before the trial ends."
   }
  ],
  "@rela_ai": "@rela_ai_en",
@@ -49,8 +58,8 @@
  "ストアで入手 →": "Get it on Google Play →",
  "スマホでQRを読み取るか、カードをタップ。": "Scan the QR with your phone, or tap a card.",
  "今すぐRELAをはじめる": "Start RELA now",
- "スタンダードは3日間無料でお試しいただけます": "Try Standard free for 3 days",
- "登録は無料。クレジットカードは必要ありません。": "Signing up is free. No credit card required.",
+ "スタンダードは3日間無料でお試しいただけます": "Start a 3-day Standard trial",
+ "登録は無料。クレジットカードは必要ありません。": "Create a free account – no credit card required.",
  "スタンダード3日間無料": "Standard free for 3 days",
  "180コインプレゼント": "180 bonus coins",
  "大切な人を、もっと深く理解するために": "To understand the people you cherish, more deeply",
