@@ -68,7 +68,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/q/:token", "destination": "/q/index.html" }
+    { "source": "/q/:token", "destination": "/q" }
   ],
   "headers": [
     {
