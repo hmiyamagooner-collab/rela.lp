@@ -45,7 +45,7 @@ ol{margin:0;padding-left:1.4em}li{margin:6px 0}
   <section class="card">
     <h2 id="h-steps">つなげかた</h2>
     <ol>
-      <li id="s1">RELAアプリを開く</li>
+      <li id="s1">RELAを開く(アプリまたはWeb)</li>
       <li id="s2">「相手の登録・分析」を開き、「QRのリンクを貼り付けて読み込む」を押す</li>
       <li id="s3">このページのリンクを貼り付ける</li>
     </ol>
@@ -56,8 +56,8 @@ ol{margin:0;padding-left:1.4em}li{margin:6px 0}
     <div class="fallback" id="fb"><input id="fbi" type="text" readonly aria-label="link"><p id="fbp">コピーできませんでした。上のリンクを長押しして、コピーしてください。</p></div>
   </section>
   <section class="card">
-    <h2 id="h-app">RELAアプリをお持ちでない方</h2>
-    <a class="btn store" id="store" href="https://apps.apple.com/app/id6824163479" rel="noopener noreferrer">App Storeで入手する</a>
+    <h2 id="h-app">まだRELAを使っていない方</h2>
+    <a class="btn store" id="store" href="/lp#plans" rel="noopener noreferrer">Webですぐに始める(登録無料)</a>
   </section>
   <p class="note" id="note">このリンクは、24時間・1回限りで、使えなくなります。</p>
 </main>
@@ -66,15 +66,16 @@ ol{margin:0;padding-left:1.4em}li{margin:6px 0}
   var en = !/^ja/i.test(navigator.language || navigator.userLanguage || 'ja');
   var T = en ? {
     lang: 'en', h1: 'A friend sent you a RELA connection', steps: 'How to connect',
-    s1: 'Open the RELA app', s2: 'Open "Register & analyze a partner" and tap "Load a QR link"', s3: "Paste this page's link",
+    s1: 'Open RELA (app or web)', s2: 'Open "Register & analyze a partner" and tap "Load a QR link"', s3: "Paste this page's link",
     copy: 'Copy link', copied: 'Copied!', fb: "Couldn't copy. Press and hold the link above, then copy it.",
-    app: "Don't have the RELA app?", store: 'Get it on the App Store', note: 'This link expires in 24 hours and works only once.'
+    app: 'New to RELA?', store: 'Start on the web (free)', note: 'This link expires in 24 hours and works only once.'
   } : null;
   if (T) {
     document.documentElement.lang = T.lang;
     var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
     set('h1', T.h1); set('h-steps', T.steps); set('s1', T.s1); set('s2', T.s2); set('s3', T.s3); set('copy', T.copy);
     set('fbp', T.fb); set('h-app', T.app); set('store', T.store); set('note', T.note);
+    document.getElementById('store').setAttribute('href', '/en/lp#plans');   // 英語の LP の「Start on iPhone / PC」と同じ行き先(プラン選択)
   }
   var msg = document.getElementById('msg'), fb = document.getElementById('fb'), fbi = document.getElementById('fbi');
   function done() { msg.textContent = en ? 'Copied!' : 'コピーしました'; fb.classList.remove('show'); fbi.value = ''; }
