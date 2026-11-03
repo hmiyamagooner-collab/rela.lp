@@ -21,6 +21,11 @@
   {
    "selector": "p.note.seq.s5",
    "html": "<a href=\"./lp#plans\" style=\"color:var(--cyan);text-decoration:underline;font-weight:700\">Start a 3-day Standard trial</a> – payment method required. Then US$9.99/month plus applicable tax unless canceled at least 24 hours before the trial ends."
+  },
+  {
+   "_comment": "指示書64: App Storeカード(3枚目)のCTAはGoogle Playと別文言にするため、テキストノード辞書(ストアで入手 →)とは別にこの要素だけ上書き",
+   "selector": "a.get-card[href*=\"apps.apple.com\"] .get-cta",
+   "html": "Get it on the App Store →"
   }
  ],
  "@rela_ai": "@rela_ai_en",
@@ -50,11 +55,12 @@
  "分析・鑑定": "Analysis & Readings",
  "カルテ": "Personal Dossier",
  "最高のチームを作る": "Build the best team",
- "iPhone・PCで始める": "Start on iPhone / PC",
+ "PCで始める": "Start on PC",
  "ブラウザですぐ・登録無料": "Instantly in your browser · Free to sign up",
  "QRでスマホでも開けます": "Scan the QR to open on your phone",
  "今すぐ始める →": "Start now →",
  "Android アプリ版": "Android app",
+ "iPhone アプリ版": "iPhone app",
  "ストアで入手 →": "Get it on Google Play →",
  "スマホでQRを読み取るか、カードをタップ。": "Scan the QR with your phone, or tap a card.",
  "今すぐRELAをはじめる": "Start RELA now",
@@ -68,8 +74,9 @@
  "特定商取引法に基づく表記": "Legal Notice",
  "運営会社": "Company",
  "RELA（リラ）": "RELA",
- "iPhone・PCで始める。プランを選ぶ画面へ移動します。": "Start on iPhone or PC. Takes you to the plan selection screen.",
+ "PCで始める。プランを選ぶ画面へ移動します。": "Start on PC. Takes you to the plan selection screen.",
  "Google Playで入手。QRを読み取るかタップ。": "Get it on Google Play. Scan the QR or tap.",
+ "App Storeで入手。QRを読み取るかタップ。": "Get it on the App Store. Scan the QR or tap.",
  "大切な人を、もっと深く理解するために OFF": "To understand the people you cherish, more deeply — OFF",
  "RELA（リラ）| AIで自分と相手を可視化する": "RELA | Visualize yourself and the people you love with AI",
  "性格・相性・心理傾向をAIが多角的に分析。分析×哲学×AI。": "AI analyzes personality, compatibility and psychological tendencies from every angle. Analysis × Philosophy × AI.",
