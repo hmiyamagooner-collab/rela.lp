@@ -21,11 +21,6 @@
   {
    "selector": "p.note.seq.s5",
    "html": "<a href=\"./lp#plans\" style=\"color:var(--cyan);text-decoration:underline;font-weight:700\">Start a 3-day Standard trial</a> – payment method required. Then US$9.99/month plus applicable tax unless canceled at least 24 hours before the trial ends."
-  },
-  {
-   "_comment": "指示書64: App Storeカード(3枚目)のCTAはGoogle Playと別文言にするため、テキストノード辞書(ストアで入手 →)とは別にこの要素だけ上書き",
-   "selector": "a.get-card[href*=\"apps.apple.com\"] .get-cta",
-   "html": "Get it on the App Store →"
   }
  ],
  "@rela_ai": "@rela_ai_en",
