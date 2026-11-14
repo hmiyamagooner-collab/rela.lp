@@ -1,0 +1,39 @@
+﻿/* Subpages share the home palette, particles and quiet, rounded surfaces. */
+.pages-v12::before { content: none; }
+.pages-v12 header { background: rgba(7,8,11,.9); border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
+.pages-v12 .nav-brand { filter: none; }
+.pages-v12 section { padding: 80px 0; }
+.pages-v12 section:first-of-type { padding-top: 66px; }
+.pages-v12 h2.sec { font-family: inherit; font-weight: 700; letter-spacing: .025em; line-height: 1.5; font-size: clamp(26px,3.5vw,38px); }
+.pages-v12 .sec-line { margin-bottom: 32px; }
+.pages-v12 .sec-line::before,.pages-v12 .sec-line::after { height: 1px; box-shadow: none; opacity: .5; }
+.pages-v12 .sec-line .dot { box-shadow: none; }
+.pages-v12 .plan,.pages-v12 details,.pages-v12 .coin-buy { background: rgba(13,15,21,.86); border-color: var(--line); box-shadow: 0 8px 28px rgba(0,0,0,.15); }
+.pages-v12 .plan { border-radius: 22px; }
+.pages-v12 .plan.featured { border: 1px solid rgba(138,200,255,.65); background: linear-gradient(160deg,rgba(31,65,111,.4),rgba(49,35,76,.35)); }
+.pages-v12 .plan.featured::before { content: none; }
+.pages-v12 .plan .badge { background: #284f86; box-shadow: none; }
+.pages-v12 .btn-grad { background: linear-gradient(120deg,#284f86,#514276); border: 1px solid rgba(156,182,225,.45); box-shadow: 0 8px 28px rgba(44,76,138,.2); }
+.pages-v12 .back-link { color: var(--ink-soft); border-color: var(--line); background: rgba(13,15,21,.7); letter-spacing: 0; }
+.pages-v12 .back-link:hover { border-color: var(--cyan); box-shadow: none; }
+.pages-v12 .rd-sub { max-width: 760px; margin-left: auto; margin-right: auto; }
+.pages-v12 .rd-gallery img,.pages-v12 .sa-img,.pages-v12 .karte-gallery img { box-shadow: 0 12px 36px rgba(0,0,0,.28); border-color: var(--line); }
+.pages-v12 .get { margin-left: auto; margin-right: auto; }
+.pages-v12 footer { background: rgba(7,8,11,.88); padding: 32px 0 42px; }
+@media(max-width:560px) {
+  .pages-v12 section { padding: 52px 0; }
+  .pages-v12 section:first-of-type { padding-top: 42px; }
+  .pages-v12 .wrap { padding-left: 20px; padding-right: 20px; }
+  .pages-v12 .plan { padding: 28px 22px; }
+  .pages-v12 .get-card { max-width: 100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .pages-v12 *, .pages-v12 *::before, .pages-v12 *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+.pages-v12 .floor { display: none; }
+.pages-v12 .final .tagline { font-family: inherit; letter-spacing: .025em; line-height: 1.7; }
+/* Fixed navigation keeps a clear gap above the first page heading. */
+.pages-v12 section:first-of-type { padding-top: 112px; }
+@media(max-width:560px) { .pages-v12 section:first-of-type { padding-top: 100px; } }
+/* The longer English contents line wraps at readable size on narrow screens. */
+html[lang="en"] .pages-v12 .kc-main { white-space: normal; font-size: 12px; }
