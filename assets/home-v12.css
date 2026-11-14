@@ -18,6 +18,13 @@ body {
 body > .bg-sweep, .stage > .bg-sweep { display: none; }
 /* A fixed, non-interactive field keeps the quantum particles behind the whole page. */
 body > .bg-sweep { display: block; z-index: 0; contain: strict; }
+body > .bg-sweep::before {
+  content: ''; position: absolute; inset: -14%;
+  background: url('quantum-lines.svg') center / 1400px 1100px repeat;
+  opacity: .42; mix-blend-mode: screen;
+  animation: quantum-drift 40s ease-in-out infinite alternate-reverse;
+  will-change: transform;
+}
 body > .bg-sweep i {
   inset: -14%; width: 128%; height: 128%;
   background: url('quantum-particles.svg') center / 1200px 1000px repeat;
@@ -43,15 +50,23 @@ body > .bg-sweep::after {
   to { transform: translate3d(-4%, -3%, 0) scale(1); }
 }
 @media (max-width: 560px) {
+  body > .bg-sweep::before { background-size: 850px 950px; opacity: .3; }
   body > .bg-sweep i { background-size: 750px 850px; opacity: .65; }
   body > .bg-sweep i:nth-child(2) { background-size: 1000px 1100px; opacity: .25; }
 }
 @media (prefers-reduced-motion: reduce) {
-  body > .bg-sweep i { animation: none; will-change: auto; }
+  body > .bg-sweep i, body > .bg-sweep::before { animation: none; will-change: auto; }
 }
 .stage { padding: 78px 22px 60px; justify-content: flex-start; isolation: isolate; }
 .stage::before, .stage::after { content: none; }
-.home-hero { width: 100%; max-width: 1120px; }
+.home-hero { position: relative; width: 100%; max-width: 1120px; }
+.home-hero::after {
+  content: ''; position: absolute; left: 64%; top: 31%;
+  width: clamp(24px, 5.2vw, 64px); aspect-ratio: 100 / 96;
+  background: url('icon-heart.svg') center / contain no-repeat;
+  transform: translateX(-50%); pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(75, 170, 255, .65));
+}
 .home-hero img {
   display: block; width: 100%; height: auto;
   mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 78%, transparent), linear-gradient(to right, transparent, #000 10%, #000 88%, transparent);
