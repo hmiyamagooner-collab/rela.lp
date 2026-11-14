@@ -111,6 +111,9 @@ for (const pg of PAGES) {
   // 8) index: 英語版プラン画面へのQRに差し替え(1枚目のカード)
   if (pg === "index") {
     const qr = doc.querySelector(".get-card .get-qr"); if (qr) qr.innerHTML = EN_QR;
+    // 8b) index: App Store 公式バッジを英語版(Apple配布SVG)に差し替え(日本語版は assets/badge-appstore-ja.svg)
+    const bdg = doc.querySelector("a.get-card[href*=\"apps.apple.com\"] img.get-badge");
+    if (bdg) { bdg.setAttribute("src", "../assets/badge-appstore-en.svg"); bdg.setAttribute("alt", "Download on the App Store"); bdg.setAttribute("width", "120"); }
     // 9) index: Google Play カードは米国で正式ローンチするまで COMING SOON(リンク無効・QRを薄く・帯を重ねる)。config.json の playAvailable で切替
     const play = doc.querySelector('a.get-card[href*="play.google.com"]');
     if (play && !CONFIG.playAvailable) {
