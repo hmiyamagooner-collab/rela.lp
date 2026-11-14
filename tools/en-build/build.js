@@ -102,6 +102,8 @@ for (const pg of PAGES) {
   if (swapped.size) console.log("  [" + pg + "] 英語画像に差し替え:", [...swapped].join(", "));
   doc.querySelectorAll("[style]").forEach(el => { const s = el.getAttribute("style"); if (/url\((['"]?)assets\//.test(s)) el.setAttribute("style", s.replace(/url\((['"]?)assets\//g, "url($1../assets/")); });
   doc.querySelectorAll("style").forEach(st => { st.textContent = st.textContent.replace(/url\((['"]?)assets\//g, "url($1../assets/"); });
+  // Responsive image candidates use the same parent-relative assets as src.
+  doc.querySelectorAll('[srcset]').forEach(el => el.setAttribute('srcset', el.getAttribute('srcset').replace(/(^|,\s*)assets\//g, '$1../assets/')));
   // 7) 言語切替(日本語へ)
   if (pg === "index") {
     doc.body.insertAdjacentHTML("afterbegin", `<a href="/" class="lang-sw" lang="ja" style="position:fixed;top:18px;left:18px;z-index:60;padding:8px 14px;border-radius:999px;border:1px solid rgba(120,200,255,.45);background:rgba(8,13,28,.7);color:#dfe6f5;font-size:12.5px;font-weight:700;text-decoration:none;letter-spacing:.06em">日本語</a>`);
@@ -110,7 +112,7 @@ for (const pg of PAGES) {
   }
   // 8) index: 英語版プラン画面へのQRに差し替え(1枚目のカード)
   if (pg === "index") {
-    const qr = doc.querySelector(".get-card .get-qr"); if (qr) qr.innerHTML = EN_QR;
+    const qr = doc.querySelector('a.get-card[href*="lp.html"] .get-qr'); if (qr) qr.innerHTML = EN_QR;
     // 8b) index: App Store 公式バッジを英語版(Apple配布SVG)に差し替え(日本語版は assets/badge-appstore-ja.svg)
     const bdg = doc.querySelector("a.get-card[href*=\"apps.apple.com\"] img.get-badge");
     if (bdg) { bdg.setAttribute("src", "../assets/badge-appstore-en.svg"); bdg.setAttribute("alt", "Download on the App Store"); bdg.setAttribute("width", "120"); }
