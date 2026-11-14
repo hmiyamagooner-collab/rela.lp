@@ -61,10 +61,10 @@ body > .bg-sweep::after {
 .stage::before, .stage::after { content: none; }
 .home-hero { position: relative; width: 100%; max-width: 1120px; }
 .home-hero::after {
-  content: ''; position: absolute; left: 64%; top: 10%;
-  width: clamp(72px, 15.75vw, 210px); aspect-ratio: 1.28;
+  content: ''; position: absolute; left: 64.33%; top: 12%;
+  width: clamp(72px, 15.75vw, 210px); aspect-ratio: 1.12;
   background: url('heart-particles.webp') center / 100% 100% no-repeat;
-  transform: translateX(-50%); pointer-events: none;
+  transform: translateX(-48%); pointer-events: none;
   filter: drop-shadow(0 0 6px rgba(75, 170, 255, .4));
 }
 .home-hero img {
