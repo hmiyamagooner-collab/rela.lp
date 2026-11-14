@@ -16,6 +16,39 @@ body {
     var(--bg);
 }
 body > .bg-sweep, .stage > .bg-sweep { display: none; }
+/* A fixed, non-interactive field keeps the quantum streams behind the whole page. */
+body > .bg-sweep { display: block; z-index: 0; contain: strict; }
+body > .bg-sweep i {
+  inset: -14%; width: 128%; height: 128%;
+  background: url('quantum-lines.svg') center / 1200px 1000px repeat;
+  filter: none; opacity: .8; mix-blend-mode: screen;
+  animation: quantum-drift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+body > .bg-sweep i:nth-child(2) {
+  background-size: 1500px 1250px; background-position: 280px 350px;
+  opacity: .32; animation: quantum-counterflow 36s ease-in-out infinite alternate;
+}
+body > .bg-sweep::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 42% 85% at 50% 50%, rgba(7, 8, 11, .6), transparent 100%);
+}
+.stage { z-index: 1; }
+@keyframes quantum-drift {
+  from { transform: translate3d(-3%, -3%, 0) scale(1); }
+  to { transform: translate3d(3%, 4%, 0) scale(1.06); }
+}
+@keyframes quantum-counterflow {
+  from { transform: translate3d(3%, 4%, 0) scale(1.07); }
+  to { transform: translate3d(-4%, -3%, 0) scale(1); }
+}
+@media (max-width: 560px) {
+  body > .bg-sweep i { background-size: 750px 850px; opacity: .65; }
+  body > .bg-sweep i:nth-child(2) { background-size: 1000px 1100px; opacity: .25; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body > .bg-sweep i { animation: none; will-change: auto; }
+}
 .stage { padding: 78px 22px 60px; justify-content: flex-start; isolation: isolate; }
 .stage::before, .stage::after { content: none; }
 .home-hero { width: 100%; max-width: 1120px; }
