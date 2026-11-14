@@ -1,24 +1,4 @@
-﻿/* Match the app's fixed auth artwork, retaining its portrait resolution. */
-body, body.legal-v12 { background: #05060d; }
-body::before, body.legal-v12::before { content: none; }
-body > .bg-sweep, body.legal-v12 > .bg-sweep {
-  display: block; position: fixed; inset: 0; width: 100%; height: 100%;
-  z-index: 0; pointer-events: none; contain: strict;
-  background: #05060d url('auth-bg.webp') center center / cover no-repeat;
-  animation: none; transform: none;
-}
-body > .bg-sweep::before, body > .bg-sweep::after, body > .bg-sweep i,
-.stage > .bg-sweep { display: none; animation: none; }
-body.legal-v12 > .bg-sweep { opacity: .32; }
-.stage { background: rgba(5,6,13,.18); }
-.pages-v12 .floor { display: none; }
-/* At wide aspect ratios, keep the entire floor and softly join the dark sides. */
-@media(min-aspect-ratio:2/3) {
-  body > .bg-sweep { background-size: auto 100%;
-    mask-image: linear-gradient(to right,transparent calc(50% - 33.34vh),#000 calc(50% - 26vh),#000 calc(50% + 26vh),transparent calc(50% + 33.34vh));
-    -webkit-mask-image: linear-gradient(to right,transparent calc(50% - 33.34vh),#000 calc(50% - 26vh),#000 calc(50% + 26vh),transparent calc(50% + 33.34vh));
-  }
-}
+/* Backgrounds inherit the approved #78-2 styles; retain app branding only. */
 /* Preserve the original two-person artwork while replacing its baked-in branding. */
 .home-hero { height: clamp(190px,30vw,355px); overflow: hidden; }
 .home-hero .home-banner-people {
