@@ -16,18 +16,18 @@ body {
     var(--bg);
 }
 body > .bg-sweep, .stage > .bg-sweep { display: none; }
-/* A fixed, non-interactive field keeps the quantum streams behind the whole page. */
+/* A fixed, non-interactive field keeps the quantum particles behind the whole page. */
 body > .bg-sweep { display: block; z-index: 0; contain: strict; }
 body > .bg-sweep i {
   inset: -14%; width: 128%; height: 128%;
-  background: url('quantum-lines.svg') center / 1200px 1000px repeat;
-  filter: none; opacity: .8; mix-blend-mode: screen;
-  animation: quantum-drift 28s ease-in-out infinite alternate;
+  background: url('quantum-particles.svg') center / 1200px 1000px repeat;
+  filter: none; opacity: .85; mix-blend-mode: screen;
+  animation: quantum-drift 24s ease-in-out infinite alternate;
   will-change: transform;
 }
 body > .bg-sweep i:nth-child(2) {
   background-size: 1500px 1250px; background-position: 280px 350px;
-  opacity: .32; animation: quantum-counterflow 36s ease-in-out infinite alternate;
+  opacity: .32; animation: quantum-counterflow 32s ease-in-out infinite alternate;
 }
 body > .bg-sweep::after {
   content: ''; position: absolute; inset: 0;
@@ -36,10 +36,10 @@ body > .bg-sweep::after {
 .stage { z-index: 1; }
 @keyframes quantum-drift {
   from { transform: translate3d(-3%, -3%, 0) scale(1); }
-  to { transform: translate3d(3%, 4%, 0) scale(1.06); }
+  to { transform: translate3d(3%, 4%, 0) scale(1.17); }
 }
 @keyframes quantum-counterflow {
-  from { transform: translate3d(3%, 4%, 0) scale(1.07); }
+  from { transform: translate3d(3%, 4%, 0) scale(1.22); }
   to { transform: translate3d(-4%, -3%, 0) scale(1); }
 }
 @media (max-width: 560px) {
@@ -52,7 +52,13 @@ body > .bg-sweep::after {
 .stage { padding: 78px 22px 60px; justify-content: flex-start; isolation: isolate; }
 .stage::before, .stage::after { content: none; }
 .home-hero { width: 100%; max-width: 1120px; }
-.home-hero img { display: block; width: 100%; height: auto; border-radius: 20px; }
+.home-hero img {
+  display: block; width: 100%; height: auto;
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 78%, transparent), linear-gradient(to right, transparent, #000 10%, #000 88%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 78%, transparent), linear-gradient(to right, transparent, #000 10%, #000 88%, transparent);
+  -webkit-mask-composite: source-in;
+}
 .logo-wrap { filter: none; margin-top: -46px; }
 .logo-emerge {
   display: block; width: 104px; height: 104px; border-radius: 24px;
@@ -133,7 +139,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid #8ac8ff; outline-offs
 }
 @media (max-width: 560px) {
   .stage { padding: 64px 22px 40px; }
-  .home-hero img { border-radius: 12px; }
   .logo-wrap { margin-top: -24px; }
   .logo-emerge { width: 80px; height: 80px; border-radius: 20px; border-width: 3px; }
   .stage h1 { font-size: 25px; margin-top: 24px; line-height: 1.55; }
