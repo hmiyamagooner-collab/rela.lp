@@ -35,3 +35,5 @@
 /* Fixed navigation keeps a clear gap above the first page heading. */
 .pages-v12 section:first-of-type { padding-top: 112px; }
 @media(max-width:560px) { .pages-v12 section:first-of-type { padding-top: 100px; } }
+/* The longer English contents line wraps at readable size on narrow screens. */
+html[lang="en"] .pages-v12 .kc-main { white-space: normal; font-size: 12px; }
