@@ -61,11 +61,11 @@ body > .bg-sweep::after {
 .stage::before, .stage::after { content: none; }
 .home-hero { position: relative; width: 100%; max-width: 1120px; }
 .home-hero::after {
-  content: ''; position: absolute; left: 64%; top: 31%;
-  width: clamp(24px, 5.2vw, 64px); aspect-ratio: 100 / 96;
-  background: url('icon-heart.svg') center / contain no-repeat;
+  content: ''; position: absolute; left: 64%; top: 23%;
+  width: clamp(36px, 8vw, 104px); aspect-ratio: 1;
+  background: url('heart-particles.webp') center / contain no-repeat;
   transform: translateX(-50%); pointer-events: none;
-  filter: drop-shadow(0 0 10px rgba(75, 170, 255, .65));
+  filter: drop-shadow(0 0 6px rgba(75, 170, 255, .4));
 }
 .home-hero img {
   display: block; width: 100%; height: auto;
