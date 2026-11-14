@@ -1,0 +1,8 @@
+﻿/* Legal documents: chrome and background only; document typography stays intact. */
+.legal-v12 { background: radial-gradient(ellipse 70% 580px at 30% 180px,rgba(39,106,199,.14),transparent 75%),radial-gradient(ellipse 55% 520px at 76% 440px,rgba(140,77,185,.12),transparent 75%),#07080b; }
+.legal-v12::before { content: none; }
+.legal-v12 > .bg-sweep { display: none; }
+.legal-v12 header { background: rgba(7,8,11,.9); border-bottom-color: rgba(151,170,210,.2); }
+.legal-v12 footer { background: rgba(7,8,11,.88); border-top-color: rgba(151,170,210,.1); }
+.legal-v12 header a,.legal-v12 footer { color: #c0c8d8; }
+.legal-v12 header a:focus-visible { outline: 2px solid #8ac8ff; outline-offset: 5px; }
