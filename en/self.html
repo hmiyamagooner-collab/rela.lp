@@ -678,7 +678,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     <!-- ① プロフィール分析結果 -->
     <div class="sa-block rv">
       <div class="sa-figure">
-        <img class="sa-img" src="../assets/en/ss-self-profile.jpg" alt="Profile analysis">
+        <img decoding="async" loading="lazy" class="sa-img" src="../assets/en/ss-self-profile.jpg" alt="Profile analysis">
         <svg class="sa-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path class="sa-ln" d="M24 19 L31 19"></path>
           <path class="sa-ln" d="M24 60 L31 60"></path>
@@ -706,7 +706,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
     <!-- ② 今日のスコア -->
     <div class="sa-block rv">
       <div class="sa-figure">
-        <img class="sa-img" src="../assets/en/ss-self-score.jpg" alt="Today’s Score">
+        <img decoding="async" loading="lazy" class="sa-img" src="../assets/en/ss-self-score.jpg" alt="Today’s Score">
         <svg class="sa-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path class="sa-ln" d="M24 13 L32 13"></path>
           <path class="sa-ln" d="M24 45 L32 45"></path>
@@ -767,7 +767,7 @@ if(tog&&links){
 
 </script>
 <div class="theme-player">
-  <audio id="theme-audio" src="../assets/theme.mp3" loop="" autoplay="" playsinline="" preload="auto"></audio>
+  <audio id="theme-audio" src="../assets/theme.mp3" loop="" playsinline="" preload="none"></audio>
   <button type="button" id="theme-toggle" aria-pressed="true" aria-label="To understand the people you cherish, more deeply — OFF">
     <span class="ico">ON</span>
     <span class="txt"><span class="ttl">To understand the people you cherish, more deeply</span><span class="state">ON</span></span>

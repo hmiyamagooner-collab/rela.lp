@@ -686,7 +686,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         <line class="aln" x1="58.8" y1="70.6" x2="74" y2="76"/>
       </svg>
       <div class="annot-frame">
-        <img class="annot-img" src="assets/ss-partner-hero.jpg" alt="相手分析カード（相性スコア・天中殺・推奨送信日・関係度）" loading="lazy">
+        <img decoding="async" class="annot-img" src="assets/ss-partner-hero.jpg" alt="相手分析カード（相性スコア・天中殺・推奨送信日・関係度）" loading="lazy">
         <span class="amk" style="left:24%;top:9%"></span>
         <span class="amk" style="left:86%;top:9%"></span>
         <span class="amk" style="left:90%;top:22%"></span>
@@ -723,7 +723,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
       <div class="mf-arrow"><span>「メッセージ分析」を押すと…</span><svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 2 V32 M4 24 L12 34 L20 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="ma-flow">
         <div class="ma-row">
-          <figure class="ma-shot"><img src="assets/ss-partner-1.jpg" alt="推薦アクション・親密度・推薦返信案" loading="lazy"><span class="ma-cap">相手カルテ・推薦返信案</span></figure>
+          <figure class="ma-shot"><img decoding="async" src="assets/ss-partner-1.jpg" alt="推薦アクション・親密度・推薦返信案" loading="lazy"><span class="ma-cap">相手カルテ・推薦返信案</span></figure>
           <ul class="ma-exp">
             <li><b>総合相性</b>相手との相性を100点満点で表示。まず全体感をつかめます。</li>
             <li><b>推薦アクション</b>いま取るべき動き（進める／様子見／引く）をAIが提示。迷ったらこの通りに動けばOK。</li>
@@ -733,7 +733,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
           </ul>
         </div>
         <div class="ma-row reverse">
-          <figure class="ma-shot"><img src="assets/ss-partner-2.jpg" alt="関係性スコア・好意レベル・発言別の心理傾向" loading="lazy"><span class="ma-cap">関係性スコア・発言別の心理傾向</span></figure>
+          <figure class="ma-shot"><img decoding="async" src="assets/ss-partner-2.jpg" alt="関係性スコア・好意レベル・発言別の心理傾向" loading="lazy"><span class="ma-cap">関係性スコア・発言別の心理傾向</span></figure>
           <ul class="ma-exp">
             <li><b>力関係・依存度・温度差</b>どちらが主導権を握り、どちらが熱いかを可視化。押す・引くの判断に使えます。</li>
             <li><b>脈の4指標</b>好意レベル・デート成立確率・恋愛発展確率・社交辞令度を%で表示。“社交辞令度”が高いほど、好意は薄いサインです。</li>
@@ -792,7 +792,7 @@ if(tog&&links){
 
 </script>
 <div class="theme-player">
-  <audio id="theme-audio" src="assets/theme.mp3" loop autoplay playsinline preload="auto"></audio>
+  <audio id="theme-audio" src="assets/theme.mp3" loop playsinline preload="none"></audio>
   <button type="button" id="theme-toggle" aria-pressed="true" aria-label="大切な人を、もっと深く理解するために OFF">
     <span class="ico">ON</span>
     <span class="txt"><span class="ttl">大切な人を、もっと深く理解するために</span><span class="state">ON</span></span>
