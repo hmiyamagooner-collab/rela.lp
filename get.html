@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RELA をダウンロード</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<!--
+  RELA「マイカード」の QR の着地ページ(指示書 #90)。rela.info/get?src=mycard
+  読み取った端末に合わせて振り分ける: iPhone/iPad → App Store(ct=mycard) / Android → Google Play(utm_source=mycard) / それ以外 → RELA のトップ(utm_source=mycard)。
+  完全に静的。外部のスクリプト・画像・解析は読み込まない。受け取る値は src だけ(mycard 以外は無視して mycard 扱い)。個人の情報は何も受け取らない・何も保存しない。
+  将来、行き先を「この人と相性を見る」に変えるときは、このページの DEST だけを直す(QR の URL は変えない)。
+-->
+<style>
+:root{--bg:#f6f7fb;--fg:#1b2030;--mute:#586078;--line:#d6dae5;--accent:#d6336c;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1020;--fg:#eceffa;--mute:#a4abc6;--line:#2c3150;--accent:#ff6fae;--card:#171a30}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Segoe UI",system-ui,sans-serif;padding:32px 16px}
+main{max-width:420px;margin:0 auto;text-align:center}
+.brand{font-weight:800;letter-spacing:.32em;color:var(--accent)}
+a.b{display:block;margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--fg);text-decoration:none;font-weight:700}
+p{color:var(--mute);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">RELA</div>
+  <p id="msg">お使いの端末に合わせて、ダウンロードのページへご案内します。</p>
+  <a class="b" id="ios" href="https://apps.apple.com/app/rela-ai-concierge/id6824163479?ct=mycard">App Store（iPhone・iPad）</a>
+  <a class="b" id="and" href="https://play.google.com/store/apps/details?id=info.gooner.rela&amp;utm_source=mycard">Google Play（Android）</a>
+  <a class="b" id="web" href="/?utm_source=mycard&amp;utm_medium=qr">ブラウザで始める</a>
+</main>
+<script>
+(function () {
+  var DEST = {
+    ios: 'https://apps.apple.com/app/rela-ai-concierge/id6824163479?ct=mycard',
+    android: 'https://play.google.com/store/apps/details?id=info.gooner.rela&utm_source=mycard',
+    other: '/?utm_source=mycard&utm_medium=qr'
+  };
+  try {
+    var ua = navigator.userAgent || '', ipadOs = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
+    var to = (/iPhone|iPad|iPod/.test(ua) || ipadOs) ? DEST.ios : (/Android/.test(ua) ? DEST.android : DEST.other);
+    location.replace(to);
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
