@@ -7,11 +7,12 @@
 
   var KEY = "rela-theme";
   try { localStorage.removeItem(KEY); } catch (e) {}
-  var wanted = sessionStorage.getItem(KEY) !== "off"; // ユーザーが音楽を望むか
+  // 指示書 #78-7: 既定は「鳴らさない・読み込まない」。再生ボタンを押した(=sessionStorage が "on")ときだけ読み込む。別ページへ移っても、押していれば続ける
+  var wanted = sessionStorage.getItem(KEY) === "on"; // ユーザーが音楽を望むか
   var unlockBound = false;
 
   audio.loop = true;
-  audio.autoplay = true;
+  audio.autoplay = false;   // 自動では鳴らさない(指示書 #78-7)
   // 指示書 #53(ヒロさん 2026-10-25「LPの音楽の音量がデカすぎる」): LP の BGM の音量は、この 2 つの数字だけ。従来 0.72 の 35%(約 -9.1 dB)。アプリのログイン画面・オープニング(renai-crm の AUTH_BGM_VOLUME)と同じ比率
   var THEME_BASE_VOLUME = 0.72, THEME_VOLUME_RATIO = 0.35;
   audio.volume = THEME_BASE_VOLUME * THEME_VOLUME_RATIO;   // = 0.252
