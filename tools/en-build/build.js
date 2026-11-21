@@ -119,6 +119,8 @@ for (const pg of PAGES) {
     // 8c) index: Google Play 公式バッジを英語版(GET IT ON Google Play)に差し替え(日本語版は assets/badge-googleplay-ja.png)
     const gbdg = doc.querySelector("a.get-card[href*=\"play.google.com\"] img.get-badge");
     if (gbdg) { gbdg.setAttribute("src", "../assets/badge-googleplay-en.png"); gbdg.setAttribute("alt", "Get it on Google Play"); }
+    // 8d) index: 辞書の "@rela_ai"→"@rela_ai_en"(Instagram英語アカウント用)が TikTok の表示名にも当たるので、TikTok は @rela_ai に戻す(アカウントは日英共通)
+    const ttH = doc.querySelector("a.sns-tt .ig-h"); if (ttH) ttH.textContent = "@rela_ai";
     // 9) index: Google Play カードは米国で正式ローンチするまで COMING SOON(リンク無効・QRを薄く・帯を重ねる)。config.json の playAvailable で切替
     const play = doc.querySelector('a.get-card[href*="play.google.com"]');
     if (play && !CONFIG.playAvailable) {
