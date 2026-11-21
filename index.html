@@ -206,6 +206,12 @@ h1 .big{font-size:1.32em;font-weight:700}
 .get-badge{display:block;height:40px;width:auto}
 .get-card-primary img.get-badge{width:137px;object-fit:contain;object-position:left center}  /* 2枚のQR位置を揃える(バッジ枠を同じ幅に) */
 .get-badge-play{height:53px;margin:-6.5px 0}  /* 公式PNG(646x250)は余白つき: 黒いバッジ部分が40px相当に見えるよう拡大し、余白ぶんを相殺 */
+/* #97-2: ストア2枚は中身の幅に合わせる。561px以上は横並び(間隔16px・中央)、560px以下は縦並び */
+.get.get-primary{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;flex-wrap:nowrap;justify-content:center;gap:16px}
+.get.get-primary .get-card-primary{flex:0 0 auto;width:auto;max-width:none;margin:0}
+/* 561〜759px: 横並びが画面に収まるよう、QR・余白・バッジを一回り小さく(バッジは同じ比率で縮小) */
+@media (min-width:561px) and (max-width:759px){.get.get-primary .get-card-primary{padding:14px 14px;gap:12px}.get.get-primary .get-card-primary .get-qr{width:80px;height:80px;padding:6px}.get-card-primary img.get-badge{width:118px}.get-card-primary img.get-badge:not(.get-badge-play){height:35px}.get-badge-play{height:46px;margin:-5.5px 0}}
+@media (max-width:560px){.get.get-primary{flex-direction:column;align-items:center;gap:10px}}
 .get-note{font-size:11.5px;color:var(--ink-dim);margin-top:12px}
 @media (max-width:560px){.get-card{width:100%;max-width:330px}}
 
