@@ -204,41 +204,31 @@ h1 .big{font-size:1.32em;font-weight:700}
 .get-sub{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
 .get-cta{margin-top:5px;font-size:12px;font-weight:800;color:var(--cyan);letter-spacing:.02em}
 .get-badge{display:block;height:40px;width:auto}
-/* #97-4: ストアカード3枚(App Store / Google Play / PCで始める)。サイズは変数で一括管理。
-   --qr QR  --gp 中の間隔  --pad 内側余白  --bw バッジ枠の幅(App Store高さ=bw×.292、Google Play高さ=bw×.387。
-   Google の公式PNG(646x250)は余白つきなので、上下の余白ぶんを負のマージンで相殺)。バッジ枠は2枚で同じ幅=QRの位置が揃う */
-.get.get-primary{--qr:100px;--gp:20px;--pad:18px;--bw:137px;--cw:calc(var(--qr) + var(--gp) + var(--bw) + var(--pad)*2 + 2px);
-  display:grid;grid-template-columns:minmax(0,var(--cw));justify-content:center;gap:10px;width:100%;max-width:980px;margin:22px auto 0}
+/* #97-5: ストアカード3枚とメニュー5つは、どの画面幅でも縦1列・中央・同じ幅(基準440px。狭い画面は左右16pxを残して縮める)。
+   サイズは変数で管理: --qr QR  --gp 中の間隔  --pad 内側余白  --bw バッジ枠の幅
+   (App Store高さ=bw×.292、Google Play高さ=bw×.387。Google の公式PNG(646x250)は余白つきなので上下の余白ぶんを負のマージンで相殺。
+   バッジ枠は2枚で同じ幅=QRの位置が揃う) */
+.get.get-primary,.stage .hero-nav{--w:min(440px,calc(100vw - 32px))}
+.get.get-primary{--qr:100px;--gp:20px;--pad:18px;--bw:137px;
+  display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:12px;width:var(--w);max-width:none;align-self:flex-start;margin:22px 0 0 calc((100% - var(--w))/2)}
 .get.get-primary .get-card-primary{width:auto;max-width:none;min-width:0;margin:0;padding:var(--pad);gap:var(--gp);justify-content:center;align-items:center}
 .get.get-primary .get-card-primary .get-qr{width:var(--qr);height:var(--qr);padding:calc(var(--qr)*.07)}
 .get-card-primary img.get-badge{width:var(--bw);height:calc(var(--bw)*.292);object-fit:contain;object-position:left center}
 .get-card-primary img.get-badge-play{height:calc(var(--bw)*.387);margin:calc(var(--bw)*-.0475) 0}
 .get.get-primary .get-card-primary .get-meta{min-width:0}
-@media (max-width:560px){.get.get-primary .get-card-primary .get-sub{font-size:10.5px;line-height:1.5}.get.get-primary .get-card-primary .get-cta{font-size:12px;margin-top:6px}}
-/* 561〜759px: ストア2枚を横に、PCで始める は2枚の幅いっぱいでその下 */
-@media (min-width:561px) and (max-width:759px){
-  .get.get-primary{--qr:80px;--gp:12px;--pad:14px;--bw:118px;grid-template-columns:repeat(2,var(--cw));gap:16px}
-  .get.get-primary .get-card-primary:nth-child(3){grid-column:1 / -1}
-  .get.get-primary .get-card-primary .get-k{font-size:16px}.get.get-primary .get-card-primary .get-sub{font-size:11.5px}.get.get-primary .get-card-primary .get-cta{font-size:12px;margin-top:6px}
-}
-/* 760px以上: 3枚を1列。段の幅はメニュー(.hero-nav)と同じ(100%・最大980px) */
-@media (min-width:760px){
-  .get.get-primary{--qr:64px;--gp:10px;--pad:10px;--bw:96px;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .get.get-primary .get-card-primary .get-k{font-size:14px}.get.get-primary .get-card-primary .get-sub{font-size:11px}.get.get-primary .get-card-primary .get-cta{font-size:11.5px;margin-top:5px}
-  .stage .hero-nav{width:100%;max-width:980px;grid-template-columns:repeat(5,minmax(0,1fr))}
-  .stage .hero-nav .hnav-btn:last-child{grid-column:auto}
-  .stage .hero-nav .hnav-btn{white-space:nowrap;justify-content:center;gap:5px;padding:14px 6px;font-size:clamp(10.5px,calc(.7vw + 5.2px),12.5px)}
-  .stage .hero-nav .hnav-btn::after{display:none}
-  .stage .hero-nav .hn-ic svg{width:16px;height:16px;flex:none}
-}
-/* 英語版は文字が長い(Visualize the other person 等)ので、1行固定にせず折り返しを許す(日本語版だけ1行) */
-@media (min-width:760px){html[lang="en"] .stage .hero-nav .hnav-btn{white-space:normal;text-align:left;line-height:1.3;font-size:clamp(10px,calc(.6vw + 4.6px),12px)}}
-@media (min-width:1010px){
-  .get.get-primary{--qr:96px;--gp:16px;--pad:16px;--bw:130px}
-  .get.get-primary .get-card-primary .get-k{font-size:17px}.get.get-primary .get-card-primary .get-sub{font-size:12.5px}.get.get-primary .get-card-primary .get-cta{font-size:12.5px;margin-top:7px}
-  .stage .hero-nav .hnav-btn{gap:8px;padding:14px 12px}
-  .stage .hero-nav .hn-ic svg{width:20px;height:20px}
-}
+.get.get-primary .get-card-primary .get-k{font-size:17px}
+.get.get-primary .get-card-primary .get-sub{font-size:12px;line-height:1.5}
+.get.get-primary .get-card-primary .get-cta{font-size:12.5px;margin-top:6px}
+/* 340px以下(旧型の小さいスマホ)は中身を一回り小さく(画面からはみ出さないため) */
+@media (max-width:340px){.get.get-primary{--qr:84px;--gp:12px;--pad:12px;--bw:120px}.get.get-primary .get-card-primary .get-sub{font-size:11px}}
+/* メニュー5つ: 縦1列・アイコン+文字+右の矢印・同じ高さ・文字は1行 */
+.stage .hero-nav{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;width:var(--w);max-width:none;align-self:flex-start;margin:26px 0 0 calc((100% - var(--w))/2)}
+.stage .hero-nav .hnav-btn,.stage .hero-nav .hnav-btn:last-child{grid-column:auto;box-sizing:border-box;height:58px;min-height:0;padding:0 18px;gap:12px;font-size:15px;white-space:nowrap;justify-content:flex-start}
+.stage .hero-nav .hnav-btn::after{display:block}
+.stage .hero-nav .hn-ic{flex:none}
+.stage .hero-nav .hn-ic svg{width:22px;height:22px}
+.stage .hero-nav .hn-tx{min-width:0;overflow:hidden;text-overflow:clip}
+@media (max-width:340px){.stage .hero-nav .hnav-btn,.stage .hero-nav .hnav-btn:last-child{padding:0 14px;gap:9px;font-size:13.5px}}
 .get-note{font-size:11.5px;color:var(--ink-dim);margin-top:12px}
 @media (max-width:560px){.get-card{width:100%;max-width:330px}}
 
