@@ -30,6 +30,7 @@
 :root{--bg:#03040a;--line:rgba(120,150,220,.18);--ink:#eef2ff;--ink-soft:#aab4d4;--ink-dim:#68739a;--cyan:#4fd8ff;--blue:#3d7bff}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
+html{overflow-x:clip}
 body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',sans-serif;overflow-x:hidden}
 
 /* ---- 背景写真(全画面) ---- */
@@ -203,14 +204,41 @@ h1 .big{font-size:1.32em;font-weight:700}
 .get-sub{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
 .get-cta{margin-top:5px;font-size:12px;font-weight:800;color:var(--cyan);letter-spacing:.02em}
 .get-badge{display:block;height:40px;width:auto}
-.get-card-primary img.get-badge{width:137px;object-fit:contain;object-position:left center}  /* 2枚のQR位置を揃える(バッジ枠を同じ幅に) */
-.get-badge-play{height:53px;margin:-6.5px 0}  /* 公式PNG(646x250)は余白つき: 黒いバッジ部分が40px相当に見えるよう拡大し、余白ぶんを相殺 */
-/* #97-2: ストア2枚は中身の幅に合わせる。561px以上は横並び(間隔16px・中央)、560px以下は縦並び */
-.get.get-primary{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;flex-wrap:nowrap;justify-content:center;gap:16px}
-.get.get-primary .get-card-primary{flex:0 0 auto;width:auto;max-width:none;margin:0}
-/* 561〜759px: 横並びが画面に収まるよう、QR・余白・バッジを一回り小さく(バッジは同じ比率で縮小) */
-@media (min-width:561px) and (max-width:759px){.get.get-primary .get-card-primary{padding:14px 14px;gap:12px}.get.get-primary .get-card-primary .get-qr{width:80px;height:80px;padding:6px}.get-card-primary img.get-badge{width:118px}.get-card-primary img.get-badge:not(.get-badge-play){height:35px}.get-badge-play{height:46px;margin:-5.5px 0}}
-@media (max-width:560px){.get.get-primary{flex-direction:column;align-items:center;gap:10px}}
+/* #97-4: ストアカード3枚(App Store / Google Play / PCで始める)。サイズは変数で一括管理。
+   --qr QR  --gp 中の間隔  --pad 内側余白  --bw バッジ枠の幅(App Store高さ=bw×.292、Google Play高さ=bw×.387。
+   Google の公式PNG(646x250)は余白つきなので、上下の余白ぶんを負のマージンで相殺)。バッジ枠は2枚で同じ幅=QRの位置が揃う */
+.get.get-primary{--qr:100px;--gp:20px;--pad:18px;--bw:137px;--cw:calc(var(--qr) + var(--gp) + var(--bw) + var(--pad)*2 + 2px);
+  display:grid;grid-template-columns:minmax(0,var(--cw));justify-content:center;gap:10px;width:100%;max-width:980px;margin:22px auto 0}
+.get.get-primary .get-card-primary{width:auto;max-width:none;min-width:0;margin:0;padding:var(--pad);gap:var(--gp);justify-content:center;align-items:center}
+.get.get-primary .get-card-primary .get-qr{width:var(--qr);height:var(--qr);padding:calc(var(--qr)*.07)}
+.get-card-primary img.get-badge{width:var(--bw);height:calc(var(--bw)*.292);object-fit:contain;object-position:left center}
+.get-card-primary img.get-badge-play{height:calc(var(--bw)*.387);margin:calc(var(--bw)*-.0475) 0}
+.get.get-primary .get-card-primary .get-meta{min-width:0}
+@media (max-width:560px){.get.get-primary .get-card-primary .get-sub{font-size:10.5px;line-height:1.5}.get.get-primary .get-card-primary .get-cta{font-size:12px;margin-top:6px}}
+/* 561〜759px: ストア2枚を横に、PCで始める は2枚の幅いっぱいでその下 */
+@media (min-width:561px) and (max-width:759px){
+  .get.get-primary{--qr:80px;--gp:12px;--pad:14px;--bw:118px;grid-template-columns:repeat(2,var(--cw));gap:16px}
+  .get.get-primary .get-card-primary:nth-child(3){grid-column:1 / -1}
+  .get.get-primary .get-card-primary .get-k{font-size:16px}.get.get-primary .get-card-primary .get-sub{font-size:11.5px}.get.get-primary .get-card-primary .get-cta{font-size:12px;margin-top:6px}
+}
+/* 760px以上: 3枚を1列。段の幅はメニュー(.hero-nav)と同じ(100%・最大980px) */
+@media (min-width:760px){
+  .get.get-primary{--qr:64px;--gp:10px;--pad:10px;--bw:96px;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .get.get-primary .get-card-primary .get-k{font-size:14px}.get.get-primary .get-card-primary .get-sub{font-size:11px}.get.get-primary .get-card-primary .get-cta{font-size:11.5px;margin-top:5px}
+  .stage .hero-nav{width:100%;max-width:980px;grid-template-columns:repeat(5,minmax(0,1fr))}
+  .stage .hero-nav .hnav-btn:last-child{grid-column:auto}
+  .stage .hero-nav .hnav-btn{white-space:nowrap;justify-content:center;gap:5px;padding:14px 6px;font-size:clamp(10.5px,calc(.7vw + 5.2px),12.5px)}
+  .stage .hero-nav .hnav-btn::after{display:none}
+  .stage .hero-nav .hn-ic svg{width:16px;height:16px;flex:none}
+}
+/* 英語版は文字が長い(Visualize the other person 等)ので、1行固定にせず折り返しを許す(日本語版だけ1行) */
+@media (min-width:760px){html[lang="en"] .stage .hero-nav .hnav-btn{white-space:normal;text-align:left;line-height:1.3;font-size:clamp(10px,calc(.6vw + 4.6px),12px)}}
+@media (min-width:1010px){
+  .get.get-primary{--qr:96px;--gp:16px;--pad:16px;--bw:130px}
+  .get.get-primary .get-card-primary .get-k{font-size:17px}.get.get-primary .get-card-primary .get-sub{font-size:12.5px}.get.get-primary .get-card-primary .get-cta{font-size:12.5px;margin-top:7px}
+  .stage .hero-nav .hnav-btn{gap:8px;padding:14px 12px}
+  .stage .hero-nav .hn-ic svg{width:20px;height:20px}
+}
 .get-note{font-size:11.5px;color:var(--ink-dim);margin-top:12px}
 @media (max-width:560px){.get-card{width:100%;max-width:330px}}
 
@@ -303,21 +331,19 @@ footer a.ig.sns-x svg{filter:drop-shadow(0 6px 16px rgba(255,255,255,.14))}
       <span class="get-qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h37v37H0z"></path><path stroke="#0a0d18" d="M2 2.5h7m5 0h2m3 0h5m1 0h1m2 0h7M2 3.5h1m5 0h1m3 0h1m1 0h1m1 0h4m2 0h3m1 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h2m2 0h1m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h4m1 0h1m5 0h2m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m1 0h2m1 0h3m2 0h8m2 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h1m1 0h1m2 0h5m2 0h1m1 0h1m3 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h5m1 0h3m2 0h4m1 0h1M2 10.5h1m1 0h5m2 0h1m2 0h4m1 0h1m4 0h3m1 0h5M2 11.5h2m2 0h1m11 0h5m2 0h2m1 0h2m1 0h4M6 12.5h1m1 0h4m1 0h2m2 0h1m1 0h1m3 0h2m5 0h1m1 0h2M4 13.5h2m1 0h1m3 0h1m4 0h1m4 0h4m1 0h2m2 0h3M3 14.5h1m2 0h4m1 0h1m5 0h1m1 0h1m1 0h1m2 0h4m1 0h3M2 15.5h2m1 0h2m2 0h2m7 0h5m2 0h1m2 0h1m3 0h3M4 16.5h1m1 0h8m1 0h1m1 0h1m6 0h1m2 0h3m1 0h1m1 0h1M2 17.5h1m1 0h1m4 0h2m1 0h1m8 0h5m1 0h2m3 0h1M2 18.5h2m2 0h1m1 0h1m5 0h1m2 0h5m2 0h2m1 0h1m1 0h2m3 0h1M3 19.5h1m8 0h1m1 0h1m3 0h4m3 0h1m1 0h3m1 0h4M4 20.5h2m2 0h1m2 0h2m2 0h5m2 0h2m4 0h3m1 0h2M4 21.5h1m1 0h1m2 0h4m3 0h1m1 0h1m1 0h1m1 0h3m1 0h2m1 0h4M3 22.5h1m1 0h1m2 0h2m5 0h1m2 0h2m4 0h1m2 0h1m2 0h2M2 23.5h1m2 0h3m1 0h2m1 0h1m1 0h1m3 0h4m3 0h2m1 0h1m2 0h1m2 0h1M2 24.5h1m1 0h2m2 0h1m3 0h2m3 0h1m1 0h1m2 0h1m1 0h1m6 0h1m1 0h1M2 25.5h1m1 0h1m1 0h1m2 0h1m4 0h1m1 0h1m1 0h1m2 0h6m4 0h2m1 0h1M2 26.5h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h2m3 0h1m1 0h1m2 0h1m1 0h5m2 0h2M10 27.5h2m1 0h2m1 0h1m1 0h1m2 0h2m3 0h1m3 0h1m1 0h3M2 28.5h7m2 0h4m2 0h1m6 0h3m1 0h1m1 0h1m1 0h2M2 29.5h1m5 0h1m1 0h4m2 0h3m3 0h2m1 0h2m3 0h4M2 30.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h6M2 31.5h1m1 0h3m1 0h1m1 0h1m3 0h1m6 0h3m2 0h2m2 0h5M2 32.5h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m3 0h2m2 0h2m2 0h1M2 33.5h1m5 0h1m4 0h2m6 0h5m1 0h2m1 0h3M2 34.5h7m1 0h1m2 0h3m1 0h3m4 0h3m2 0h1m3 0h1"></path></svg></span>
       <img class="get-badge get-badge-play" src="../assets/badge-googleplay-en.png" alt="Get it on Google Play" width="137" height="53">
     </a>
-  </div>
-
-  <div class="home-concierges seq s3" aria-hidden="true">
-    <img src="../assets/concierge-female.webp" alt="" width="240" height="427">
-    <img src="../assets/concierge-male.webp" alt="" width="240" height="427">
-  </div>
-
-  <div class="get seq s4">
-    <a class="get-card" href="./lp.html#plans" aria-label="Start on PC. Takes you to the plan selection screen.">
+    <a class="get-card get-card-primary" href="./lp.html#plans" aria-label="Start on PC. Takes you to the plan selection screen.">
       <span class="get-qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h33v33H0z"></path><path stroke="#0a0d18" d="M2 2.5h7m3 0h2m3 0h2m2 0h2m1 0h7M2 3.5h1m5 0h1m4 0h1m6 0h1m3 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h2m2 0h1m3 0h4m2 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m2 0h3m1 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m1 0h3m1 0h7m1 0h1m1 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h1m4 0h1m1 0h1m3 0h2M2 10.5h1m1 0h5m3 0h2m2 0h2m1 0h1m1 0h1m2 0h5M3 11.5h3m3 0h1m4 0h1m2 0h2m2 0h1m1 0h2m1 0h1m3 0h1M5 12.5h1m1 0h2m1 0h2m2 0h1m5 0h1m3 0h3M3 13.5h1m2 0h1m3 0h3m3 0h1m1 0h1m1 0h5m1 0h2m1 0h1M4 14.5h1m3 0h1m2 0h1m2 0h1m3 0h2m1 0h1m5 0h2M2 15.5h1m1 0h1m1 0h2m1 0h1m2 0h1m2 0h3m1 0h8m3 0h1M2 16.5h4m2 0h3m1 0h2m1 0h4m3 0h3m1 0h3M3 17.5h2m2 0h1m4 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m3 0h1M5 18.5h2m1 0h1m3 0h2m2 0h2m1 0h1m7 0h2M2 19.5h1m7 0h1m3 0h1m2 0h2m1 0h7m1 0h1m1 0h1M2 20.5h1m2 0h1m2 0h1m1 0h5m5 0h1m1 0h1m1 0h3m1 0h1M2 21.5h1m1 0h2m3 0h1m1 0h1m4 0h1m1 0h1m2 0h6m2 0h1M2 22.5h1m1 0h1m2 0h6m1 0h1m3 0h2m1 0h6m1 0h3M10 23.5h1m1 0h2m1 0h3m1 0h2m1 0h1m3 0h5M2 24.5h7m3 0h8m1 0h2m1 0h1m1 0h3M2 25.5h1m5 0h1m1 0h2m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1M2 26.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h2m1 0h1m2 0h5m1 0h1m1 0h1M2 27.5h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h2m2 0h2m4 0h2M2 28.5h1m1 0h3m1 0h1m1 0h1m2 0h2m4 0h11M2 29.5h1m5 0h1m3 0h1m1 0h3m1 0h1m3 0h1m4 0h1m1 0h1M2 30.5h7m1 0h1m4 0h1m4 0h2m1 0h2m1 0h3"></path></svg>
 </span>
       <span class="get-meta"><span class="get-k">Start on PC</span><span class="get-sub">Instantly in your browser · Free to sign up<br>Scan the QR to open on your phone</span><span class="get-cta">Start now →</span></span>
     </a>
   </div>
+
   <p class="get-note seq s4">Scan the QR with your phone, or tap a card.</p>
+  <div class="home-concierges seq s3" aria-hidden="true">
+    <img src="../assets/concierge-female.webp" alt="" width="240" height="427">
+    <img src="../assets/concierge-male.webp" alt="" width="240" height="427">
+  </div>
+
 
   <div class="hero-nav seq s4">
     <a class="hnav-btn" href="./partner.html"><span class="hn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.3" r="3"></circle><path d="M6.6 19a5.5 5.5 0 0 1 10.8 0"></path><path d="M3 6.5V4.5A1.5 1.5 0 0 1 4.5 3H6.5M21 6.5V4.5A1.5 1.5 0 0 0 19.5 3H17.5M3 17.5V19.5A1.5 1.5 0 0 0 4.5 21H6.5M21 17.5V19.5A1.5 1.5 0 0 1 19.5 21H17.5"></path></svg></span><span class="hn-tx">Visualize the other person</span></a>
