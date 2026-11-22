@@ -1,6 +1,10 @@
 {
  "__overrides": [
   {
+   "selector": ".promo-text",
+   "html": "For first-time users — <b>3-day free Standard</b><span class=\"plus\">+</span><span class=\"gift\">180 coins</span>"
+  },
+  {
    "contains": "可視化",
    "selector": "h1.seq.s1",
    "html": "<span class=\"big\">AI</span> that reveals <span class=\"big\">you</span> and <span class=\"big\">them</span>"

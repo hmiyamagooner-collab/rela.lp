@@ -132,8 +132,6 @@ body > .bg-sweep::after {
 }
 .btn-glow:hover { box-shadow: 0 10px 30px rgba(75, 105, 180, .28); }
 .note { max-width: 720px; line-height: 1.8; }
-.offer::before, .offer::after { box-shadow: none; opacity: .6; }
-.offer .spark, .offer .gift { text-shadow: none; }
 footer { padding-top: 20px; border-top: 1px solid rgba(151, 170, 210, .1); }
 footer a { display: inline-block; line-height: 2; }
 a:focus-visible, button:focus-visible { outline: 2px solid #8ac8ff; outline-offset: 5px; }
@@ -159,6 +157,4 @@ a:focus-visible, button:focus-visible { outline: 2px solid #8ac8ff; outline-offs
   .get-sub, .get-cta { font-size: 11.5px; }
   .hero-nav { margin-top: 26px; }
   .hnav-btn { padding: 15px 12px; font-size: 12px; gap: 8px; }
-  .offer { margin-top: 28px; }
-  .offer .offer-text { font-size: 12px; }
 }
