@@ -2,7 +2,6 @@
   var audio = document.getElementById("theme-audio");
   var btn = document.getElementById("theme-toggle");
   var stateEl = btn && btn.querySelector(".state");
-  var icoEl = btn && btn.querySelector(".ico");
   if (!audio || !btn) return;
 
   var KEY = "rela-theme";
@@ -32,7 +31,6 @@
         ? "大切な人を、もっと深く理解するために OFF"
         : "大切な人を、もっと深く理解するために ON"
     );
-    if (icoEl) icoEl.textContent = on ? "ON" : "OFF";
     if (stateEl) stateEl.textContent = on ? "ON" : "OFF";
   }
 
