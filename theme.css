@@ -18,10 +18,14 @@
   width:28px;height:28px;border-radius:50%;
   display:grid;place-items:center;
   background:linear-gradient(135deg,#37c8f0,#7a6cf5 55%,#ff4d8d);
-  color:#fff;font-size:9px;font-weight:700;letter-spacing:.04em;flex:none;
+  color:#fff;flex:none;
 }
+.theme-player .ico svg{width:17px;height:17px;display:block}
+.theme-player .ico .on,.theme-player .ico .off{display:none}
+.theme-player button[aria-pressed="true"] .ico .on{display:inline}
+.theme-player button[aria-pressed="false"] .ico .off{display:inline}
 .theme-player .txt{text-align:left;line-height:1.2}
-.theme-player .ttl{display:block;font-size:10px;letter-spacing:.04em;color:#a9b4d6;max-width:12.5em;line-height:1.45}
+.theme-player .ttl{display:block;font-size:12px;letter-spacing:.03em;color:#c3cbe6;max-width:15em;line-height:1.5}
 .theme-player .state{
   display:inline-block;margin-top:3px;
   font-size:12px;font-weight:700;letter-spacing:.14em;
@@ -44,10 +48,11 @@
   .theme-player button[aria-pressed="true"] .ico{animation:none}
 }
 /* スマホ: 説明文を隠してアイコンのみのコンパクトな丸ボタンに（特商法等への被り・邪魔を解消）。
-   ノッチ端末では上部セーフエリア分だけ下げる。ON/OFF表示はアイコン内テキストで維持。 */
+   ノッチ端末では上部セーフエリア分だけ下げる。音の状態はアイコンの形(波/斜線)で示す。 */
 @media (max-width:640px){
   .theme-player{right:12px;top:calc(env(safe-area-inset-top, 0px) + 10px)}
   .theme-player button{padding:7px;gap:0}
   .theme-player .txt{display:none}
-  .theme-player .ico{width:30px;height:30px;font-size:9.5px}
+  .theme-player .ico{width:30px;height:30px}
+  .theme-player .ico svg{width:18px;height:18px}
 }
