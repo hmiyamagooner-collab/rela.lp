@@ -176,23 +176,27 @@ h1 .big{font-size:1.32em;font-weight:700}
 @media(max-width:480px){.hero-nav{max-width:340px}.hnav-btn{padding:19px 24px;font-size:16.5px}}
 .note{font-size:12px;color:var(--ink-dim);margin-top:14px}
 
-.offer{margin:34px auto 0;display:flex;align-items:center;justify-content:center;gap:18px;max-width:760px}
-.offer::before,.offer::after{content:"";height:1px;flex:1;max-width:110px;
-  background:linear-gradient(90deg,transparent,rgba(120,180,255,.5));box-shadow:0 0 8px rgba(79,216,255,.3)}
-.offer::after{background:linear-gradient(90deg,rgba(120,180,255,.5),transparent)}
-.offer .offer-text{white-space:nowrap;font-size:clamp(13px,1.75vw,16px);letter-spacing:.06em;
-  color:var(--ink-soft);font-weight:600}
-.offer .spark{color:var(--cyan);margin-right:.35em;text-shadow:0 0 12px rgba(79,216,255,.7)}
-.offer b{font-weight:800;background:linear-gradient(90deg,#8becff,#a99bff);-webkit-background-clip:text;
-  background-clip:text;color:transparent}
-.offer .plus{margin:0 .5em;color:var(--ink-dim);font-weight:400}
-.offer .gift{color:#ffd27a;font-weight:800;text-shadow:0 0 14px rgba(255,210,122,.4)}
-@media(max-width:600px){
-  .offer{gap:10px}
-  .offer::before,.offer::after{max-width:24px}
-  .offer .offer-text{white-space:normal;text-align:center;line-height:1.7}
-  .offer .plus{display:inline-block;margin:0 .4em}
-}
+/* ---- #97-8: ページ上部の特典の帯(固定)。EN ボタン・音楽ボタン・ページの中身は帯の高さだけ下げる ---- */
+:root{--promo-h:calc(40px + env(safe-area-inset-top,0px))}
+@media(max-width:640px){:root{--promo-h:calc(38px + env(safe-area-inset-top,0px))}}
+.promo-bar{position:fixed;top:0;left:0;right:0;z-index:49;box-sizing:border-box;height:var(--promo-h);
+  padding:env(safe-area-inset-top,0px) 10px 0;display:flex;align-items:center;justify-content:center;gap:.55em;
+  text-decoration:none;color:#fff;white-space:nowrap;font-weight:700;letter-spacing:.02em;
+  font-size:min(14px,calc((100vw - 28px)/33));
+  background:linear-gradient(90deg,#1f43b8,#5a3fd2 52%,#b3306f);
+  box-shadow:0 2px 18px rgba(90,63,210,.5),inset 0 -1px 0 rgba(255,255,255,.2)}
+html[lang=en] .promo-bar{font-size:min(14px,calc((100vw - 28px)/31))}
+.promo-bar:hover{filter:brightness(1.12)}
+.promo-bar:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+.promo-bar svg{width:1.15em;height:1.15em;flex:none;color:#ffd27a;filter:drop-shadow(0 0 6px rgba(255,210,122,.6))}
+.promo-bar b{font-weight:800;background:linear-gradient(90deg,#8becff,#c9bbff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.promo-bar .gift{color:#ffd27a;font-weight:800}
+.promo-bar .plus{margin:0 .3em;opacity:.85}
+body .lang-sw{top:calc(var(--promo-h) + 14px)!important}
+body .theme-player{top:calc(var(--promo-h) + 14px)}
+@media(max-width:640px){body .theme-player{top:calc(var(--promo-h) + 10px)}}
+main.stage{padding-top:calc(78px + var(--promo-h))}
+@media(max-width:560px){main.stage{padding-top:calc(64px + var(--promo-h))}}
 .get{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:0}
 .get-card{display:flex;align-items:center;gap:14px;text-decoration:none;padding:14px;border-radius:16px;
   border:1px solid var(--line);background:rgba(8,12,24,.55);transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;width:300px}
@@ -292,6 +296,7 @@ footer a.ig.sns-x svg{filter:drop-shadow(0 6px 16px rgba(255,255,255,.14))}
 </div>
 
 <div class="bg-sweep" aria-hidden="true"><i></i><i></i></div>
+<a class="promo-bar" href="./lp.html#plans"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 1.8c.8 5.6 2.4 7.2 8 8-5.6.8-7.2 2.4-8 8-.8-5.6-2.4-7.2-8-8 5.6-.8 7.2-2.4 8-8z"></path><path d="M19 15.5c.4 2.2 1.1 2.9 3.2 3.2-2.1.3-2.8 1-3.2 3.2-.4-2.2-1.1-2.9-3.2-3.2 2.1-.3 2.8-1 3.2-3.2z" opacity=".75"></path></svg><span class="promo-text">For first-time users — <b>3-day free Standard</b><span class="plus">+</span><span class="gift">180 coins</span></span></a>
 
 <main class="stage">
   <div class="home-hero" aria-hidden="true">
@@ -341,10 +346,6 @@ footer a.ig.sns-x svg{filter:drop-shadow(0 6px 16px rgba(255,255,255,.14))}
   <div class="seq s5" style="text-align:center;margin-top:26px"><a class="btn btn-glow" href="https://rela.website/en/">Start RELA now</a></div>
   <p class="seq s5" style="text-align:center;margin-top:8px;font-size:12.5px;line-height:1.5">Create a free account – no credit card required.</p>
   <p class="note seq s5"><a href="./lp.html#plans" style="color:var(--cyan);text-decoration:underline;font-weight:700">Start a 3-day Standard trial</a> – payment method required. Then US$9.99/month plus applicable tax unless canceled at least 24 hours before the trial ends.</p>
-
-  <div class="seq s6">
-    <div class="offer"><span class="offer-text"><span class="spark">✦</span>Right now — <b>Standard free for 3 days</b><span class="plus">＋</span><span class="gift">180 bonus coins</span></span></div>
-  </div>
 
 </main>
 <div class="theme-player">
