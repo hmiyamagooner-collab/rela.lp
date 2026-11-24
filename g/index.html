@@ -30,7 +30,7 @@ h1{font-size:22px;line-height:1.45;margin:4px 0 0;text-align:center}
 ol{margin:0;padding-left:1.4em}li{margin:6px 0}
 .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:14px;font-size:16px;font-weight:700;line-height:1;font-family:inherit;border:0;cursor:pointer;text-decoration:none}
 .copy{background:linear-gradient(135deg,#f6d97c,#e0b94e);color:#1a1206}
-.vip-badge{display:block;width:60px;height:30px;margin:2px auto 0;filter:drop-shadow(0 0 5px rgba(240,200,96,.5))}
+.vip-txt{display:block;text-align:center;margin:4px 0 0;font-family:ui-sans-serif,'Segoe UI','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:24px;letter-spacing:.3em;text-indent:.3em;color:#f6d97c;line-height:1;text-shadow:0 0 4px rgba(240,200,96,.85),0 0 10px rgba(240,200,96,.5),0 0 18px rgba(240,200,96,.25)}
 .store{background:var(--btn);color:var(--bg)}
 .note{font-size:13.5px;color:var(--mute);text-align:center;margin:0}
 .msg{min-height:22px;text-align:center;font-size:14px;color:var(--accent);margin:8px 0 0}
@@ -46,15 +46,12 @@ ol{margin:0;padding-left:1.4em}li{margin:6px 0}
 <body>
 <main>
   <div class="brand" translate="no">RELA</div>
-  <svg class="vip-badge" viewBox="0 0 44 22" role="img" aria-label="VIP"><defs><linearGradient id="vgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2bd"/><stop offset=".45" stop-color="#f3cb50"/><stop offset="1" stop-color="#b3800f"/></linearGradient><linearGradient id="vsG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect x=".6" y=".6" width="42.8" height="20.8" rx="10.4" fill="url(#vgG)" stroke="#7a5509" stroke-width="1"/><path d="M7 3.7H37" stroke="url(#vsG)" stroke-width="1.2" stroke-linecap="round"/><path d="M28.5 1.5L22.5 20.5" stroke="#fff" stroke-opacity=".26" stroke-width="2.6"/><text x="22" y="15.3" text-anchor="middle" font-size="12.5" font-weight="900" fill="#1a1206" font-family="Georgia,'Times New Roman',serif" letter-spacing="1.1">VIP</text></svg>
+  <div class="vip-txt" role="img" aria-label="VIP">VIP</div>
   <h1 id="h1">RELAのVIPギフトが届いています</h1>
   <section class="card">
     <h2 id="h-steps">受け取りかた</h2>
-    <ol>
-      <li id="s1">RELAのアプリ(またはWeb版)を開く</li>
-      <li id="s2">VIPルームの「ギフトを受け取る」に、このリンクを貼り付ける</li>
-      <li id="s3">「受け取る」を押す</li>
-    </ol>
+    <p id="s1" style="margin:0 0 10px">RELAを開き、コンシェルジュの「受け取る」(またはコインの画面の「ギフトを受け取る」)に、このリンクを貼り付けてください。</p>
+    <p id="s2" style="margin:0">QRは「QRで友達とつながる」で読み取れます。</p>
   </section>
   <section>
     <button type="button" class="btn copy" id="copy">リンクをコピー</button>
@@ -75,14 +72,14 @@ ol{margin:0;padding-left:1.4em}li{margin:6px 0}
   var en = !/^ja/i.test(navigator.language || navigator.userLanguage || 'ja');
   var T = en ? {
     lang: 'en', h1: 'A RELA VIP gift is waiting for you', steps: 'How to receive it',
-    s1: 'Open the RELA app (or the web version)', s2: 'Paste this link into "Receive a gift" in the VIP room', s3: 'Tap "Receive"',
+    s1: 'Open RELA and paste this link into "Receive" with the concierge (or "Receive a gift" on the coin screen).', s2: 'You can scan the QR with "Connect with a QR".',
     copy: 'Copy link', copied: 'Copied!', fb: "Couldn't copy. Press and hold the link above, then copy it.",
     app: 'New to RELA?', ios: 'Download on the App Store', and: 'Get it on Google Play', note: 'This link can be used once, before it expires.'
   } : null;
   if (T) {
     document.documentElement.lang = T.lang;
     var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
-    set('h1', T.h1); set('h-steps', T.steps); set('s1', T.s1); set('s2', T.s2); set('s3', T.s3); set('copy', T.copy);
+    set('h1', T.h1); set('h-steps', T.steps); set('s1', T.s1); set('s2', T.s2); set('copy', T.copy);
     set('fbp', T.fb); set('h-app', T.app); set('note', T.note);
     var ii = document.getElementById('i-ios'), ia = document.getElementById('i-and');   // 英語のバッジ(LP の英語版と同じ画像)
     ii.src = '/assets/badge-appstore-en.svg'; ii.alt = T.ios; ia.src = '/assets/badge-googleplay-en.png'; ia.alt = T.and;
