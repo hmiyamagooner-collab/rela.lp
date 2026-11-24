@@ -22,7 +22,7 @@
   },
   {
    "contains": "いま申し込むと",
-   "html": "🎁 Sign up now and get a <b>3-day free trial</b>"
+   "html": "<svg class=\"ic-gift\" viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" aria-hidden=\"true\" style=\"vertical-align:-3px;margin-right:4px\"><rect x=\"3.5\" y=\"10\" width=\"17\" height=\"10.5\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"M3 10h18v3H3zM12 10v10.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"M12 10C10.6 6.4 6.8 6.6 6.8 8.6c0 1.6 3 1.4 5.2 1.4zm0 0c1.4-3.6 5.2-3.4 5.2-1.4 0 1.6-3 1.4-5.2 1.4z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/></svg>Sign up now and get a <b>3-day free trial</b>"
   },
   {
    "contains": "スタンダードプランには初回3日間の無料お試し",
@@ -77,7 +77,8 @@
  "すべての関係を、制限なく": "Every relationship, without limits",
  "相手を無制限に登録": "Unlimited partner registrations",
  "すべての機能が使えます": "All features included",
- "優先サポート": "Priority support",
+ "VIP 待遇(コンシェルジュが VIP としてご案内)": "VIP treatment (your concierge guides you as a VIP)",
+ "Vコイン:初回 1800+毎日のお礼が貯まり、大切な方へ贈れる": "V-Coins: 1,800 at first, plus daily thank-yous you can give to someone special",
  "180コイン（分析 約2回分）": "180 coins (about 2 analyses)",
  "プランに含まれない分析も単発で": "One-off analyses not included in your plan",
  "画像生成・特別分析などに使用": "Used for image generation, special analyses, etc.",

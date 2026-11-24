@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RELA</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="RELA gift">
+<meta property="og:title" content="RELA">
+<meta property="og:description" content="RELA gift">
+<meta name="color-scheme" content="dark">
+<!--
+  RELA VIP ギフトの案内ページ(指示書 #116)。rela.info/g/<token> で、この同じ静的ページを返す(vercel.json の rewrite)。/q/<token>(指示書 #39)と同じ作り。
+  - 完全に静的。このページは「受け取り(redeem)」を呼ばない(メッセージアプリのリンクプレビューやクローラーが開いても、券が使われないように)。受け取りは、アプリ(または Web 版)の VIP ルームの「ギフトを受け取る」で、利用者がリンクを貼った時だけ。
+  - token を、画面・DOM・title・OGP に出さない。リンクのコピーは、ボタンを押した時の操作の中だけ(location.href を渡す)。
+  - 外部のスクリプト・フォントを読み込まない。画像は同じサイトのストアのバッジ(assets/)だけ。解析(GA・ピクセル等)も読み込まない。購入を誘う文は置かない。
+-->
+<style>
+:root{--bg:#050505;--card:#0c0a07;--fg:#f3ead0;--mute:#bfb28a;--line:rgba(230,196,106,.5);--accent:#f6d97c;--accent2:#e0b94e;--btn:#111}
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Segoe UI",system-ui,sans-serif;padding:max(24px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(32px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+main{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.brand{font-weight:800;letter-spacing:.32em;font-size:15px;color:var(--accent);text-align:center;padding-top:6px}
+h1{font-size:22px;line-height:1.45;margin:4px 0 0;text-align:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.card h2{font-size:15px;margin:0 0 8px;color:var(--mute);font-weight:700}
+ol{margin:0;padding-left:1.4em}li{margin:6px 0}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:14px;font-size:16px;font-weight:700;line-height:1;font-family:inherit;border:0;cursor:pointer;text-decoration:none}
+.copy{background:linear-gradient(135deg,#f6d97c,#e0b94e);color:#1a1206}
+.vip-badge{display:block;width:60px;height:30px;margin:2px auto 0;filter:drop-shadow(0 0 5px rgba(240,200,96,.5))}
+.store{background:var(--btn);color:var(--bg)}
+.note{font-size:13.5px;color:var(--mute);text-align:center;margin:0}
+.msg{min-height:22px;text-align:center;font-size:14px;color:var(--accent);margin:8px 0 0}
+.badges{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:6px}
+.badges a{display:block;line-height:0}
+.badges img{display:block}
+.badges img.play{margin:-6.5px 0}
+.fallback{display:none;margin-top:10px}.fallback.show{display:block}
+.fallback input{width:100%;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);padding:0 10px;font-size:14px}
+.fallback p{font-size:13px;color:var(--mute);margin:6px 0 0}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand" translate="no">RELA</div>
+  <svg class="vip-badge" viewBox="0 0 44 22" role="img" aria-label="VIP"><defs><linearGradient id="vgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2bd"/><stop offset=".45" stop-color="#f3cb50"/><stop offset="1" stop-color="#b3800f"/></linearGradient><linearGradient id="vsG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect x=".6" y=".6" width="42.8" height="20.8" rx="10.4" fill="url(#vgG)" stroke="#7a5509" stroke-width="1"/><path d="M7 3.7H37" stroke="url(#vsG)" stroke-width="1.2" stroke-linecap="round"/><path d="M28.5 1.5L22.5 20.5" stroke="#fff" stroke-opacity=".26" stroke-width="2.6"/><text x="22" y="15.3" text-anchor="middle" font-size="12.5" font-weight="900" fill="#1a1206" font-family="Georgia,'Times New Roman',serif" letter-spacing="1.1">VIP</text></svg>
+  <h1 id="h1">RELAのVIPギフトが届いています</h1>
+  <section class="card">
+    <h2 id="h-steps">受け取りかた</h2>
+    <ol>
+      <li id="s1">RELAのアプリ(またはWeb版)を開く</li>
+      <li id="s2">VIPルームの「ギフトを受け取る」に、このリンクを貼り付ける</li>
+      <li id="s3">「受け取る」を押す</li>
+    </ol>
+  </section>
+  <section>
+    <button type="button" class="btn copy" id="copy">リンクをコピー</button>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    <div class="fallback" id="fb"><input id="fbi" type="text" readonly aria-label="link"><p id="fbp">コピーできませんでした。上のリンクを長押しして、コピーしてください。</p></div>
+  </section>
+  <section class="card">
+    <h2 id="h-app">まだRELAをお持ちでない方</h2>
+    <div class="badges">
+      <a id="b-ios" href="https://apps.apple.com/app/rela-ai-concierge/id6824163479?utm_source=lp&amp;utm_medium=gift&amp;utm_campaign=ios" rel="noopener noreferrer"><img id="i-ios" src="/assets/badge-appstore-ja.svg" alt="App Storeからダウンロード" width="109" height="40"></a>
+      <a id="b-and" href="https://play.google.com/store/apps/details?id=info.gooner.rela&amp;utm_source=lp&amp;utm_medium=gift&amp;utm_campaign=android" rel="noopener noreferrer"><img id="i-and" class="play" src="/assets/badge-googleplay-ja.png" alt="Google Play で手に入れよう" width="137" height="53"></a>
+    </div>
+  </section>
+  <p class="note" id="note">このリンクは、期限内に1回だけお使いいただけます。</p>
+</main>
+<script>
+(function () {
+  var en = !/^ja/i.test(navigator.language || navigator.userLanguage || 'ja');
+  var T = en ? {
+    lang: 'en', h1: 'A RELA VIP gift is waiting for you', steps: 'How to receive it',
+    s1: 'Open the RELA app (or the web version)', s2: 'Paste this link into "Receive a gift" in the VIP room', s3: 'Tap "Receive"',
+    copy: 'Copy link', copied: 'Copied!', fb: "Couldn't copy. Press and hold the link above, then copy it.",
+    app: 'New to RELA?', ios: 'Download on the App Store', and: 'Get it on Google Play', note: 'This link can be used once, before it expires.'
+  } : null;
+  if (T) {
+    document.documentElement.lang = T.lang;
+    var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
+    set('h1', T.h1); set('h-steps', T.steps); set('s1', T.s1); set('s2', T.s2); set('s3', T.s3); set('copy', T.copy);
+    set('fbp', T.fb); set('h-app', T.app); set('note', T.note);
+    var ii = document.getElementById('i-ios'), ia = document.getElementById('i-and');   // 英語のバッジ(LP の英語版と同じ画像)
+    ii.src = '/assets/badge-appstore-en.svg'; ii.alt = T.ios; ia.src = '/assets/badge-googleplay-en.png'; ia.alt = T.and;
+  }
+  var msg = document.getElementById('msg'), fb = document.getElementById('fb'), fbi = document.getElementById('fbi');
+  function done() { msg.textContent = en ? 'Copied!' : 'コピーしました'; fb.classList.remove('show'); fbi.value = ''; }
+  function showFallback() {   // コピーできない環境でだけ、この操作の中で、リンクを選択状態にして見せる(通常は DOM に出さない)
+    fbi.value = location.href; fb.classList.add('show'); msg.textContent = '';
+    try { fbi.focus(); fbi.select(); fbi.setSelectionRange(0, fbi.value.length); } catch (e) {}
+  }
+  function legacyCopy() {
+    try {
+      var ta = document.createElement('textarea'); ta.value = location.href; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, ta.value.length);
+      var ok = document.execCommand && document.execCommand('copy'); document.body.removeChild(ta); return !!ok;
+    } catch (e) { return false; }
+  }
+  document.getElementById('copy').addEventListener('click', function () {
+    var url = location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { if (legacyCopy()) done(); else showFallback(); });
+    } else if (legacyCopy()) done(); else showFallback();
+  });
+})();
+</script>
+</body>
+</html>
