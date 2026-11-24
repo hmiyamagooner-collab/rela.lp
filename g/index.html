@@ -9,7 +9,7 @@
 <meta name="description" content="RELA gift">
 <meta property="og:title" content="RELA">
 <meta property="og:description" content="RELA gift">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
 <!--
   RELA VIP ギフトの案内ページ(指示書 #116)。rela.info/g/<token> で、この同じ静的ページを返す(vercel.json の rewrite)。/q/<token>(指示書 #39)と同じ作り。
   - 完全に静的。このページは「受け取り(redeem)」を呼ばない(メッセージアプリのリンクプレビューやクローラーが開いても、券が使われないように)。受け取りは、アプリ(または Web 版)の VIP ルームの「ギフトを受け取る」で、利用者がリンクを貼った時だけ。
@@ -17,8 +17,8 @@
   - 外部のスクリプト・フォントを読み込まない。画像は同じサイトのストアのバッジ(assets/)だけ。解析(GA・ピクセル等)も読み込まない。購入を誘う文は置かない。
 -->
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--fg:#1b2030;--mute:#586078;--line:#d6dae5;--accent:#d6336c;--accent2:#7048e8;--btn:#111}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1020;--card:#171a30;--fg:#eceffa;--mute:#a4abc6;--line:#2c3150;--accent:#ff6fae;--accent2:#a48bff;--btn:#fff}}
+:root{--bg:#050505;--card:#0c0a07;--fg:#f3ead0;--mute:#bfb28a;--line:rgba(230,196,106,.5);--accent:#f6d97c;--accent2:#e0b94e;--btn:#111}
+:root{color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--fg);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Segoe UI",system-ui,sans-serif;padding:max(24px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(32px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
@@ -29,7 +29,8 @@ h1{font-size:22px;line-height:1.45;margin:4px 0 0;text-align:center}
 .card h2{font-size:15px;margin:0 0 8px;color:var(--mute);font-weight:700}
 ol{margin:0;padding-left:1.4em}li{margin:6px 0}
 .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:14px;font-size:16px;font-weight:700;line-height:1;font-family:inherit;border:0;cursor:pointer;text-decoration:none}
-.copy{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.copy{background:linear-gradient(135deg,#f6d97c,#e0b94e);color:#1a1206}
+.vip-badge{display:block;width:60px;height:30px;margin:2px auto 0;filter:drop-shadow(0 0 5px rgba(240,200,96,.5))}
 .store{background:var(--btn);color:var(--bg)}
 .note{font-size:13.5px;color:var(--mute);text-align:center;margin:0}
 .msg{min-height:22px;text-align:center;font-size:14px;color:var(--accent);margin:8px 0 0}
@@ -45,6 +46,7 @@ ol{margin:0;padding-left:1.4em}li{margin:6px 0}
 <body>
 <main>
   <div class="brand" translate="no">RELA</div>
+  <svg class="vip-badge" viewBox="0 0 44 22" role="img" aria-label="VIP"><defs><linearGradient id="vgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2bd"/><stop offset=".45" stop-color="#f3cb50"/><stop offset="1" stop-color="#b3800f"/></linearGradient><linearGradient id="vsG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect x=".6" y=".6" width="42.8" height="20.8" rx="10.4" fill="url(#vgG)" stroke="#7a5509" stroke-width="1"/><path d="M7 3.7H37" stroke="url(#vsG)" stroke-width="1.2" stroke-linecap="round"/><path d="M28.5 1.5L22.5 20.5" stroke="#fff" stroke-opacity=".26" stroke-width="2.6"/><text x="22" y="15.3" text-anchor="middle" font-size="12.5" font-weight="900" fill="#1a1206" font-family="Georgia,'Times New Roman',serif" letter-spacing="1.1">VIP</text></svg>
   <h1 id="h1">RELAのVIPギフトが届いています</h1>
   <section class="card">
     <h2 id="h-steps">受け取りかた</h2>

@@ -461,6 +461,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);
 .plan .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);
   background:var(--heart);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.12em;
   padding:4px 15px;border-radius:99px;white-space:nowrap}
+.vip-badge{display:inline-block;vertical-align:middle;width:44px;height:22px;margin:-3px 0 0 9px;filter:drop-shadow(0 0 4px rgba(240,200,96,.45))}
 .p-name{font-family:'Audiowide',sans-serif;font-size:12px;letter-spacing:.24em;color:var(--ink-soft);margin-bottom:12px}
 .p-price{font-family:'Inter',sans-serif;font-weight:700;font-size:32px;color:var(--cyan);
   text-shadow:0 0 14px rgba(79,216,255,.4)}
@@ -663,7 +664,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         <div class="p-name">STANDARD</div>
         <div class="p-price num">$9.99<small>/month</small></div>
         <div class="p-per">For those serious about building relationships</div>
-        <div class="p-trial" style="margin:2px 0 10px;padding:7px 10px;border-radius:9px;background:rgba(240,200,96,.14);border:1px solid rgba(240,200,96,.4);color:#f0c860;font-size:12px;font-weight:700;line-height:1.5">🎁 Sign up now and get a <b>3-day free trial</b></div>
+        <div class="p-trial" style="margin:2px 0 10px;padding:7px 10px;border-radius:9px;background:rgba(240,200,96,.14);border:1px solid rgba(240,200,96,.4);color:#f0c860;font-size:12px;font-weight:700;line-height:1.5"><svg class="ic-gift" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style="vertical-align:-3px;margin-right:4px"><rect x="3.5" y="10" width="17" height="10.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M3 10h18v3H3zM12 10v10.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 10C10.6 6.4 6.8 6.6 6.8 8.6c0 1.6 3 1.4 5.2 1.4zm0 0c1.4-3.6 5.2-3.4 5.2-1.4 0 1.6-3 1.4-5.2 1.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg>Sign up now and get a <b>3-day free trial</b></div>
         <ul>
           <li>Register up to 5 partners</li>
           <li>Personality analysis report</li>
@@ -673,13 +674,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:44px
         <button type="button" class="btn btn-grad" data-plan-buy="standard">Try free for 3 days</button>
       </div>
       <div class="plan rv">
-        <div class="p-name">PREMIUM</div>
+        <div class="p-name">PREMIUM<svg class="vip-badge" viewBox="0 0 44 22" role="img" aria-label="VIP"><defs><linearGradient id="vgP" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2bd"></stop><stop offset=".45" stop-color="#f3cb50"></stop><stop offset="1" stop-color="#b3800f"></stop></linearGradient><linearGradient id="vsP" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"></stop><stop offset=".5" stop-color="#fff" stop-opacity=".85"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop></linearGradient></defs><rect x=".6" y=".6" width="42.8" height="20.8" rx="10.4" fill="url(#vgP)" stroke="#7a5509" stroke-width="1"></rect><path d="M7 3.7H37" stroke="url(#vsP)" stroke-width="1.2" stroke-linecap="round"></path><path d="M28.5 1.5L22.5 20.5" stroke="#fff" stroke-opacity=".26" stroke-width="2.6"></path><text x="22" y="15.3" text-anchor="middle" font-size="12.5" font-weight="900" fill="#1a1206" font-family="Georgia,'Times New Roman',serif" letter-spacing="1.1">VIP</text></svg></div>
         <div class="p-price num">$24.99<small>/month</small></div>
         <div class="p-per">Every relationship, without limits</div>
         <ul>
           <li>Unlimited partner registrations</li>
           <li>All features included</li>
-          <li>Priority support</li>
+          <li>VIP treatment (your concierge guides you as a VIP)</li>
+          <li>V-Coins: 1,800 at first, plus daily thank-yous you can give to someone special</li>
         </ul>
         <button type="button" class="btn btn-grad" data-plan-buy="premium">Choose this plan</button>
       </div>
